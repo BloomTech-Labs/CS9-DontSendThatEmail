@@ -1,6 +1,6 @@
 // login logic here
 const jwt = require("jsonwebtoken");
-const keys = require("../utils/config");
+const keys = require("../utils/config.env");
 const User = require("../models/user");
 
 const passport = require("passport");

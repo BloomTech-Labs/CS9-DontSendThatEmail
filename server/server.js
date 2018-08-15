@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
-const db = require("./api/utils/config").mongoURI;
+const db = require("./api/utils/config.env").mongoURI;
 const authRouter = require("./api/routers/authRouter");
 
 mongoose

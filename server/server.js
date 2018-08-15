@@ -5,7 +5,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 mongoose
-  .connect("mongodb://localhost/toneapp")
+  .connect("mongodb://admin:LambdaSchoolCS9@ds119692.mlab.com:19692/toneapp")
   .then(() => console.log(`\n====  connected to mongo ====\n`))
   .catch(() => console.log(`error connecting to mongo`));
 

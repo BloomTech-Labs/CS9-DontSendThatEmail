@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Landing from './landing-page'
 import Login from './login'
 import Signup from './signup'
 import { Route } from 'react-router-dom'
+import Landing from './landingpage.js'
 
 class App extends Component {
   render() {

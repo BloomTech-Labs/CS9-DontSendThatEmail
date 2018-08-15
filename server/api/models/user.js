@@ -2,6 +2,7 @@
 const mongoose = require('mongoose'); 
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 11; 
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 //User Model Schema
 const userSchema = mongoose.Schema ({
@@ -31,7 +32,7 @@ const userSchema = mongoose.Schema ({
 
 //Add in Bcrypt for PW hashing
 userSchema.pre('save', function(next) {
-    bcrpyt.hash(this.password, SALT_ROUNDS, (err, hash) => {
+    bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
         if (err) return next(err);
         this.password = hash;
         return next();

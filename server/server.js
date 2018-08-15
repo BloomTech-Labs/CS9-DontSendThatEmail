@@ -3,9 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+const db = require("./api/utils/config").mongoURI
 
 mongoose
-  .connect("mongodb://admin:LambdaSchoolCS9@ds119692.mlab.com:19692/toneapp")
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log(`\n====  connected to mongo ====\n`))
   .catch(() => console.log(`error connecting to mongo`));
 

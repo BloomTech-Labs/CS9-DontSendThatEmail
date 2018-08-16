@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react'
-import './public/assets/css/main.css'
-import './public/assets/css/noscript.css'
+//import './public/assets/css/main.css'
+//import './public/assets/css/noscript.css'
 import SignupModal from './components/signupmodal'
 import { Modal } from "reactstrap"
 class Landing extends Component {

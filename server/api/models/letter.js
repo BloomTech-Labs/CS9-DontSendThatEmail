@@ -8,7 +8,7 @@ const LetterSchema =  new Schema ({
     user_id: {
         type: ObjectId,
         ref: "User",
-        required: true
+        required: true,
     },
     name: {
         type: String,
@@ -16,17 +16,21 @@ const LetterSchema =  new Schema ({
     },
     destination: {
         type: String,
-        required: true,
         trim: true,
+        default: "N/A",
     },
-    content: {
-        type: String,
-    },
+    versions: [
+        {
+        content: {
+            type: String,
+            required: true,
+            },
+        },
+    ],
     timestamp: {
         type: Date, 
-        default: Date.now
-    }
-
+        default: Date.now,
+    },
 });
 
 

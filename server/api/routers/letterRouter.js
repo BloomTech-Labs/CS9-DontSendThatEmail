@@ -54,10 +54,8 @@ router.post("/", (req, res) => {
 router.post('/updateLetter', (req, res) => {
     // console.log(req.body);
     const { content, id } = req.body;
-  
-    // Insert possible check for if `content` was provided here
-  
-    Letter.findById(id).then(letter => {
+      // Insert possible check for if `content` was provided here
+      Letter.findById(id).then(letter => {
       letter.versions.push({ content });
       letter.save()
         .then(updatedletter => {
@@ -69,51 +67,22 @@ router.post('/updateLetter', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+   const id = req.params.id;
+   Letter.findByIdAndRemove(id)
+   .then(response => {
+        if (response.ok === 1) {
+            res.status(200).json({ message: `succussfully deleted the letter with id: ${id}` });
+        } else {
+            res.status(404).json({ message: "The letter with the specified ID does not exist." });
+        }
+    })
+    .catch(err => {
+    res.status(500).json({ error: "The letter information could not be retrieved." });
+    });
+})
 
 
-
-
-
-
-
-
-
-
-
-// router.put('/:id', (req, res) => {
-//   const id  = req.params.id;
-//     const update = req.body; 
-//     const options = {new: true}; 
-
-//     Letter.findByIdAndUpdate(id, update, options)
-//         .then(resp => {
-//             res.status(200).json(resp)
-//         })
-//         .catch(error => {
-//             res.status(500).json({ error: "The letter information could not be modified." });
-//         });
-// })
-
-
-
-// router.delete('/:id', (req, res) => {
-//    const id = req.params.id; 
-//    Letter.remove({ _id: id})
-//    .then(response => {
-//         if (response.ok === 1) {
-//             res.status(200).json({ message: `succussfully deleted the letter with id: ${id}` });
-//         } else {
-//             res.status(404).json({ message: "The letter with the specified ID does not exist." });
-//         }
-//     })
-//     .catch(err => {
-//     res.status(500).json({ error: "The letter information could not be retrieved." });
-//     });
-// })
-
-/*
-
-*/
 
 
 

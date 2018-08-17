@@ -12,7 +12,13 @@ class Dashboard extends Component {
       <Fragment>
         <Col md="3">
           <Card className="">
-           <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}> <CardTitle>Don't Send</CardTitle></Link>
+            <Link
+              to="/dashboard"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              {" "}
+              <CardTitle>Don't Send</CardTitle>
+            </Link>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/documents"

@@ -9,7 +9,7 @@ const addLetter = () => {
           <CardTitle>Add a new letter</CardTitle>
           <br />
           <Link to="/dashboard/create">
-            <i class="fas fa-plus-circle" />
+            <i className="fas fa-plus-circle" />
           </Link>
         </CardBody>
       </Card>

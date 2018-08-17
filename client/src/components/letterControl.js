@@ -17,7 +17,7 @@ class LetterControl extends Component {
   state = {};
   render() {
     return (
-      <Col md="8">
+      <Col md="7">
         <Card className="controlCard-styles">
           <CardBody>
             <br />
@@ -66,10 +66,10 @@ class LetterControl extends Component {
             <br />
             <Row className="controlBtn-styles">
               <Col md="6">
-                <i class="fas fa-arrow-circle-left" />
+                <i className="fas fa-arrow-circle-left" />
               </Col>
               <Col md="6">
-                <i class="fas fa-arrow-circle-right" />
+                <i className="fas fa-arrow-circle-right" />
               </Col>
             </Row>
             <br />

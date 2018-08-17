@@ -30,21 +30,20 @@ class Documents extends Component {
     for (; i < 5; i++) {
       docs.push(<Document key={i} />);
     }
-    return <Row>{docs}<AddLetter/></Row>;
+    return (
+      <Row>
+        {docs}
+        <AddLetter />
+      </Row>
+    );
   }
   addletter() {
-    return (
-      <Col md="9">
-
-      </Col>
-    );
+    return <Col md="9" />;
   }
   render() {
     return (
       <Fragment>
-        <Col md="8">
-          {this.listDocuments()}
-        </Col>
+        <Col md="8">{this.listDocuments()}</Col>
       </Fragment>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from "react";
 
 import SignupModal from "./signupmodal";
+import LogInModal from "./login";
 import About from "./about";
 import { Modal, Card, CardTitle } from "reactstrap";
 class Landing extends Component {
@@ -8,50 +9,49 @@ class Landing extends Component {
     super();
     this.state = {
       modalAbout: false,
-      modalSignup:false
+      modalSignup: false,
+      modalLogin: false
     };
-    this.toggleAbout = this.toggleAbout.bind(this);
-    this.toggleSignup = this.toggleSignup.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
-  toggleAbout() {
-    this.setState({ modalAbout: !this.state.modalAbout });
+  toggle(type) {
+    if (type === "about") {
+      this.setState({ modalAbout: !this.state.modalAbout });
+    } else if (type === "sign up") {
+      this.setState({ modalSignup: !this.state.modalSignup });
+    } else {
+      this.setState({ modalLogin: !this.state.modalLogin });
+    }
   }
-  toggleSignup() {
-    this.setState({ modalSignup: !this.state.modalSignup });
-  }
+
   render() {
     return (
       <Fragment>
         <Card id="wrapper">
           <CardTitle id="header">
-            <div className="logo">
-              <i class="far fa-envelope-open" />
-            </div>
-            <div className="content">
-              <div className="inner">
-                <h1>Coming Soon</h1>
+        
+                  {" "}
+                  <i className="far fa-envelope-open" />
+                  Coming Soon
+             
                 <p>
-                  A fully responsive Landing page made by <br />
+                  Demo landing page made by <br />
                   Don't Email Team
                 </p>
-              </div>
-            </div>
+           
             <nav>
-              <ul>
-                <li>
-                  <a onClick={this.toggleAbout}>About</a>
-                </li>
-                <li>
-                  <a onClick={this.toggleSignup}>Signup</a>
-                </li>
-              </ul>
+              <a onClick={() => this.toggle("about")}>About</a>
+              <br />
+              <a onClick={() => this.toggle("sign up")}>Sign Up</a>
+              <br />
+              <a onClick={() => this.toggle("log in")}>Log In</a>
             </nav>
           </CardTitle>
 
           <Modal
             isOpen={this.state.modalAbout}
-            toggle={this.toggleAbout}
+            toggle={() => this.toggle("about")}
             className={this.props.className}
           >
             <About />
@@ -59,10 +59,17 @@ class Landing extends Component {
 
           <Modal
             isOpen={this.state.modalSignup}
-            toggle={this.toggleSignup}
+            toggle={() => this.toggle("sign up")}
             className={this.props.className}
           >
             <SignupModal />
+          </Modal>
+          <Modal
+            isOpen={this.state.modalLogin}
+            toggle={() => this.toggle("log in")}
+            className={this.props.className}
+          >
+            <LogInModal />
           </Modal>
         </Card>
 

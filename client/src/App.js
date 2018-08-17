@@ -9,6 +9,7 @@ import Landing from "./landingpage.js";
 import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
 import LetterControl from"./components/letterControl";
+import UserSettings from "./components/userSettings";
 class App extends Component {
   render() {
     return (
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/dashboard" component={AddLetter} />
           <Route exact path="/dashboard/create" component={LetterControl} />
+          <Route exact path="/dashboard/settings" component={UserSettings}/>
         </Row>
       </div>
     );

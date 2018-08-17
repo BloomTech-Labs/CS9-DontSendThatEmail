@@ -1,6 +1,6 @@
 // login logic here
 const jwt = require("jsonwebtoken");
-const keys = require("../utils/config.env");
+
 const User = require("../models/user");
 
 const passport = require("passport");
@@ -17,7 +17,7 @@ const makeToken = user => {
   const options = { expiresIn: "4h" };
 
   // Sign the token with payload, secret key and selected options
-  return jwt.sign(payload, keys.mysecret, options);
+  return jwt.sign(payload, process.env.SECRETKEY, options);
 };
 
 // this is start of usual login route that's encapsulated and will be called with authenticate and login via authRouter

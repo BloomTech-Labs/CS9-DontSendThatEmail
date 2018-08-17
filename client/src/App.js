@@ -11,6 +11,7 @@ import AddLetter from "./components/addLetter";
 import LetterControl from"./components/letterControl";
 import UserSettings from "./components/userSettings";
 import LandingPage from "./components/landingPage";
+import Documents from "./components/documents";
 class App extends Component {
   render() {
     return (
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/dashboard" component={AddLetter} />
           <Route exact path="/dashboard/create" component={LetterControl} />
           <Route exact path="/dashboard/settings" component={UserSettings}/>
+          <Route exact path="/dashboard/documents" component={Documents}/>
         </Row>
       </div>
     );

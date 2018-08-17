@@ -15,7 +15,7 @@ class Dashboard extends Component {
            <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}> <CardTitle>Don't Send</CardTitle></Link>
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to="/documents"
+              to="/dashboard/documents"
             >
               <div className="link-mod">
                 <i className="far fa-file" />

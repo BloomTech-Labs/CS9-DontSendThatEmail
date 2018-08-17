@@ -3,13 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
-const DB_URL = require("./api/utils/config.env").mongoURI;
+
 const authRouter = require("./api/routers/authRouter");
 const letterRouter = require('./api/routers/letterRouter');
 
 
 mongoose
-  .connect(DB_URL)
+  .connect(process.env.DB_URL)
   .then(() => console.log(`\n====  connected to mongo ====\n`))
   .catch(() => console.log(`error connecting to mongo`));
 

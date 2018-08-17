@@ -17,6 +17,10 @@
     "url": "https://github.com/Lambda-School-Labs/CS9-DontSendThatEmail/issues"
   },
   "homepage": "https://github.com/Lambda-School-Labs/CS9-DontSendThatEmail#readme",
+
+  "engines": {
+   "node": "8.9.4"
+ },
   "dependencies": {
     "bcrypt": "^3.0.0",
     "cors": "^2.8.4",

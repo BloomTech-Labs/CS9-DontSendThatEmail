@@ -12,8 +12,8 @@ import {
   Button,
   Label
 } from "reactstrap";
-import { Link } from "react-router-dom";
-class Signup extends Component {
+
+class Login extends Component {
   constructor() {
     super();
     this.state = {};
@@ -26,16 +26,11 @@ class Signup extends Component {
 
           <br />
           <Input placeholder="password" />
-          <br />
-          <Input placeholder="email" />
-
-          <Link to="/dashboard">
-            <Button>Signup</Button>
-          </Link>
+          <Button>LOGIN</Button>
         </CardBody>
       </Card>
     );
   }
 }
 
-export default Signup;
+export default Login;

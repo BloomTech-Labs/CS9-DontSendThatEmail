@@ -1,0 +1,26 @@
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+.col-md-6 {
+  margin-bottom: 0px;
+}
+.rowTextArea-styles {
+  min-height: 600px;
+  margin-bottom: 0px;
+}
+.controlTextarea-styles {
+  min-height: 100%;
+}
+.controlBtn-styles {
+  width: 600px;
+}
+.fa-arrow-circle-left {
+  font-size: 40px;
+}
+.fa-arrow-circle-right {
+  font-size: 40px;
+}
+.label {
+  color: red;
+}

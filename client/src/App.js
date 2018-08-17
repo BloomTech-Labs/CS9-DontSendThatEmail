@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import Landing from "./landingpage.js";
 import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
+import LetterControl from"./components/letterControl";
 class App extends Component {
   render() {
     return (
@@ -18,6 +19,7 @@ class App extends Component {
         <Row>
           <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/dashboard" component={AddLetter} />
+          <Route exact path="/dashboard/create" component={LetterControl} />
         </Row>
       </div>
     );

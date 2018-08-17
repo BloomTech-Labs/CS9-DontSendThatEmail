@@ -10,11 +10,12 @@ import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
 import LetterControl from"./components/letterControl";
 import UserSettings from "./components/userSettings";
+import LandingPage from "./components/landingPage";
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={LandingPage} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Row>

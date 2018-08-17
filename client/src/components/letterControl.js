@@ -23,7 +23,7 @@ class LetterControl extends Component {
               <Col md="3">
                 <Input placeholder="Name" />
               </Col>
-              <Col md="1">Edit 46/46</Col>
+              <Col md="2">Edit 46/46</Col>
             </Row>
             <br />
             <Row>

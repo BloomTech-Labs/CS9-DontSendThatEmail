@@ -2,8 +2,10 @@
 height:auto;
     width:400px;
     margin:20px;
+    margin-right:10px;
     min-height: 445px;
 }
 .fa-plus-circle{
-    color:lightgreen
+    color:lightgreen;
+    font-size:50px;
 }

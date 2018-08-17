@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row } from "reactstrap";
 import logo from "./logo.svg";
 import "./App.css";
+import"./components/generalstyle.css"
 import Login from "./login";
 import Signup from "./signup";
 import { Route } from "react-router-dom";

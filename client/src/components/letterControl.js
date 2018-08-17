@@ -10,13 +10,15 @@ import {
   Progress,
   Label
 } from "reactstrap";
+import "./letterControl.css";
+import { Link } from "react-router-dom";
 
 class LetterControl extends Component {
   state = {};
   render() {
     return (
       <Col md="8">
-        <Card>
+        <Card className="controlCard-styles">
           <CardBody>
             <br />
             <Row>
@@ -35,25 +37,34 @@ class LetterControl extends Component {
               </Col>
             </Row>
             <br />
-            <Row>
+            <Row className="rowTextArea-styles">
               <Col md="6">
-                <Input type="textarea" placeholder="Content..." />
+                <Input
+                  className="controlTextarea-styles"
+                  type="textarea"
+                  placeholder="Content..."
+                />
               </Col>
               <Col md="3">
                 <Label>Anger</Label>
+
                 <Progress color="danger" value="47">
                   25%
                 </Progress>
+                <br />
                 <Label>Joy</Label>
+
                 <Progress color="success" value="22">
                   25%
                 </Progress>
+                <br />
                 <Label>Saddness</Label>
+
                 <Progress value="99">25%</Progress>
               </Col>
             </Row>
             <br />
-            <Row>
+            <Row className="controlBtn-styles">
               <Col md="6">
                 <i class="fas fa-arrow-circle-left" />
               </Col>
@@ -61,8 +72,8 @@ class LetterControl extends Component {
                 <i class="fas fa-arrow-circle-right" />
               </Col>
             </Row>
-
-            <Row>
+            <br />
+            <Row className="controlBtn-styles">
               <Col md="6">
                 <Button>Cancel</Button>
               </Col>

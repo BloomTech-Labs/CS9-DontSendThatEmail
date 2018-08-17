@@ -26,9 +26,13 @@ const UserSettings = () => {
             <Col md="4">
               <Input />
             </Col>
+
+            <br />
+            <br />
+            <Col md="12">
+              <Button>Save</Button>
+            </Col>
           </Row>
-          <br />
-          <Button>Save</Button>
         </CardBody>
       </Card>
     </Col>

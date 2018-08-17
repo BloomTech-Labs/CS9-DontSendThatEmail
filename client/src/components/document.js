@@ -28,7 +28,7 @@ const Document = () => {
           qui ratione{" "}
         </CardText>
 
-        <Link to="/dashboard">
+        <Link to="/dashboard/create">
           <Button>Copy</Button>
         </Link>
       </CardBody>

@@ -31,8 +31,10 @@ class Login extends Component {
   }
 
   handleSubmit = (e) => {
+    console.log('clicked')
+    console.log('props', this.props)
     e.preventDefault(); 
-    const setLogin = this.props.context.actions.setLogin; 
+    // const setLogin = this.props.context.actions.setLogin; 
     const user = {
       username: this.state.username, 
       password: this.state.password, 
@@ -40,6 +42,12 @@ class Login extends Component {
     axios
     .post('https://dontemail.herokuapp.com/auth/login',user )
     .then(resp => {
+      console.log(resp.data)
+      // const user = resp.data.user;
+      
+      localStorage.setItem("token",`Bearer ${resp.data.token}`)
+        // setLogin(user);
+        
       console.log(resp)
     }).catch(err => 
     console.log(err)
@@ -49,8 +57,8 @@ class Login extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
 
-        {/* <Card>
-          <CardBody> */}
+        <Card>
+          <CardBody> 
             <Input 
             value={this.state.username}
             name="username"
@@ -66,8 +74,8 @@ class Login extends Component {
             onChange={this.handleChange}
             />
             <Button type="submit">LOGIN</Button>
-          {/* </CardBody>
-        </Card> */}
+          </CardBody>
+        </Card> 
       </form>
     );
   }

@@ -4,7 +4,7 @@ import "./App.css";
 import "./components/generalstyle.css";
 import TestProvider, {TestContext} from './contexts/test-context'; //here 
 
-import { Route } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import Landing from "./landingpage.js";
 import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
@@ -18,25 +18,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-    
-        <Route exact path="/" component={LandingPage} />
+
       
         <AuthProvider>
-          <AuthContext.Consumer> 
-              {context => (
-              <Row>
+         <AuthContext.Consumer> 
+            {context => ( 
+              <React.Fragment>                
+                <Route exact path="/" component={LandingPage} />
                 <Route path="/dashboard" render = {props => (<Dashboard {...props} context={context}/>)} />
                 <Route exact path="/dashboard"   render = {props => (<AddLetter {...props} context={context}/>)}/>
                 <Route exact path="/dashboard/create"  render = {props => (<LetterControl {...props} context={context}/>)} />
                 <Route exact path="/dashboard/settings"   render = {props => (<UserSettings {...props} context={context}/>)}/>
                 <Route exact path="/dashboard/documents"  render = {props => (<Documents {...props} context={context}/>)} />
-              </Row>
-              ) }
-
-            </AuthContext.Consumer>  
+              </React.Fragment>  
+            )}
+            </AuthContext.Consumer> 
         </AuthProvider>
       </div>
     );
+    
   }
 }
 

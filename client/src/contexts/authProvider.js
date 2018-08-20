@@ -6,8 +6,7 @@ class AuthProvider extends Component {
     auth: false,
     username: "test",
     password: "pass",
-    
-    
+    letters: []
   };
 
   toggleAuth = () => {
@@ -19,7 +18,7 @@ class AuthProvider extends Component {
         auth: true, 
         username: data.username ? data.username : '', 
         password: data.password ? data.password : '', 
-
+        letters: data.letters ? data.letters : []
     })
   }
 

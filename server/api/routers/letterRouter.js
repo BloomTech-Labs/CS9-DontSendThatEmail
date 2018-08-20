@@ -67,9 +67,9 @@ router.post("/", protected, (req, res) => {
 
 // http://localhost:5000/letters/updateLetter
 
-router.post("/updateLetter", (req, res) => {
-  console.log(req.body);
-  const { content, id } = req.body;
+router.post("/updateLetter/:id", (req, res) => {
+  const id = req.params.id;
+  const { content } = req.body;
 
   // Insert possible check for if `content` was provided here
   Letter.findById(id).then(letter => {

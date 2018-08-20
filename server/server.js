@@ -3,10 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+const corsOptions = {
+  origin: "https://dont-email-us.netlify.com/",
+  credentials: true
+};
 
 const authRouter = require("./api/routers/authRouter");
-const letterRouter = require('./api/routers/letterRouter');
-
+const letterRouter = require("./api/routers/letterRouter");
 
 mongoose
   .connect(process.env.DB_URL)
@@ -18,13 +21,11 @@ server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
-
-server.get("/",(req, res)=>{
-  res.send('Api running');
-})
+server.get("/", (req, res) => {
+  res.send("Api running");
+});
 server.use("/auth", authRouter);
 server.use("/letters", letterRouter);
-
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

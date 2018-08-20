@@ -77,8 +77,7 @@ router.post("/updateLetter/:id", (req, res) => {
     letter
       .save()
       .then(updatedLetter => {
-        // <--may need to try capital L if issues!!
-        res.status(200).json(updatedLetter); // <--may need to try capital L if issues!!
+        res.status(200).json(updatedLetter);
       })
       .catch(err => {
         res.status(404).json(err);

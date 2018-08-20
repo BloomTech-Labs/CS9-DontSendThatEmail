@@ -36,18 +36,28 @@ router.get("/:id", protected, (req, res) => {
 });
 
 router.post("/", protected, (req, res) => {
-  console.log(req.user._id);
-  const letter = new Letter({ ...req.body, user_id: req.user._id });
-  // Letter.versions.push(letter);
-  letter
-    .save()
-    .then(resp => {
-      res.status(200).json(resp);
+  const { name, content } = req.body;
+  User.findById(req.user._id)
+    .then(user => {
+      if (!user) {
+        res.status(404).json("user not found!");
+      } else {
+        const newLetter = new Letter({ name, user_id: req.user._id });
+        newLetter.versions.push({ content });
+        newLetter
+          .save()
+          .then(saved => {
+            user.addLetter(saved._id);
+            user.save();
+            res.status(201).json(saved);
+          })
+          .catch(error => {
+            res.status(500).json(error.message);
+          });
+      }
     })
-    .catch(err => {
-      res.status(500).json({
-        error: err
-      });
+    .catch(error => {
+      res.status(500).json(error.message);
     });
 });
 

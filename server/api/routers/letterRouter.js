@@ -8,6 +8,7 @@ const passport = require("passport");
 const Letter = require("../models/letter");
 
 router.get("/", protected, (req, res) => {
+  // grabs an id from the request issues by JWT
   const userid = req.user._id;
   User.findById(userid)
     .populate("letters")
@@ -37,6 +38,7 @@ router.get("/:id", protected, (req, res) => {
 
 router.post("/", protected, (req, res) => {
   const { name, content } = req.body;
+  // find the current logged in user
   User.findById(req.user._id)
     .then(user => {
       if (!user) {
@@ -47,6 +49,8 @@ router.post("/", protected, (req, res) => {
         newLetter
           .save()
           .then(saved => {
+            // define new letter, push content to it's versions array and save. Call custom addLetter method (found in user model) on the logged in user
+            // method pushes saved letter's id to users letters array as ref points, then save the user
             user.addLetter(saved._id);
             user.save();
             res.status(201).json(saved);
@@ -64,15 +68,17 @@ router.post("/", protected, (req, res) => {
 // http://localhost:5000/letters/updateLetter
 
 router.post("/updateLetter", (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   const { content, id } = req.body;
+
   // Insert possible check for if `content` was provided here
   Letter.findById(id).then(letter => {
     letter.versions.push({ content });
     letter
       .save()
-      .then(updatedletter => {
-        res.status(200).json(updatedletter);
+      .then(updatedLetter => {
+        // <--may need to try capital L if issues!!
+        res.status(200).json(updatedLetter); // <--may need to try capital L if issues!!
       })
       .catch(err => {
         res.status(404).json(err);

@@ -3,11 +3,12 @@ import { Card, CardTitle, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
 class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
   render() {
+    console.log('props',   this.props)
     return (
       <Fragment>
         <Col md="3">

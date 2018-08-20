@@ -6,6 +6,7 @@ const cors = require("cors");
 const db = require("./api/utils/config.env").mongoURI;
 const authRouter = require("./api/routers/authRouter");
 const letterRouter = require('./api/routers/letterRouter'); 
+const Homepage = require('./api/routers/home'); 
 
 
 mongoose
@@ -23,6 +24,7 @@ server.use(express.urlencoded({ extended: false }));
 
 server.use("/auth", authRouter);
 server.use("/letters", letterRouter);
+server.get('/', Homepage); 
 
 
 const PORT = process.env.PORT || 5000;

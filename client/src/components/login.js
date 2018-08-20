@@ -12,23 +12,63 @@ import {
   Button,
   Label
 } from "reactstrap";
+import axios from 'axios'; 
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '', 
+      password: '', 
+    };
+  }
+
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,  
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault(); 
+    const setLogin = this.props.context.actions.setLogin; 
+    const user = {
+      username: this.state.username, 
+      password: this.state.password, 
+    }
+    axios
+    .post('https://dontemail.herokuapp.com/auth/login',user )
+    .then(resp => {
+      console.log(resp)
+    }).catch(err => 
+    console.log(err)
+    )
   }
   render() {
     return (
-      <Card>
-        <CardBody>
-          <Input placeholder="username" />
+      <form onSubmit={this.handleSubmit}>
 
-          <br />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-        </CardBody>
-      </Card>
+        {/* <Card>
+          <CardBody> */}
+            <Input 
+            value={this.state.username}
+            name="username"
+            placeholder="username" 
+            onChange={this.handleChange}
+            />
+            
+            <br />
+            <Input 
+            placeholder="password"
+            value={this.state.password}
+            name="password"
+            onChange={this.handleChange}
+            />
+            <Button type="submit">LOGIN</Button>
+          {/* </CardBody>
+        </Card> */}
+      </form>
     );
   }
 }

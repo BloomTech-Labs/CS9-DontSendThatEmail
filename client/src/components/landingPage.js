@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-
+import { Link } from "react-router-dom"
 import SignupModal from "./signupmodal";
 import LogInModal from "./login";
 import About from "./about";
@@ -36,23 +36,23 @@ class Landing extends Component {
           <Fragment>
         <Card id="wrapper">
           <CardTitle id="header">
-        
+
                   {" "}
                   <i className="far fa-envelope-open" />
                   {data.header}
-                  
-             
+
+
                 <p>
                   Demo landing page made by <br />
                   Don't Email Team
                 </p>
-           
+
             <nav>
               <a onClick={() => this.toggle("about")}>About</a>
               <br />
-              <a onClick={() => this.toggle("sign up")}>Sign Up</a>
+              <Link to="/register">Sign Up</Link>
               <br />
-              <a onClick={() => this.toggle("log in")}>Log In</a>
+              <Link to="/login">Log In</Link>
             </nav>
           </CardTitle>
 
@@ -64,20 +64,8 @@ class Landing extends Component {
             <About />
           </Modal>
 
-          <Modal
-            isOpen={this.state.modalSignup}
-            toggle={() => this.toggle("sign up")}
-            className={this.props.className}
-            >
-            <SignupModal />
-          </Modal>
-          <Modal
-            isOpen={this.state.modalLogin}
-            toggle={() => this.toggle("log in")}
-            className={this.props.className}
-            >
-            <LogInModal />
-          </Modal>
+
+
         </Card>
 
         <div id="bg" />

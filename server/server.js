@@ -3,10 +3,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+<<<<<<< HEAD
+=======
+
+>>>>>>> fabe74c561de6627b4a079998952fdafe87a59fa
 const corsOptions = {
   origin: "https://dont-email-us.netlify.com/",
   credentials: true
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> fabe74c561de6627b4a079998952fdafe87a59fa
 
 const authRouter = require("./api/routers/authRouter");
 const letterRouter = require("./api/routers/letterRouter");

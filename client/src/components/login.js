@@ -12,62 +12,65 @@ import {
   Button,
   Label
 } from "reactstrap";
-import axios from 'axios'; 
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '', 
-      password: '', 
+      username: '',
+      password: '',
     };
   }
 
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,  
+      [e.target.name]: e.target.value,
     })
   }
 
   handleSubmit = (e) => {
     console.log('clicked')
-    console.log('props', this.props)
-    e.preventDefault(); 
-    // const setLogin = this.props.context.actions.setLogin; 
+
+    e.preventDefault();
+    // const setLogin = this.props.context.actions.setLogin;
     const user = {
-      username: this.state.username, 
-      password: this.state.password, 
+      username: this.state.username,
+      password: this.state.password,
     }
     axios
     .post('https://dontemail.herokuapp.com/auth/login',user )
     .then(resp => {
       console.log(resp.data)
       // const user = resp.data.user;
-      
+
       localStorage.setItem("token",`Bearer ${resp.data.token}`)
-        // setLogin(user);
-        
+
+      const { toggleAuth } = this.props.context.actions
+      toggleAuth()
+      this.props.history.push("/dashboard")
       console.log(resp)
-    }).catch(err => 
+    }).catch(err =>
     console.log(err)
     )
   }
   render() {
+
     return (
       <form onSubmit={this.handleSubmit}>
 
         <Card>
-          <CardBody> 
-            <Input 
+          <CardBody>
+            <Input
             value={this.state.username}
             name="username"
-            placeholder="username" 
+            placeholder="username"
             onChange={this.handleChange}
             />
-            
+
             <br />
-            <Input 
+            <Input
             placeholder="password"
             value={this.state.password}
             name="password"
@@ -75,7 +78,7 @@ class Login extends Component {
             />
             <Button type="submit">LOGIN</Button>
           </CardBody>
-        </Card> 
+        </Card>
       </form>
     );
   }

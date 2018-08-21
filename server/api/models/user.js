@@ -32,11 +32,16 @@ const userSchema = mongoose.Schema({
 
 //Add in Bcrypt for PW hashing
 userSchema.pre("save", function(next) {
-  bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
-    if (err) return next(err);
-    this.password = hash;
+  // check if record is new, fixes the issue with rehashing user's password on each added letter that calls save()
+  if (this.isNew) {
+    bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
+      if (err) return next(err);
+      this.password = hash;
+      return next();
+    });
+  } else {
     return next();
-  });
+  }
 });
 
 userSchema.methods.checkPassword = function(plainTextPW, callback) {
@@ -46,6 +51,10 @@ userSchema.methods.checkPassword = function(plainTextPW, callback) {
     }
     callback(null, isValid);
   });
+};
+
+userSchema.methods.addLetter = function(letter_id) {
+  this.letters.push(letter_id);
 };
 
 module.exports = mongoose.model("User", userSchema);

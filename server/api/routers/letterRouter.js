@@ -8,6 +8,7 @@ const passport = require("passport");
 const Letter = require("../models/letter");
 
 router.get("/", protected, (req, res) => {
+  // grabs an id from the request issues by JWT
   const userid = req.user._id;
   User.findById(userid)
     .populate("letters")
@@ -36,33 +37,47 @@ router.get("/:id", protected, (req, res) => {
 });
 
 router.post("/", protected, (req, res) => {
-  console.log(req.user._id);
-  const letter = new Letter({ ...req.body, user_id: req.user._id });
-  // Letter.versions.push(letter);
-  letter
-    .save()
-    .then(resp => {
-      res.status(200).json(resp);
+  const { name, content } = req.body;
+  // find the current logged in user
+  User.findById(req.user._id)
+    .then(user => {
+      if (!user) {
+        res.status(404).json("user not found!");
+      } else {
+        const newLetter = new Letter({ name, user_id: req.user._id });
+        newLetter.versions.push({ content });
+        newLetter
+          .save()
+          .then(saved => {
+            // define new letter, push content to it's versions array and save. Call custom addLetter method (found in user model) on the logged in user
+            // method pushes saved letter's id to users letters array as ref points, then save the user
+            user.addLetter(saved._id);
+            user.save();
+            res.status(201).json(saved);
+          })
+          .catch(error => {
+            res.status(500).json(error.message);
+          });
+      }
     })
-    .catch(err => {
-      res.status(500).json({
-        error: err
-      });
+    .catch(error => {
+      res.status(500).json(error.message);
     });
 });
 
 // http://localhost:5000/letters/updateLetter
 
-router.post("/updateLetter", (req, res) => {
-  // console.log(req.body);
-  const { content, id } = req.body;
+router.post("/updateLetter/:id", (req, res) => {
+  const id = req.params.id;
+  const { content } = req.body;
+
   // Insert possible check for if `content` was provided here
   Letter.findById(id).then(letter => {
     letter.versions.push({ content });
     letter
       .save()
-      .then(updatedletter => {
-        res.status(200).json(updatedletter);
+      .then(updatedLetter => {
+        res.status(200).json(updatedLetter);
       })
       .catch(err => {
         res.status(404).json(err);

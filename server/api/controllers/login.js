@@ -2,7 +2,6 @@
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
@@ -11,7 +10,8 @@ const LocalStrategy = require("passport-local");
 const makeToken = user => {
   const payload = {
     sub: user._id,
-    user: user.username
+    user: user.username,
+    email: user.email
   };
 
   const options = { expiresIn: "4h" };
@@ -31,8 +31,8 @@ const localStrategy = new LocalStrategy((username, password, done) => {
       if (err) done(err);
       if (isMatch) {
         // grab user id and username and pass it to payload that will be sent to jwt to generate token only if passwords match
-        const { _id, username } = user;
-        return done(null, { _id, username });
+        const { _id, username, email } = user;
+        return done(null, { _id, username, email });
       }
       return done(null, false);
     });
@@ -46,7 +46,7 @@ const authenticate = passport.authenticate("local", { session: false });
 // whole encapsulated logic of login, returns created token as json response along with username it belongs to when called via API
 
 const login = (req, res) => {
-  res.json({ token: makeToken(req.user), user: res.user });
+  res.json({ token: makeToken(req.user), user: req.user });
 };
 
 //export these to use in authRouter

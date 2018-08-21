@@ -26,6 +26,7 @@ server.get("/", (req, res) => {
 });
 server.use("/auth", authRouter);
 server.use("/letters", letterRouter);
+server.get("/", Homepage);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

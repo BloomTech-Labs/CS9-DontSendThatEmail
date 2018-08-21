@@ -4,6 +4,7 @@ import SignupModal from "./signupmodal";
 import LogInModal from "./login";
 import About from "./about";
 import { Modal, Card, CardTitle } from "reactstrap";
+import { TestContext } from "../contexts/test-context";// here
 class Landing extends Component {
   constructor() {
     super();
@@ -26,14 +27,20 @@ class Landing extends Component {
   }
 
   render() {
+
     return (
-      <Fragment>
+    <TestContext.Consumer>
+      {data => {
+        return (
+
+          <Fragment>
         <Card id="wrapper">
           <CardTitle id="header">
         
                   {" "}
                   <i className="far fa-envelope-open" />
-                  Coming Soon
+                  {data.header}
+                  
              
                 <p>
                   Demo landing page made by <br />
@@ -53,7 +60,7 @@ class Landing extends Component {
             isOpen={this.state.modalAbout}
             toggle={() => this.toggle("about")}
             className={this.props.className}
-          >
+            >
             <About />
           </Modal>
 
@@ -61,20 +68,23 @@ class Landing extends Component {
             isOpen={this.state.modalSignup}
             toggle={() => this.toggle("sign up")}
             className={this.props.className}
-          >
+            >
             <SignupModal />
           </Modal>
           <Modal
             isOpen={this.state.modalLogin}
             toggle={() => this.toggle("log in")}
             className={this.props.className}
-          >
+            >
             <LogInModal />
           </Modal>
         </Card>
 
         <div id="bg" />
       </Fragment>
+          )
+      }}
+  </TestContext.Consumer>
     );
   }
 }

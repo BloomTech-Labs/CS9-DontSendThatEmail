@@ -10,22 +10,22 @@ class Dashboard extends Component {
 
   render() {
     const {auth} = this.props.context.userData;
-    
+    console.log(this.props)
     // if (!auth){
 
     // this.props.history.push('/')
-    // } 
-     
+    // }
+
     // console.log('props',   this.props)
     // console.log(auth)
-    
+
     return (
-      <div>
+      <Col md="3">
 
       {auth ? (
-      
+
       <Fragment>
-        <Col md="3">
+
           <Card className="">
             <Link
               to="/dashboard"
@@ -43,7 +43,7 @@ class Dashboard extends Component {
                 <div>Documents</div>
               </div>
             </Link>
-  
+
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/billing"
@@ -53,26 +53,25 @@ class Dashboard extends Component {
                 <div>Billing</div>
               </div>
             </Link>
-  
+
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/settings"
               >
               <div className="link-mod">
                 <i className="fas fa-cogs" />
-  
+
                 <div>Settings</div>
               </div>
             </Link>
           </Card>
-        </Col>
+
       </Fragment>
-      
-      ) : this.props.history.push('/') }
-      </div>
-   
+
+    ) : this.props.history.push('/dashboard/create') }
+      </Col>
+
     );
   }
 }
 export default Dashboard;
-

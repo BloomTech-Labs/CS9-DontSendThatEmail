@@ -19,8 +19,8 @@ import "./documents.css";
 import AddLetter from "./addLetter";
 import Document from "./document";
 class Documents extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -33,7 +33,7 @@ class Documents extends Component {
     return (
       <Row>
         {docs}
-        <AddLetter />
+        <AddLetter {...this.props}/>
       </Row>
     );
   }
@@ -41,10 +41,16 @@ class Documents extends Component {
     return <Col md="9" />;
   }
   render() {
+    const { auth } = this.props.context.userData;
+
     return (
-      <Fragment>
-        <Col md="8">{this.listDocuments()}</Col>
-      </Fragment>
+      <div>
+        {auth ? (
+          <Col md="8">{this.listDocuments()}</Col>
+        ) : (
+          this.props.history.push("/")
+        )}
+      </div>
     );
   }
 }

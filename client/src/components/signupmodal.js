@@ -22,27 +22,27 @@ class Signup extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,  
+      [e.target.name]: e.target.value,
     })
   }
 
   handleSubmit = (e) => {
     console.log('clicked')
     console.log('props', this.props)
-    e.preventDefault(); 
-    // const setLogin = this.props.context.actions.setLogin; 
+    e.preventDefault();
+    // const setLogin = this.props.context.actions.setLogin;
     const user = {
-      username: this.state.username, 
-      password: this.state.password, 
+      username: this.state.username,
+      password: this.state.password,
       email: this.state.email,
     }
     axios
     .post('https://dontemail.herokuapp.com/auth/register',user )
     .then(resp => {
-      console.log(resp.data)   
+      console.log(resp.data)
 
       console.log(resp)
-    }).catch(err => 
+    }).catch(err =>
     console.log(err)
     )
     this.setState({
@@ -58,36 +58,36 @@ class Signup extends Component {
     if (this.state.redirect) {
       return <Redirect to='/'/>
     }
-  } 
+  }
 
   render() {
     return (
     <form onSubmit={this.handleSubmit}>
     {/* Calls redirect function when true triggers redirect */}
-      {this.renderRedirect()} 
+      {this.renderRedirect()}
       <Card>
         <CardBody>
-          <Input 
-          placeholder="username" 
+          <Input
+          placeholder="username"
           value={this.state.username}
           name="username"
           onChange={this.handleChange}
            />
 
           <br />
-          <Input 
+          <Input
           placeholder="password"
           value={this.state.password}
           name="password"
-          onChange={this.handleChange} 
+          onChange={this.handleChange}
           />
-          
+
           <br />
-          <Input 
+          <Input
           placeholder="email"
           value={this.state.email}
           name="email"
-          onChange={this.handleChange} 
+          onChange={this.handleChange}
           />
 
             <Button>SIGN UP</Button>

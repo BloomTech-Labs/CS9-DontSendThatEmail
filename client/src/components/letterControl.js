@@ -21,10 +21,10 @@ class LetterControl extends Component {
       name: "Name",
       destination: "To",
       versionsCounter: 0,
-      anger:0,
-      Saddness:0,
-      joy:0,
-      id:"",
+      anger: 0,
+      sadness: 0,
+      joy: 0,
+      id: ""
     };
   }
   componentDidMount() {
@@ -44,25 +44,30 @@ class LetterControl extends Component {
           versions: resp.data.versions,
           name: resp.data.name,
           destination: resp.data.destination,
-          id:id
+          id: id
         });
         this.versionsCounter();
       })
       .catch(err => {});
   }
 
-  // save the content of the current content 
-  saveVersion(){
-    let id = this.state.id
-    let newVersion = {}
-    newVersion.content = this.state.versions[this.state.versionsCounter].content
-    
+  // save the content of the current content
+  saveVersion() {
+    let id = this.state.id;
+    let newVersion = {};
+    newVersion.content = this.state.versions[
+      this.state.versionsCounter
+    ].content;
+
     axios
-      .post(`https://dontemail.herokuapp.com/letters/updateLetter/${id}`, newVersion)
-        .then(resp =>{
-          console.log(resp.data)
-          this.setletter(id)
-        })
+      .post(
+        `https://dontemail.herokuapp.com/letters/updateLetter/${id}`,
+        newVersion
+      )
+      .then(resp => {
+        console.log(resp.data);
+        this.setletter(id);
+      });
   }
 
   // sets the current index for the version rendering in the component
@@ -81,18 +86,18 @@ class LetterControl extends Component {
     } else {
       if (this.state.versionsCounter - 1 !== -1) {
         counter--;
-      }else{
-      counter = this.state.versions.length - 1;
+      } else {
+        counter = this.state.versions.length - 1;
       }
     }
     this.setState({ versionsCounter: counter });
   }
-  // render a the save botton based on the if the version is the most current version.
-  renderSave(){
-    if(this.state.versionsCounter +1 === this.state.versions.length){
-      return <Button onClick={()=>this.saveVersion()}>Save</Button>
-    }else{
-      return <Button  onClick={()=>this.saveVersion()}>Save As</Button>
+  // render the save button based on the if the version is the most current version.
+  renderSave() {
+    if (this.state.versionsCounter + 1 === this.state.versions.length) {
+      return <Button onClick={() => this.saveVersion()}>Save</Button>;
+    } else {
+      return <Button onClick={() => this.saveVersion()}>Save As</Button>;
     }
   }
   render() {
@@ -108,14 +113,14 @@ class LetterControl extends Component {
                   <Input value={this.state.name} />
                 </Col>
                 <Col md="2">
-                  Edit {this.state.versionsCounter +1}/
+                  Edit {this.state.versionsCounter + 1}/
                   {this.state.versions.length}
                 </Col>
               </Row>
               <br />
               <Row>
                 <Col md="3">
-                  <Input value={this.state.destination}/>
+                  <Input value={this.state.destination} />
                 </Col>
                 <Col md="1">
                   <Button>Analyze</Button>
@@ -145,9 +150,9 @@ class LetterControl extends Component {
                     25%
                   </Progress>
                   <br />
-                  <Label>Saddness</Label>
+                  <Label>Sadness</Label>
 
-                  <Progress value={this.state.Saddness}>25%</Progress>
+                  <Progress value={this.state.sadness}>25%</Progress>
                 </Col>
               </Row>
               <br />
@@ -168,12 +173,12 @@ class LetterControl extends Component {
               <br />
               <Row className="controlBtn-styles">
                 <Col md="6">
-                  <Button>Cancel</Button>
+                  <Link to="/dashboard">
+                    <Button>Cancel</Button>
+                  </Link>
                 </Col>
 
-                <Col md="6">
-               {this.renderSave()}
-                </Col>
+                <Col md="6">{this.renderSave()}</Col>
               </Row>
             </CardBody>
           </Card>

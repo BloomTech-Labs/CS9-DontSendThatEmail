@@ -52,7 +52,7 @@ class App extends Component {
                   />
                   <Route
                     exact
-                    path="/dashboard/create"
+                    path="/dashboard/create/:id"
                     render={props => (
                       <LetterControl {...props} context={context} />
                     )}

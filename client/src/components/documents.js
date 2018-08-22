@@ -1,4 +1,4 @@
-import React, { Component,Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import {
   Row,
   Col,
@@ -22,44 +22,43 @@ class Documents extends Component {
   }
   componentDidMount() {
     //let id = this.props.context.userData.id
-    
-    console.log("mounted",localStorage.getItem("token"))
+
     axios
       .get(`https://dontemail.herokuapp.com/letters`, {
-        headers: { "Authorization": localStorage.getItem("token") }
+        headers: { Authorization: localStorage.getItem("token") }
       })
       .then(resp => {
-        console.log(resp.data.letters);
         this.setState({ letters: resp.data.letters });
-      }).catch(err =>{
-        console.log(err)
       })
-
+      .catch(err => {
+      });
   }
- 
+
   listDocuments() {
-    console.log("i ran list documents")
     return this.state.letters.map(letter => (
       <Fragment>
-      <Col md="4">
-        <Card className="documents-style">
-          <CardBody>
-            <CardTitle>{letter.name}</CardTitle>
+        <Link to={`/dashboard/create/${letter._id}`}>
+        <Col md="4" key={letter._id}>
+          <Card className="documents-style" >
+            <CardBody>
+              <CardTitle>{letter.name}</CardTitle>
 
-            <br />
-            <CardSubtitle>{letter.destination}</CardSubtitle>
-            <br />
-            <CardText>
-              {letter.versions[letter.versions.length -1].content}
-            </CardText>
+              <br />
+              <CardSubtitle>{letter.destination}</CardSubtitle>
+              <br />
+              <CardText>
+                {letter.versions[letter.versions.length - 1].content}
+              </CardText>
 
-            <Link to="/dashboard/create">
-              <Button>Copy</Button>
-            </Link>
-          </CardBody>
-        </Card>
-      </Col>
-    </Fragment>));
+              <Link to="/dashboard/create">
+                <Button>Copy</Button>
+              </Link>
+            </CardBody>
+          </Card>
+        </Col>
+        </Link>
+      </Fragment>
+    ));
   }
 
   render() {
@@ -69,8 +68,10 @@ class Documents extends Component {
       <div>
         {auth ? (
           <Col md="8">
-            <Row>{this.listDocuments()}</Row>
-            <AddLetter {...this.props} />
+            <Row>
+              {this.listDocuments()}
+              <AddLetter {...this.props} />
+            </Row>
           </Col>
         ) : (
           this.props.history.push("/")

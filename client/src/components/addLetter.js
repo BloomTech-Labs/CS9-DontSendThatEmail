@@ -14,7 +14,7 @@ const addLetter = props => {
               <CardBody>
                 <CardTitle>Add a new letter</CardTitle>
                 <br />
-                <Link to="/dashboard/create">
+                <Link to="/dashboard/create/add">
                   <i className="fas fa-plus-circle" />
                 </Link>
               </CardBody>

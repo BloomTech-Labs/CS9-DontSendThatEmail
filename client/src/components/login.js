@@ -18,7 +18,6 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
-    console.log("clicked");
 
     e.preventDefault();
     // const setLogin = this.props.context.actions.setLogin;
@@ -29,7 +28,6 @@ class Login extends Component {
     axios
       .post("https://dontemail.herokuapp.com/auth/login", user)
       .then(resp => {
-        console.log(resp.data);
         // const user = resp.data.user;
 
         localStorage.setItem("token", `Bearer ${resp.data.token}`);
@@ -38,7 +36,6 @@ class Login extends Component {
         setLogin(resp.data.user);
         this.props.history.push("/dashboard");
       })
-      .catch(err => console.log(err));
   };
   render() {
     return (

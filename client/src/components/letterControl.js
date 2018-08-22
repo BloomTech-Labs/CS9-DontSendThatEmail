@@ -20,12 +20,15 @@ class LetterControl extends Component {
       versions: [{ content: "Content..." }],
       name: "Name",
       destination: "To",
-      versionCounter: 0
+      versionsCounter: 0,
+      anger:0,
+      Saddness:0,
+      joy:0,
+      id:"",
     };
   }
   componentDidMount() {
     let { id } = this.props.match.params;
-    console.log(id);
     if (id !== "add") {
       this.setletter(id);
     }
@@ -40,21 +43,59 @@ class LetterControl extends Component {
         this.setState({
           versions: resp.data.versions,
           name: resp.data.name,
-          destination: resp.data.destination
+          destination: resp.data.destination,
+          id:id
         });
-        this.versionCounter();
+        this.versionsCounter();
       })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  versionCounter() {
-    this.setState({ versionCounter: this.state.versions.length - 1 });
+      .catch(err => {});
   }
 
+  // save the content of the current content 
+  saveVersion(){
+    let id = this.state.id
+    let newVersion = {}
+    newVersion.content = this.state.versions[this.state.versionsCounter].content
+    
+    axios
+      .post(`https://dontemail.herokuapp.com/letters/updateLetter/${id}`, newVersion)
+        .then(resp =>{
+          console.log(resp.data)
+          this.setletter(id)
+        })
+  }
 
+  // sets the current index for the version rendering in the component
+  versionsCounter() {
+    this.setState({ versionsCounter: this.state.versions.length - 1 });
+  }
+  // change the index of the version to change what content is rendered.
+  changeVersion(type) {
+    let counter = this.state.versionsCounter;
+    if (type === "up") {
+      if (this.state.versionsCounter + 1 < this.state.versions.length) {
+        counter++;
+      } else {
+        counter = 0;
+      }
+    } else {
+      if (this.state.versionsCounter - 1 !== -1) {
+        counter--;
+      }else{
+      counter = this.state.versions.length - 1;
+      }
+    }
+    this.setState({ versionsCounter: counter });
+  }
+  // render a the save botton based on the if the version is the most current version.
+  renderSave(){
+    if(this.state.versionsCounter +1 === this.state.versions.length){
+      return <Button onClick={()=>this.saveVersion()}>Save</Button>
+    }else{
+      return <Button  onClick={()=>this.saveVersion()}>Save As</Button>
+    }
+  }
   render() {
-    console.log("letters on state", this.state);
     const { auth } = this.props.context.userData;
     return (
       <Col md="7">
@@ -64,17 +105,17 @@ class LetterControl extends Component {
               <br />
               <Row>
                 <Col md="3">
-                  <Input placeholder={this.state.name} />
+                  <Input value={this.state.name} />
                 </Col>
                 <Col md="2">
-                  Edit 46/
+                  Edit {this.state.versionsCounter +1}/
                   {this.state.versions.length}
                 </Col>
               </Row>
               <br />
               <Row>
                 <Col md="3">
-                  <Input placeholder={this.state.destination} />
+                  <Input value={this.state.destination}/>
                 </Col>
                 <Col md="1">
                   <Button>Analyze</Button>
@@ -86,36 +127,42 @@ class LetterControl extends Component {
                   <Input
                     className="controlTextarea-styles"
                     type="textarea"
-                    placeholder={
-                      this.state.versions[this.state.versionCounter].content
+                    value={
+                      this.state.versions[this.state.versionsCounter].content
                     }
                   />
                 </Col>
                 <Col md="3">
                   <Label>Anger</Label>
 
-                  <Progress color="danger" value="47">
+                  <Progress color="danger" value={this.state.anger}>
                     25%
                   </Progress>
                   <br />
                   <Label>Joy</Label>
 
-                  <Progress color="success" value="22">
+                  <Progress color="success" value={this.state.joy}>
                     25%
                   </Progress>
                   <br />
                   <Label>Saddness</Label>
 
-                  <Progress value="99">25%</Progress>
+                  <Progress value={this.state.Saddness}>25%</Progress>
                 </Col>
               </Row>
               <br />
               <Row className="controlBtn-styles">
                 <Col md="6">
-                  <i className="fas fa-arrow-circle-left" />
+                  <i
+                    className="fas fa-arrow-circle-left"
+                    onClick={() => this.changeVersion("down")}
+                  />
                 </Col>
                 <Col md="6">
-                  <i className="fas fa-arrow-circle-right" />
+                  <i
+                    className="fas fa-arrow-circle-right"
+                    onClick={() => this.changeVersion("up")}
+                  />
                 </Col>
               </Row>
               <br />
@@ -125,7 +172,7 @@ class LetterControl extends Component {
                 </Col>
 
                 <Col md="6">
-                  <Button>Save</Button>
+               {this.renderSave()}
                 </Col>
               </Row>
             </CardBody>

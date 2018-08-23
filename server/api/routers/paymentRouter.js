@@ -23,8 +23,6 @@ router.post("/", protected, (req, res, next) => {
   // stripe.charges.create(req.body, postStripeCharge(res));
   const stripeToken = req.body.source;
   let email = req.user.email;
-  console.log(req.body);
-  console.log(req.user);
 
   User.findById(req.user._id)
     .then(user => {

@@ -30,32 +30,31 @@ class Documents extends Component {
       .then(resp => {
         this.setState({ letters: resp.data.letters });
       })
-      .catch(err => {
-      });
+      .catch(err => {});
   }
 
   listDocuments() {
     return this.state.letters.map(letter => (
       <Fragment>
         <Link to={`/dashboard/create/${letter._id}`}>
-        <Col md="4" key={letter._id}>
-          <Card className="documents-style" >
-            <CardBody>
-              <CardTitle>{letter.name}</CardTitle>
+          <Col sm="10" md="6" lg="4" key={letter._id}>
+            <Card className="documents-style">
+              <CardBody>
+                <CardTitle>{letter.name}</CardTitle>
 
-              <br />
-              <CardSubtitle>{letter.destination}</CardSubtitle>
-              <br />
-              <CardText>
-                {letter.versions[letter.versions.length - 1].content}
-              </CardText>
+                <br />
+                <CardSubtitle>{letter.destination}</CardSubtitle>
+                <br />
+                <CardText>
+                  {letter.versions[letter.versions.length - 1].content}
+                </CardText>
 
-              <Link to="/dashboard/create">
-                <Button>Copy</Button>
-              </Link>
-            </CardBody>
-          </Card>
-        </Col>
+                <Link to="/dashboard/create">
+                  <Button>Copy</Button>
+                </Link>
+              </CardBody>
+            </Card>
+          </Col>
         </Link>
       </Fragment>
     ));
@@ -65,18 +64,16 @@ class Documents extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <div>
+      <Col md="7">
         {auth ? (
-          <Col md="8">
-            <Row>
-              {this.listDocuments()}
-              <AddLetter {...this.props} />
-            </Row>
-          </Col>
+          <Row>
+            {this.listDocuments()}
+            <AddLetter {...this.props} />
+          </Row>
         ) : (
           this.props.history.push("/")
         )}
-      </div>
+      </Col>
     );
   }
 }

@@ -5,6 +5,9 @@ import LogInModal from "./login";
 import About from "./about";
 import { Modal, Card, CardTitle } from "reactstrap";
 import { TestContext } from "../contexts/test-context";// here
+import axios from 'axios';
+
+
 class Landing extends Component {
   constructor() {
     super();
@@ -34,6 +37,7 @@ class Landing extends Component {
         return (
 
           <Fragment>
+            
         <Card id="wrapper">
           <CardTitle id="header">
 

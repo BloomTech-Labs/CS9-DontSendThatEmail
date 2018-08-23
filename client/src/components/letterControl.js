@@ -127,9 +127,7 @@ class LetterControl extends Component {
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
-    newVersion.content = this.state.versions[
-      this.state.versionsCounter
-    ].content;
+    newVersion.content = this.state.content;
 
     axios
       .post(
@@ -139,6 +137,7 @@ class LetterControl extends Component {
       .then(resp => {
         console.log(resp.data);
         this.setletter(id);
+        this.setState({ content: "" });
       });
   }
 

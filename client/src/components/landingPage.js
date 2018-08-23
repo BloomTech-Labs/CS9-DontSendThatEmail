@@ -33,8 +33,8 @@ class Landing extends Component {
     axios.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21",
         text,
      { auth: {
-       username: "cd1287e9-2978-462a-8fd3-3e72d69049fa",
-       password: "yw6pRzfl3Zgh"
+       username: watsonUSERNAME,
+       password: watsonPASSWORD
      }
      })
       .then(resp=>{

@@ -162,7 +162,13 @@ class LetterControl extends Component {
         counter = this.state.versions.length - 1;
       }
     }
-    this.setState({ versionsCounter: counter });
+    this.setState({
+      versionsCounter: counter,
+      analytical: 0,
+      sadness: 0,
+      joy: 0,
+      anger: 0
+    });
   }
   // render the save button based on the if the version is the most current version.
   renderSave() {
@@ -184,9 +190,9 @@ class LetterControl extends Component {
   render() {
     const { auth } = this.props.context.userData;
     return (
-      <Col md="7">
+      <Col md="7" className="controlCol-styles">
         {auth ? (
-          <Card className="controlCard-styles">
+          <Card>
             <CardBody>
               <br />
               <Form>
@@ -199,9 +205,11 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     />
                   </Col>
-                  <Col md="2">
-                    Edit {this.state.versionsCounter + 1}/
-                    {this.state.versions.length}
+                  <Col md="3">
+                    <div className="versionsCounter-styles">
+                      Edit {this.state.versionsCounter + 1}/
+                      {this.state.versions.length}
+                    </div>
                   </Col>
                 </Row>
                 <br />
@@ -232,30 +240,44 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     />
                   </Col>
-                  <Col md="3">
-                    <Label>Anger</Label>
+                  <Col md="4">
+                    <div>
+                      <Label>Anger</Label>
 
-                    <Progress color="danger" value={this.state.anger}>
-                      {this.state.anger}%
-                    </Progress>
-                    <br />
-                    <Label>Joy</Label>
+                      <Progress
+                        animated
+                        color="danger"
+                        value={this.state.anger}
+                      >
+                        {this.state.anger}%
+                      </Progress>
+                      <br />
+                      <Label>Joy</Label>
 
-                    <Progress color="success" value={this.state.joy}>
-                      {this.state.joy}%
-                    </Progress>
-                    <br />
-                    <Label>Sadness</Label>
+                      <Progress animated color="success" value={this.state.joy}>
+                        {this.state.joy}%
+                      </Progress>
+                      <br />
+                      <Label>Sadness</Label>
 
-                    <Progress color="info" value={this.state.sadness}>
-                      {this.state.sadness}%
-                    </Progress>
-                    <br />
-                    <Label>Analytical</Label>
+                      <Progress
+                        animated
+                        color="info"
+                        value={this.state.sadness}
+                      >
+                        {this.state.sadness}%
+                      </Progress>
+                      <br />
+                      <Label>Analytical</Label>
 
-                    <Progress color="warning" value={this.state.analytical}>
-                      {this.state.analytical}%
-                    </Progress>
+                      <Progress
+                        animated
+                        color="warning"
+                        value={this.state.analytical}
+                      >
+                        {this.state.analytical}%
+                      </Progress>
+                    </div>
                   </Col>
                 </Row>
                 <br />

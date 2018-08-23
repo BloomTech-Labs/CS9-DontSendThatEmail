@@ -18,7 +18,6 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
-
     e.preventDefault();
     // const setLogin = this.props.context.actions.setLogin;
     const user = {
@@ -35,7 +34,7 @@ class Login extends Component {
         const { setLogin } = this.props.context.actions;
         setLogin(resp.data.user);
         this.props.history.push("/dashboard");
-      })
+      });
   };
   render() {
     return (

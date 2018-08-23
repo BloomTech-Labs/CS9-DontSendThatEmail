@@ -26,6 +26,7 @@ class LetterControl extends Component {
       anger: 0,
       sadness: 0,
       joy: 0,
+      analytical: 0,
       id: ""
     };
   }
@@ -78,13 +79,55 @@ class LetterControl extends Component {
       .catch(err => console.log(err));
   }
 
+  watson() {
+    const text = {
+      text: this.state.versions[this.state.versionsCounter].content
+    };
+    axios
+      .post(
+        "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21",
+        text,
+        {
+          auth: {
+            username: "cd1287e9-2978-462a-8fd3-3e72d69049fa",
+            password: "yw6pRzfl3Zgh"
+          }
+        }
+      )
+      .then(resp => {
+        let sadness = 0;
+        let anger = 0;
+        let joy = 0;
+        let analytical = 0;
+
+        resp.data.document_tone.tones.forEach(tone => {
+          if (tone.tone_id === "sadness") {
+            sadness += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "anger") {
+            anger += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "analytical") {
+            analytical += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "joy") {
+            joy += Math.floor(tone.score * 100);
+          }
+        });
+        console.log("watson", resp.data, sadness, analytical, joy);
+
+        this.setState({
+          sadness,
+          anger,
+          joy,
+          analytical
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   // save the content of the current content
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
-    newVersion.content = this.state.versions[
-      this.state.versionsCounter
-    ].content;
+    newVersion.content = this.state.content;
 
     axios
       .post(
@@ -94,6 +137,7 @@ class LetterControl extends Component {
       .then(resp => {
         console.log(resp.data);
         this.setletter(id);
+        this.setState({ content: "" });
       });
   }
 
@@ -117,7 +161,13 @@ class LetterControl extends Component {
         counter = this.state.versions.length - 1;
       }
     }
-    this.setState({ versionsCounter: counter });
+    this.setState({
+      versionsCounter: counter,
+      analytical: 0,
+      sadness: 0,
+      joy: 0,
+      anger: 0
+    });
   }
   // render the save button based on the if the version is the most current version.
   renderSave() {
@@ -139,9 +189,9 @@ class LetterControl extends Component {
   render() {
     const { auth } = this.props.context.userData;
     return (
-      <Col md="7">
+      <Col md="7" className="controlCol-styles">
         {auth ? (
-          <Card className="controlCard-styles">
+          <Card>
             <CardBody>
               <br />
               <Form>
@@ -154,9 +204,11 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     />
                   </Col>
-                  <Col md="2">
-                    Edit {this.state.versionsCounter + 1}/
-                    {this.state.versions.length}
+                  <Col md="3">
+                    <div className="versionsCounter-styles">
+                      Edit {this.state.versionsCounter + 1}/
+                      {this.state.versions.length}
+                    </div>
                   </Col>
                 </Row>
                 <br />
@@ -170,7 +222,7 @@ class LetterControl extends Component {
                     />
                   </Col>
                   <Col md="1">
-                    <Button>Analyze</Button>
+                    <Button onClick={() => this.watson()}>Analyze</Button>
                   </Col>
                 </Row>
                 <br />
@@ -187,22 +239,44 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     />
                   </Col>
-                  <Col md="3">
-                    <Label>Anger</Label>
+                  <Col md="4">
+                    <div>
+                      <Label>Anger</Label>
 
-                    <Progress color="danger" placeholder={this.state.anger}>
-                      25%
-                    </Progress>
-                    <br />
-                    <Label>Joy</Label>
+                      <Progress
+                        animated
+                        color="danger"
+                        value={this.state.anger}
+                      >
+                        {this.state.anger}%
+                      </Progress>
+                      <br />
+                      <Label>Joy</Label>
 
-                    <Progress color="success" placeholder={this.state.joy}>
-                      25%
-                    </Progress>
-                    <br />
-                    <Label>Sadness</Label>
+                      <Progress animated color="success" value={this.state.joy}>
+                        {this.state.joy}%
+                      </Progress>
+                      <br />
+                      <Label>Sadness</Label>
 
-                    <Progress placeholder={this.state.sadness}>25%</Progress>
+                      <Progress
+                        animated
+                        color="info"
+                        value={this.state.sadness}
+                      >
+                        {this.state.sadness}%
+                      </Progress>
+                      <br />
+                      <Label>Analytical</Label>
+
+                      <Progress
+                        animated
+                        color="warning"
+                        value={this.state.analytical}
+                      >
+                        {this.state.analytical}%
+                      </Progress>
+                    </div>
                   </Col>
                 </Row>
                 <br />

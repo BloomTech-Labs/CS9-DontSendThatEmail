@@ -14,6 +14,7 @@ import LandingPage from "./components/landingPage";
 import Documents from "./components/documents";
 import Signup from "./components/signupmodal";
 import Login from "./components/login";
+import Options from "./components/settingsOption";
 
 import AuthProvider, { AuthContext } from "./contexts/authProvider";
 
@@ -59,7 +60,14 @@ class App extends Component {
                   />
                   <Route
                     exact
-                    path="/dashboard/settings"
+                    path="/dashboard/options"
+                    render={props => (
+                      <Options {...props} context={context} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/dashboard/settings/:id"
                     render={props => (
                       <UserSettings {...props} context={context} />
                     )}

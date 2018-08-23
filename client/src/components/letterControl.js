@@ -89,8 +89,8 @@ class LetterControl extends Component {
         text,
         {
           auth: {
-            username: "cd1287e9-2978-462a-8fd3-3e72d69049fa",
-            password: "yw6pRzfl3Zgh"
+             username: process.env.REACT_APP_watsonUSERNAME,
+             password: process.env.REACT_APP_watsonPassword
           }
         }
       )
@@ -187,6 +187,7 @@ class LetterControl extends Component {
   };
 
   render() {
+    console.log("Process", process.env.REACT_APP_watsonUSERNAME)
     const { auth } = this.props.context.userData;
     return (
       <Col md="7" className="controlCol-styles">

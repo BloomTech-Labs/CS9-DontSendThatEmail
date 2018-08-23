@@ -19,6 +19,6 @@ router.route("/register").post(createUser);
 
 router.route("/login").post(authenticate, login);
 
-router.route("/:id").put(protected, updateUser);
+router.route("/updateUser").put(protected, updateUser);
 
 module.exports = router;

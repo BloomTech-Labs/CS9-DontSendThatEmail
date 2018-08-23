@@ -1,20 +1,23 @@
 const User = require("../models/user");
 
 const updateUser = (req, res) => {
-  let { email, password } = req.body;
-  User.findOne({ _id: req.params.id }, function(err, user) {
+  let { password } = req.body;
+  User.findOne({ _id: req.user._id }, function(err, user) {
     if (err) {
-      console.log(err);
-      return;
+      res.status(404).json(err.message);
     }
-    if (password) user.password = password;
-    if (email) user.email = email;
+
+    if (password && password.length > 4) {
+      user.password = password;
+    } else {
+      res.status(500).json({ error: "Password is too short or empty" });
+    }
     user.save(function(err, returnData) {
       if (err) {
-        console.log(err);
+        res.status(500).json(err);
         return;
       }
-      res.send("Update successfull");
+      res.send(user);
     });
   });
 };

@@ -5,6 +5,7 @@ import LogInModal from "./login";
 import About from "./about";
 import { Modal, Card, CardTitle } from "reactstrap";
 import { TestContext } from "../contexts/test-context";// here
+import axios from 'axios';
 class Landing extends Component {
   constructor() {
     super();
@@ -25,6 +26,41 @@ class Landing extends Component {
       this.setState({ modalLogin: !this.state.modalLogin });
     }
   }
+  watson(){
+    const text = {
+      text: "I love water"
+      }
+    axios.post("https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21",
+        text,
+     { auth: {
+       username: "cd1287e9-2978-462a-8fd3-3e72d69049fa",
+       password: "yw6pRzfl3Zgh"
+     }
+     })
+      .then(resp=>{
+        let sadness = 0
+        let anger = 0
+        let joy = 0
+        let analytical = 0;
+
+        resp.data.document_tone.tones.forEach(tone=>{
+          if(tone.tone_id === "sadness"){
+            sadness += Math.floor(tone.score * 100)
+          }
+          else if(tone.tone_id === "anger"){
+            anger += Math.floor(tone.score * 100)
+          }
+          else if(tone.tone_id === "analytical"){
+            analytical += Math.floor(tone.score * 100)
+          }
+          else if(tone.tone_id === "joy"){
+            joy += Math.floor(tone.score * 100)
+          }
+        })
+        console.log(sadness,anger,joy, analytical)
+      })
+      .catch(err => console.log(err))
+  }
 
   render() {
 
@@ -34,6 +70,7 @@ class Landing extends Component {
         return (
 
           <Fragment>
+            {this.watson()}
         <Card id="wrapper">
           <CardTitle id="header">
 

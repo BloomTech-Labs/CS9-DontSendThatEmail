@@ -26,6 +26,7 @@ class LetterControl extends Component {
       anger: 0,
       sadness: 0,
       joy: 0,
+      analytical: 0,
       id: ""
     };
   }
@@ -74,6 +75,50 @@ class LetterControl extends Component {
       .then(resp => {
         this.props.history.push(`/dashboard/create/${resp.data._id}`);
         this.setletter(resp.data._id);
+      })
+      .catch(err => console.log(err));
+  }
+
+  watson() {
+    const text = {
+      text: this.state.versions[this.state.versionsCounter].content
+    };
+    axios
+      .post(
+        "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21",
+        text,
+        {
+          auth: {
+            username: "cd1287e9-2978-462a-8fd3-3e72d69049fa",
+            password: "yw6pRzfl3Zgh"
+          }
+        }
+      )
+      .then(resp => {
+        let sadness = 0;
+        let anger = 0;
+        let joy = 0;
+        let analytical = 0;
+
+        resp.data.document_tone.tones.forEach(tone => {
+          if (tone.tone_id === "sadness") {
+            sadness += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "anger") {
+            anger += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "analytical") {
+            analytical += Math.floor(tone.score * 100);
+          } else if (tone.tone_id === "joy") {
+            joy += Math.floor(tone.score * 100);
+          }
+        });
+        console.log("watson", resp.data, sadness, analytical, joy);
+
+        this.setState({
+          sadness,
+          anger,
+          joy,
+          analytical
+        });
       })
       .catch(err => console.log(err));
   }
@@ -170,7 +215,7 @@ class LetterControl extends Component {
                     />
                   </Col>
                   <Col md="1">
-                    <Button>Analyze</Button>
+                    <Button onClick={() => this.watson()}>Analyze</Button>
                   </Col>
                 </Row>
                 <br />
@@ -190,19 +235,27 @@ class LetterControl extends Component {
                   <Col md="3">
                     <Label>Anger</Label>
 
-                    <Progress color="danger" placeholder={this.state.anger}>
-                      25%
+                    <Progress color="danger" value={this.state.anger}>
+                      {this.state.anger}%
                     </Progress>
                     <br />
                     <Label>Joy</Label>
 
-                    <Progress color="success" placeholder={this.state.joy}>
-                      25%
+                    <Progress color="success" value={this.state.joy}>
+                      {this.state.joy}%
                     </Progress>
                     <br />
                     <Label>Sadness</Label>
 
-                    <Progress placeholder={this.state.sadness}>25%</Progress>
+                    <Progress color="info" value={this.state.sadness}>
+                      {this.state.sadness}%
+                    </Progress>
+                    <br />
+                    <Label>Analytical</Label>
+
+                    <Progress color="warning" value={this.state.analytical}>
+                      {this.state.analytical}%
+                    </Progress>
                   </Col>
                 </Row>
                 <br />

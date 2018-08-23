@@ -11,7 +11,8 @@ const makeToken = user => {
   const payload = {
     sub: user._id,
     user: user.username,
-    email: user.email
+    email: user.email,
+    membership: user.membership
   };
 
   const options = { expiresIn: "4h" };
@@ -31,8 +32,8 @@ const localStrategy = new LocalStrategy((username, password, done) => {
       if (err) done(err);
       if (isMatch) {
         // grab user id and username and pass it to payload that will be sent to jwt to generate token only if passwords match
-        const { _id, username, email } = user;
-        return done(null, { _id, username, email });
+        const { _id, username, email, membership } = user;
+        return done(null, { _id, username, email, membership });
       }
       return done(null, false);
     });

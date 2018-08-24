@@ -10,6 +10,7 @@ const corsOptions = {
 
 const authRouter = require("./api/routers/authRouter");
 const letterRouter = require("./api/routers/letterRouter");
+const paymentRouter = require("./api/routers/paymentRouter");
 
 mongoose
   .connect(process.env.DB_URL)
@@ -26,6 +27,7 @@ server.get("/", (req, res) => {
 });
 server.use("/auth", authRouter);
 server.use("/letters", letterRouter);
+server.use("/payment", paymentRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

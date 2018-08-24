@@ -9,8 +9,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const {auth} = this.props.context.userData;
-    console.log(this.props)
+    const { auth } = this.props.context.userData;
+    console.log(this.props);
     // if (!auth){
 
     // this.props.history.push('/')
@@ -21,56 +21,52 @@ class Dashboard extends Component {
 
     return (
       <Col md="3">
-
-      {auth ? (
-
-      <Fragment>
-
-          <Card className="">
-            <Link
-              to="/dashboard"
-              style={{ textDecoration: "none", color: "white" }}
+        {auth ? (
+          <Fragment>
+            <Card className="dashboardnav-styles">
+              <Link
+                to="/dashboard"
+                style={{ textDecoration: "none", color: "white" }}
               >
-              {" "}
-              <CardTitle>Don't Send</CardTitle>
-            </Link>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/dashboard/documents"
+                {" "}
+                <CardTitle>Don't Send</CardTitle>
+              </Link>
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to="/dashboard/documents"
               >
-              <div className="link-mod">
-                <i className="far fa-file" />
-                <div>Documents</div>
-              </div>
-            </Link>
+                <div className="link-mod">
+                  <i className="far fa-file" />
+                  <div>Documents</div>
+                </div>
+              </Link>
 
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/billing"
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to="/billing"
               >
-              <div className="link-mod">
-                <i className="fas fa-money-bill-wave-alt" />
-                <div>Billing</div>
-              </div>
-            </Link>
+                <div className="link-mod">
+                  <i className="fas fa-money-bill-wave-alt" />
+                  <div>Billing</div>
+                </div>
+              </Link>
 
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/dashboard/settings"
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to="/dashboard/settings"
               >
-              <div className="link-mod">
-                <i className="fas fa-cogs" />
+                <div className="link-mod">
+                  <i className="fas fa-cogs" />
 
-                <div>Settings</div>
-              </div>
-            </Link>
-          </Card>
-
-      </Fragment>
-
-    ) : this.props.history.push('/dashboard/create') }
+                  <div>Settings</div>
+                </div>
+              </Link>
+            </Card>
+          </Fragment>
+        ) : (
+          this.props.history.push("/dashboard/create")
+        )}
       </Col>
-
     );
   }
 }

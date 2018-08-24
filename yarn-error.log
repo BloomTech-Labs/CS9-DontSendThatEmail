@@ -1,4 +1,5 @@
 Arguments: 
+
   C:\Program Files\nodejs\node.exe C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add stripe
 
 PATH: 
@@ -11,7 +12,7 @@ Node version:
   9.10.1
 
 Platform: 
-  win32 x64
+  linux x64
 
 npm manifest: 
   {
@@ -2167,6 +2168,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 Trace: 
+
   Error: Found incompatible module
       at new MessageError (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at Object.checkOne (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:62444:11)
@@ -2178,3 +2180,4 @@ Trace:
       at new F (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:23451:28)
       at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:95:12
       at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:22777:27
+

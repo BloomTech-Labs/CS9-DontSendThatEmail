@@ -5,52 +5,75 @@ import {
   Card,
   CardBody,
   CardTitle,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
   Button,
-  Label,
   CardSubtitle,
   CardText
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./documents.css";
 import AddLetter from "./addLetter";
-import Document from "./document";
 class Documents extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      letters: []
+    };
+  }
+  componentDidMount() {
+    //let id = this.props.context.userData.id
+
+    axios
+      .get(`https://dontemail.herokuapp.com/letters`, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(resp => {
+        this.setState({ letters: resp.data.letters });
+      })
+      .catch(err => {});
   }
 
   listDocuments() {
-    let i = 0;
-    let docs = [];
-    for (; i < 5; i++) {
-      docs.push(<Document key={i} />);
-    }
-    return (
-      <Row>
-        {docs}
-        <AddLetter {...this.props}/>
-      </Row>
-    );
+    return this.state.letters.map(letter => (
+      <Fragment>
+        <Link to={`/dashboard/create/${letter._id}`}>
+          <Col sm="10" md="6" lg="4" key={letter._id}>
+            <Card className="documents-style">
+              <CardBody>
+                <CardTitle>{letter.name}</CardTitle>
+
+                <br />
+                <CardSubtitle>{letter.destination}</CardSubtitle>
+                <br />
+                <CardText>
+                  {letter.versions[letter.versions.length - 1].content}
+                </CardText>
+
+                <Link to="/dashboard/create">
+                  <Button>Copy</Button>
+                </Link>
+              </CardBody>
+            </Card>
+          </Col>
+        </Link>
+      </Fragment>
+    ));
   }
-  addletter() {
-    return <Col md="9" />;
-  }
+
   render() {
     const { auth } = this.props.context.userData;
 
     return (
-      <div>
+      <Col md="7">
         {auth ? (
-          <Col md="8">{this.listDocuments()}</Col>
+          <Row>
+            {this.listDocuments()}
+            <AddLetter {...this.props} />
+          </Row>
         ) : (
           this.props.history.push("/")
         )}
-      </div>
+      </Col>
     );
   }
 }

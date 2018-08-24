@@ -43,7 +43,7 @@ class Dashboard extends Component {
 
               <Link
                 style={{ textDecoration: "none", color: "white" }}
-                to="/billing"
+                to="/dashboard/billing"
               >
                 <div className="link-mod">
                   <i className="fas fa-money-bill-wave-alt" />

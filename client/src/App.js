@@ -14,6 +14,7 @@ import LandingPage from "./components/landingPage";
 import Documents from "./components/documents";
 import Signup from "./components/signupmodal";
 import Login from "./components/login";
+import Billing from "./components/billing";
 
 import AuthProvider, { AuthContext } from "./contexts/authProvider";
 
@@ -68,6 +69,11 @@ class App extends Component {
                     exact
                     path="/dashboard/documents"
                     render={props => <Documents {...props} context={context} />}
+                  />
+                  <Route
+                    exact
+                    path="/dashboard/billing"
+                    render={props => <Billing {...props} context={context} />}
                   />
                 </Row>
               </React.Fragment>

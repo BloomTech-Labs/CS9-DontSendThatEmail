@@ -1,14 +1,15 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn start
+
+  C:\Program Files\nodejs\node.exe C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add stripe
 
 PATH: 
-  /home/jaivon/bin:/home/jaivon/bin:/home/jaivon/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-9-oracle/bin:/usr/lib/jvm/java-9-oracle/db/bin
+  C:\Users\Velsu\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Velsu\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\WINDOWS\System32\OpenSSH;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32;C:\Users\Velsu\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python36-32;C:\Users\Velsu\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Velsu\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Velsu\AppData\Roaming\Python\Python36\Scripts;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  8.9.4
+  9.10.1
 
 Platform: 
   linux x64
@@ -2167,17 +2168,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c node ./server/server.js
-  Directory: /home/jaivon/Documents/LambdaSchool/CS9-DontSendThatEmail
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+
+  Error: Found incompatible module
+      at new MessageError (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at Object.checkOne (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:62444:11)
+      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:22773:75
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
+      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:23451:28)
+      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:95:12
+      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:22777:27
+

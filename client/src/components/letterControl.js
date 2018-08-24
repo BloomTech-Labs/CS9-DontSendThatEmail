@@ -13,6 +13,14 @@ import {
 import "./letterControl.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {Editor, EditorState, convertToRaw, RichUtils} from 'draft-js';
+
+
+const styleMap = {
+  'HIGHLIGHT': {
+    backgroundColor: 'lightgreen'
+   }
+};
 
 class LetterControl extends Component {
   constructor(props) {
@@ -27,8 +35,27 @@ class LetterControl extends Component {
       sadness: 0,
       joy: 0,
       analytical: 0,
-      id: ""
+      id: "",
+      editorState: EditorState.createEmpty()
     };
+    // this.onChange = (editorState) => this.setState({editorState);
+  }
+
+
+  isSelection(editorState){
+      const selection = editorState.getSelection();
+      const start = selection.getStartOffset();
+      const end = selection.getEndOffset();
+      return start !== end;
+  };
+
+  onChange=(editorState)=>{
+    if (!this.isSelection(editorState)) {
+      return;
+    }
+    editorState = RichUtils.toggleInlineStyle(editorState, 'HIGHLIGHT');
+    // using concise obj prop notation short for {editorState:editorState}
+    this.setState({editorState});
   }
   componentDidMount() {
     let { id } = this.props.match.params;
@@ -53,6 +80,9 @@ class LetterControl extends Component {
       })
       .catch(err => {});
   }
+
+
+
 
   // allow user to create new letter
   createLetter() {
@@ -124,9 +154,14 @@ class LetterControl extends Component {
   }
 
   // save the content of the current content
+  parseContent(content){
+    this.setState(
+      {content: content.blocks[0].text})
+  }
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
+    this.parseContent(convertToRaw(this.state.editorState.getCurrentContent()))
     newVersion.content = this.state.content;
 
     axios
@@ -182,12 +217,12 @@ class LetterControl extends Component {
     }
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // handleChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
   render() {
-    console.log("Process", process.env.REACT_APP_watsonUSERNAME)
+    console.log(this)
     const { auth } = this.props.context.userData;
     return (
       <Col md="7" className="controlCol-styles">
@@ -229,7 +264,13 @@ class LetterControl extends Component {
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
-                    <Input
+                  {/* <Editor
+                  editorState={this.state.editorState}
+                  onChange={() => this.onChange(
+                /> */}
+                    {/* <Input
+
+
                       className="controlTextarea-styles"
                       type="textarea"
                       placeholder={
@@ -238,7 +279,22 @@ class LetterControl extends Component {
                       name="content"
                       value={this.state.content}
                       onChange={this.handleChange}
-                    />
+                    /> */}
+                    <div className="controlTextarea-styles">
+
+                        <Editor
+                        customStyleMap={styleMap}
+                        editorState={this.state.editorState}
+                        onChange={ this.onChange }
+
+                        placeholder={
+                          this.state.versions[this.state.versionsCounter].content
+                        }
+                        name="content"
+                        value={this.state.content}
+
+                      />
+                    </div>
                   </Col>
                   <Col md="4">
                     <div>

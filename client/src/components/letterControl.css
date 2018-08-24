@@ -14,9 +14,10 @@
   margin-bottom: 0px;
 }
 .controlTextarea-styles {
-  width:646px;
-  min-height: 100%;
 
+
+  background: white;
+  color: black;
 }
 .controlBtn-styles {
   width: 600px;
@@ -34,7 +35,7 @@
 .fa-arrow-circle-right:hover{
 cursor:grab;
 color:lightgreen;
-  
+
 }
 .label {
   color: red;

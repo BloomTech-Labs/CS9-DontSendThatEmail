@@ -25,11 +25,11 @@ const makeToken = user => {
 
 const localStrategy = new LocalStrategy((username, password, done) => {
   User.findOne({ username }, (err, user) => {
-    if (err) done(err);
-    if (!user) done(null, false);
+    if (err) return done(err);
+    if (!user) return done(null, false);
     // bcrypt will decrypt the passwords and compare them
     user.checkPassword(password, (err, isMatch) => {
-      if (err) done(err);
+      if (err) return done(err);
       if (isMatch) {
         // grab user id and username and pass it to payload that will be sent to jwt to generate token only if passwords match
         const { _id, username, email, membership } = user;

@@ -152,75 +152,74 @@ class LetterControl extends Component {
     } else return this.state.content;
   }
 
-
-
   checkTone(tone, regexStr, index) {
-    console.log(tone)
-    
-    
-    let largestTone = this.setupClass(tone.tones)
-    console.log(regexStr[index],'\n',tone.text)
-    console.log(regexStr[index].length, tone.text.length)
+    console.log(tone);
+
+    let largestTone = this.setupClass(tone.tones);
+    console.log(regexStr[index], "\n", tone.text);
+    console.log(regexStr[index].length, tone.text.length);
     //let icon = this.rendericons(largestTone)
 
-    if(tone.text.includes(regexStr[index].trim())) {
-    
-      if(largestTone ==="joy"){
-        console.log(largestTone)
-      return (
-      
-        <div className={largestTone}>
-        
-          <i class="fas fa-smile-beam" />
-          {regexStr[index]}
-          <i class="fas fa-smile-beam" />
-          <br/>
-      <br/>
-        </div>
-      )
-    }else if(largestTone ==="anger"){
-     return(
-     <div className={largestTone}>
-        
-      <i class="fas fa-angry" />
-      {regexStr[index]}
-      <i class="fas fa-angry" />
-      <br/>
-      <br/>
-    </div>
-     )
-    }else if(largestTone === "sadness"){
-      return(
-      <div className={largestTone}>
-        
-      <i class= "fas fa-sad-tear" />
-      {regexStr[index]}
-      <i class= "fas fa-sad-tear" />
-      <br/>
-      <br/>
-    </div>
-      )
-    } else if(largestTone ==="analytical"){
-      return(
-      <div className={largestTone}>
-        
-      <i class="fas fa-surprise" />
-      {regexStr[index]}
-      <i class="fas fa-surprise" />
-      <br/>
-      <br/>
-      
-    </div>)
-    }
-  }
-     else {
-       console.log("here")
+    if (tone.text.includes(regexStr[index].trim())) {
+      if (largestTone === "joy") {
+        console.log(largestTone);
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-smile-beam" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-smile-beam" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "anger") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-angry" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-angry" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "sadness") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-sad-tear" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-sad-tear" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "analytical") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-surprise" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-surprise" />
+            <br />
+            <br />
+          </div>
+        );
+      }
+    } else {
+      console.log("here");
       return <div>{regexStr[index]}</div>;
     }
-  
   }
-
-
 
   setupClass(tones) {
     let greatest = 0;
@@ -231,10 +230,9 @@ class LetterControl extends Component {
         biggestObj = tone;
       }
     });
-    
+
     return biggestObj.tone_id;
   }
-
 
   // save the content of the current content
   parseContent(content) {

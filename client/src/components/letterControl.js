@@ -45,6 +45,9 @@ class LetterControl extends Component {
 
   onChange = editorState => {
     this.setState({ editorState });
+    this.setState({
+      content: this.state.editorState.getCurrentContent().getPlainText()
+    });
   };
   componentDidMount() {
     let { id } = this.props.match.params;
@@ -81,7 +84,6 @@ class LetterControl extends Component {
     if (this.state.content !== "") {
       letter.content = this.state.content;
     }
-
     // NOTE: Route not accepting destination info from user defaulting to N/A
     axios
       .post("https://dontemail.herokuapp.com/letters", letter, {
@@ -153,16 +155,11 @@ class LetterControl extends Component {
   }
 
   checkTone(tone, regexStr, index) {
-    console.log(tone);
-
     let largestTone = this.setupClass(tone.tones);
-    console.log(regexStr[index], "\n", tone.text);
-    console.log(regexStr[index].length, tone.text.length);
     //let icon = this.rendericons(largestTone)
 
     if (tone.text.includes(regexStr[index].trim())) {
       if (largestTone === "joy") {
-        console.log(largestTone);
         return (
           <div className={largestTone}>
             <br />
@@ -216,7 +213,6 @@ class LetterControl extends Component {
         );
       }
     } else {
-      console.log("here");
       return <div>{regexStr[index]}</div>;
     }
   }
@@ -303,6 +299,9 @@ class LetterControl extends Component {
       );
     }
   }
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   render() {
     const { auth } = this.props.context.userData;
     return (

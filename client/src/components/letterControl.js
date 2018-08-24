@@ -13,13 +13,13 @@ import {
 import "./letterControl.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {Editor, EditorState, convertToRaw, RichUtils} from 'draft-js';
-
+import { Editor, EditorState, convertToRaw, RichUtils } from "draft-js";
+import { TSImportEqualsDeclaration } from "babel-types";
 
 const styleMap = {
-  'HIGHLIGHT': {
-    backgroundColor: 'lightgreen'
-   }
+  HIGHLIGHT: {
+    backgroundColor: "lightgreen"
+  }
 };
 
 class LetterControl extends Component {
@@ -35,28 +35,17 @@ class LetterControl extends Component {
       sadness: 0,
       joy: 0,
       analytical: 0,
+      sentence: [],
       id: "",
+      icon: "",
       editorState: EditorState.createEmpty()
     };
     // this.onChange = (editorState) => this.setState({editorState);
   }
 
-
-  isSelection(editorState){
-      const selection = editorState.getSelection();
-      const start = selection.getStartOffset();
-      const end = selection.getEndOffset();
-      return start !== end;
+  onChange = editorState => {
+    this.setState({ editorState });
   };
-
-  onChange=(editorState)=>{
-    if (!this.isSelection(editorState)) {
-      return;
-    }
-    editorState = RichUtils.toggleInlineStyle(editorState, 'HIGHLIGHT');
-    // using concise obj prop notation short for {editorState:editorState}
-    this.setState({editorState});
-  }
   componentDidMount() {
     let { id } = this.props.match.params;
     if (id !== "add") {
@@ -80,10 +69,6 @@ class LetterControl extends Component {
       })
       .catch(err => {});
   }
-
-
-
-
   // allow user to create new letter
   createLetter() {
     let letter = {};
@@ -105,8 +90,7 @@ class LetterControl extends Component {
       .then(resp => {
         this.props.history.push(`/dashboard/create/${resp.data._id}`);
         this.setletter(resp.data._id);
-      })
-      .catch(err => console.log(err));
+      });
   }
 
   watson() {
@@ -119,8 +103,8 @@ class LetterControl extends Component {
         text,
         {
           auth: {
-             username: process.env.REACT_APP_watsonUSERNAME,
-             password: process.env.REACT_APP_watsonPassword
+            username: process.env.REACT_APP_watsonUSERNAME,
+            password: process.env.REACT_APP_watsonPassword
           }
         }
       )
@@ -129,7 +113,6 @@ class LetterControl extends Component {
         let anger = 0;
         let joy = 0;
         let analytical = 0;
-
         resp.data.document_tone.tones.forEach(tone => {
           if (tone.tone_id === "sadness") {
             sadness += Math.floor(tone.score * 100);
@@ -141,27 +124,126 @@ class LetterControl extends Component {
             joy += Math.floor(tone.score * 100);
           }
         });
-        console.log("watson", resp.data, sadness, analytical, joy);
 
+        if (resp.data.sentences_tone !== undefined) {
+          this.setState({
+            sentence: resp.data.sentences_tone
+          });
+        }
         this.setState({
           sadness,
           anger,
           joy,
           analytical
         });
-      })
-      .catch(err => console.log(err));
+      });
   }
 
+  renderHighlights() {
+    if (this.state.sentence !== []) {
+      let curStr = this.state.versions[this.state.versionsCounter].content;
+      let regexStr = curStr.match(/[\s\w,'"]+(\!|\?|\.)/g);
+      if (regexStr === undefined) {
+        regexStr = curStr;
+      }
+      return this.state.sentence.map((tone, index) => (
+        <div>{this.checkTone(tone, regexStr, index)}</div>
+      ));
+    } else return this.state.content;
+  }
+
+
+
+  checkTone(tone, regexStr, index) {
+    console.log(tone)
+    
+    
+    let largestTone = this.setupClass(tone.tones)
+    console.log(regexStr[index],'\n',tone.text)
+    console.log(regexStr[index].length, tone.text.length)
+    //let icon = this.rendericons(largestTone)
+
+    if(tone.text.includes(regexStr[index].trim())) {
+    
+      if(largestTone ==="joy"){
+        console.log(largestTone)
+      return (
+      
+        <div className={largestTone}>
+        
+          <i class="fas fa-smile-beam" />
+          {regexStr[index]}
+          <i class="fas fa-smile-beam" />
+          <br/>
+      <br/>
+        </div>
+      )
+    }else if(largestTone ==="anger"){
+     return(
+     <div className={largestTone}>
+        
+      <i class="fas fa-angry" />
+      {regexStr[index]}
+      <i class="fas fa-angry" />
+      <br/>
+      <br/>
+    </div>
+     )
+    }else if(largestTone === "sadness"){
+      return(
+      <div className={largestTone}>
+        
+      <i class= "fas fa-sad-tear" />
+      {regexStr[index]}
+      <i class= "fas fa-sad-tear" />
+      <br/>
+      <br/>
+    </div>
+      )
+    } else if(largestTone ==="analytical"){
+      return(
+      <div className={largestTone}>
+        
+      <i class="fas fa-surprise" />
+      {regexStr[index]}
+      <i class="fas fa-surprise" />
+      <br/>
+      <br/>
+      
+    </div>)
+    }
+  }
+     else {
+       console.log("here")
+      return <div>{regexStr[index]}</div>;
+    }
+  
+  }
+
+
+
+  setupClass(tones) {
+    let greatest = 0;
+    let biggestObj = {};
+    tones.forEach(tone => {
+      if (greatest < tone.score) {
+        greatest = tone.score;
+        biggestObj = tone;
+      }
+    });
+    
+    return biggestObj.tone_id;
+  }
+
+
   // save the content of the current content
-  parseContent(content){
-    this.setState(
-      {content: content.blocks[0].text})
+  parseContent(content) {
+    this.setState({ content: content.blocks[0].text });
   }
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
-    this.parseContent(convertToRaw(this.state.editorState.getCurrentContent()))
+    this.parseContent(convertToRaw(this.state.editorState.getCurrentContent()));
     newVersion.content = this.state.content;
 
     axios
@@ -170,7 +252,6 @@ class LetterControl extends Component {
         newVersion
       )
       .then(resp => {
-        console.log(resp.data);
         this.setletter(id);
         this.setState({ content: "" });
       });
@@ -201,7 +282,8 @@ class LetterControl extends Component {
       analytical: 0,
       sadness: 0,
       joy: 0,
-      anger: 0
+      anger: 0,
+      sentence: []
     });
   }
   // render the save button based on the if the version is the most current version.
@@ -216,13 +298,14 @@ class LetterControl extends Component {
       }
     }
   }
-
-  // handleChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
-
+  test() {
+    if (this.state.sentence.length === 0) {
+      return (
+        <div>{this.state.versions[this.state.versionsCounter].content}</div>
+      );
+    }
+  }
   render() {
-    console.log(this)
     const { auth } = this.props.context.userData;
     return (
       <Col md="7" className="controlCol-styles">
@@ -264,7 +347,7 @@ class LetterControl extends Component {
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
-                  {/* <Editor
+                    {/* <Editor
                   editorState={this.state.editorState}
                   onChange={() => this.onChange(
                 /> */}
@@ -281,19 +364,14 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     /> */}
                     <div className="controlTextarea-styles">
-
-                        <Editor
-                        customStyleMap={styleMap}
+                      <Editor
                         editorState={this.state.editorState}
-                        onChange={ this.onChange }
-
-                        placeholder={
-                          this.state.versions[this.state.versionsCounter].content
-                        }
+                        onChange={this.onChange}
+                        placeholder={this.test()}
                         name="content"
                         value={this.state.content}
-
                       />
+                      {this.renderHighlights()}
                     </div>
                   </Col>
                   <Col md="4">

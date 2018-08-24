@@ -9,10 +9,8 @@
 .col-md-6 {
   margin-bottom: 0px;
 }
-.rowTextArea-styles {
-  min-height: 600px;
-  margin-bottom: 0px;
-}
+
+
 .controlTextarea-styles {
 
 
@@ -20,7 +18,7 @@
   color: black;
 }
 .controlBtn-styles {
-  width: 600px;
+  width: 50%;
 }
 .fa-arrow-circle-left {
   font-size: 40px;
@@ -42,4 +40,34 @@ color:lightgreen;
 }
 .versionsCounter-styles{
   min-width: 50px;
+}
+.sadness{
+  background: lightblue;
+  border-bottom:1px solid black;
+}
+.anger{
+  background: lightcoral;
+ 
+  border-bottom:1px solid black;
+}
+.analytical{
+  background: lightgoldenrodyellow;
+
+  border-bottom:1px solid black;
+}
+.joy{
+  background: lightgreen;
+  border-bottom:1px solid black;
+}
+.fa-smile-beam{
+  color:black;
+}
+.fa-angery{
+  color:black
+}
+.fa-sad-tear{
+  color:black
+}
+.fa-surprise{
+  color:black
 }

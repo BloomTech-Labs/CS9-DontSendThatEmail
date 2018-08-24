@@ -7,21 +7,21 @@ const Options = props => {
   console.log("some string", props.context);
 
   return (
-    <Col md="4">
-        <Card className="documents-style">
+    <Col md="8">
+        <Card>
           <CardBody>
             <CardTitle>Choose Option</CardTitle>
             <br />
             <Row>
                 <Col md="6">
-                <Link to="/dashboard/settings/email"><Button>Update Email</Button></Link>
+                <Link to="/dashboard/settings/options/email"><Button>Update Email</Button></Link>
                 </Col>
                 <Col md="6">
-                <Link to="/dashboard/settings/password"><Button>Update Password</Button></Link>
+                <Link to="/dashboard/settings/options/password"><Button>Update Password</Button></Link>
                 </Col>
             </Row>
             <Link to="/dashboard/create/add">
-              <i className="fas fa-plus-circle" />
+              <i className="fas fa-wrench fa-2x" />
             </Link>
           </CardBody>
         </Card>

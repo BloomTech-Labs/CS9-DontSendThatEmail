@@ -11,6 +11,7 @@ router.get("/", protected, (req, res) => {
   // grabs an id from the request issues by JWT
   const userid = req.user._id;
   User.findById(userid)
+    .select("-password -subscription")
     .populate("letters")
     .then(resp => {
       res.status(200).json(resp);
@@ -89,10 +90,10 @@ router.delete("/:id", protected, (req, res) => {
   const id = req.params.id;
   Letter.findByIdAndRemove(id)
     .then(response => {
-      if (response.ok === 1) {
+      if (response) {
         res
           .status(200)
-          .json({ message: `succussfully deleted the letter with id: ${id}` });
+          .json({ message: `successfully deleted the letter with id: ${id}` });
       } else {
         res.status(404).json({
           message: "The letter with the specified ID does not exist."

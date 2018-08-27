@@ -21,7 +21,6 @@ class Documents extends Component {
     };
   }
   componentDidMount() {
-    //let id = this.props.context.userData.id
 
     axios
       .get(`https://dontemail.herokuapp.com/letters`, {
@@ -30,10 +29,11 @@ class Documents extends Component {
       .then(resp => {
         this.setState({ letters: resp.data.letters });
       })
-      .catch(err => {});
+      .catch(err => console.log(err));
   }
 
   listDocuments() {
+    // 
     return this.state.letters.map(letter => (
       <Fragment>
         <Link to={`/dashboard/create/${letter._id}`}>
@@ -45,7 +45,9 @@ class Documents extends Component {
                 <br />
                 <CardSubtitle>{letter.destination}</CardSubtitle>
                 <br />
+                {/* grabs the latest versions of letter content  */}
                 <CardText>
+                {/* grabbing the last version from the letter  */}
                   {letter.versions[letter.versions.length - 1].content}
                 </CardText>
 

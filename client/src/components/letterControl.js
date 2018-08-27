@@ -14,7 +14,7 @@ import "./letterControl.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Editor, EditorState, convertToRaw, RichUtils } from "draft-js";
-import { TSImportEqualsDeclaration } from "babel-types";
+
 
 const styleMap = {
   HIGHLIGHT: {
@@ -37,18 +37,21 @@ class LetterControl extends Component {
       analytical: 0,
       sentence: [],
       id: "",
-      icon: "",
+     
       editorState: EditorState.createEmpty()
     };
     // this.onChange = (editorState) => this.setState({editorState);
   }
 
+  // set editor state also set content based on plain text on editor state 
   onChange = editorState => {
     this.setState({ editorState });
     this.setState({
       content: this.state.editorState.getCurrentContent().getPlainText()
     });
   };
+
+  // if the id of params is ! add then setletter is called with the id  
   componentDidMount() {
     let { id } = this.props.match.params;
     if (id !== "add") {
@@ -56,6 +59,7 @@ class LetterControl extends Component {
     }
   }
 
+  // call axios get with the id passed and setState with response  passing in the token form local storage
   setletter(id) {
     axios
       .get(`https://dontemail.herokuapp.com/letters/${id}`, {
@@ -70,7 +74,7 @@ class LetterControl extends Component {
         });
         this.versionsCounter();
       })
-      .catch(err => {});
+      .catch(err => console.log(err));
   }
   // allow user to create new letter
   createLetter() {
@@ -94,11 +98,14 @@ class LetterControl extends Component {
         this.setletter(resp.data._id);
       });
   }
-
+  // grab text from current version being displayed 
   watson() {
     const text = {
       text: this.state.versions[this.state.versionsCounter].content
     };
+    // post request to IBM watson api with the credential form the api 
+    // pass the content to IBM watson api and uses the us-south 
+    // endpoint(server location) so we can use password and username
     axios
       .post(
         "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21",
@@ -115,7 +122,12 @@ class LetterControl extends Component {
         let anger = 0;
         let joy = 0;
         let analytical = 0;
+        // get response from IBM watson tone analyzer , setup variables for the tones 
+        // iterate throgh the doc tone array checking  
+        // the tone if tone matches increment tone variable by the score of the tone
+        // converting scores to percentages
         resp.data.document_tone.tones.forEach(tone => {
+          //refactor to switch *************************
           if (tone.tone_id === "sadness") {
             sadness += Math.floor(tone.score * 100);
           } else if (tone.tone_id === "anger") {
@@ -126,12 +138,13 @@ class LetterControl extends Component {
             joy += Math.floor(tone.score * 100);
           }
         });
-
+        // if response.data has a response tone were set it to sentance state 
         if (resp.data.sentences_tone !== undefined) {
           this.setState({
             sentence: resp.data.sentences_tone
           });
         }
+        //set the state with the emotions were converted 
         this.setState({
           sadness,
           anger,
@@ -140,14 +153,20 @@ class LetterControl extends Component {
         });
       });
   }
-
+  // renderHighlights function to render heithlights form the content emotion   
   renderHighlights() {
+    // when the sentence from state is not empty array then 
     if (this.state.sentence !== []) {
+      // grab the current version content 
       let curStr = this.state.versions[this.state.versionsCounter].content;
+      // breaking it up with regex to break up the code at a .or ! or ?  and then  
       let regexStr = curStr.match(/[\s\w,'"]+(\!|\?|\.)/g);
+      // when regex returns undefiend then set the regex to current string
       if (regexStr === undefined) {
         regexStr = curStr;
       }
+      // map out the sentence array to display the tone , regex
+      // calls the checkTone funciton to get back the JSX to be rendered for each sentence on state
       return this.state.sentence.map((tone, index) => (
         <div>{this.checkTone(tone, regexStr, index)}</div>
       ));
@@ -155,9 +174,11 @@ class LetterControl extends Component {
   }
 
   checkTone(tone, regexStr, index) {
+    // call the setupClass with the tones that returns the most appropriate tone score value as a string 
     let largestTone = this.setupClass(tone.tones);
     //let icon = this.rendericons(largestTone)
-
+    //when the tone.text includes the regex we passed then check the 
+    // largestTone and render JSX based on the largestTone
     if (tone.text.includes(regexStr[index].trim())) {
       if (largestTone === "joy") {
         return (
@@ -216,7 +237,7 @@ class LetterControl extends Component {
       return <div>{regexStr[index]}</div>;
     }
   }
-
+// check each tone inside the tones array of objects returning the object tone id 
   setupClass(tones) {
     let greatest = 0;
     let biggestObj = {};
@@ -293,6 +314,7 @@ class LetterControl extends Component {
     }
   }
   test() {
+    // when the sentence length is zero then render the current content 
     if (this.state.sentence.length === 0) {
       return (
         <div>{this.state.versions[this.state.versionsCounter].content}</div>
@@ -322,6 +344,7 @@ class LetterControl extends Component {
                   </Col>
                   <Col md="3">
                     <div className="versionsCounter-styles">
+                    {/* display the current version index + 1 and display the lenght of the version array  */}
                       Edit {this.state.versionsCounter + 1}/
                       {this.state.versions.length}
                     </div>
@@ -344,22 +367,7 @@ class LetterControl extends Component {
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
-                    {/* <Editor
-                  editorState={this.state.editorState}
-                  onChange={() => this.onChange(
-                /> */}
-                    {/* <Input
-
-
-                      className="controlTextarea-styles"
-                      type="textarea"
-                      placeholder={
-                        this.state.versions[this.state.versionsCounter].content
-                      }
-                      name="content"
-                      value={this.state.content}
-                      onChange={this.handleChange}
-                    /> */}
+        
                     <div className="controlTextarea-styles">
                       <Editor
                         editorState={this.state.editorState}
@@ -433,7 +441,7 @@ class LetterControl extends Component {
                       <Button>Cancel</Button>
                     </Link>
                   </Col>
-
+                {/* renderSave button based on conditions inside of renderSave function */}
                   <Col md="6">{this.renderSave()}</Col>
                 </Row>
               </Form>

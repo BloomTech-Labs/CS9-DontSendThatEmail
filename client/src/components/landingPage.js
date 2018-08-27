@@ -1,11 +1,9 @@
 import React, { Fragment, Component } from "react";
 import { Link } from "react-router-dom";
-import SignupModal from "./signupmodal";
-import LogInModal from "./login";
-import About from "./about";
+
 import "./landingPage.css";
 import { Modal, Card, CardTitle } from "reactstrap";
-import { TestContext } from "../contexts/test-context"; // here
+
 class Landing extends Component {
   constructor() {
     super();
@@ -29,9 +27,9 @@ class Landing extends Component {
 
   render() {
     return (
-      <TestContext.Consumer>
-        {data => {
-          return (
+
+        
+          
             <Fragment>
               <div id="heading">
                 <CardTitle id="header">
@@ -54,13 +52,7 @@ class Landing extends Component {
                   </nav>
                 </CardTitle>
 
-                {/* <Modal
-                  isOpen={this.state.modalAbout}
-                  toggle={() => this.toggle("about")}
-                  className={this.props.className}
-                >
-                  <About />
-                </Modal> */}
+           
               </div>
 
               <div id="title" class="slide header">
@@ -99,15 +91,14 @@ class Landing extends Component {
                     cum at. Id viris docendi denique vim.
                   </p>
                 </div>
-                {/* <img src="https://lorempixel.com/640/480/abstract/6/" />
-                <img src="https://lorempixel.com/640/480/abstract/4/" /> */}
+          
               </div>
 
-              <div id="bg" />
+              
             </Fragment>
-          );
-        }}
-      </TestContext.Consumer>
+          
+        
+  
     );
   }
 }

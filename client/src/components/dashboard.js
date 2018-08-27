@@ -10,14 +10,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props.context.userData;
-    console.log(this.props);
-    // if (!auth){
 
-    // this.props.history.push('/')
-    // }
-
-    // console.log('props',   this.props)
-    // console.log(auth)
 
     return (
       <Col md="3">
@@ -64,7 +57,7 @@ class Dashboard extends Component {
             </Card>
           </Fragment>
         ) : (
-          this.props.history.push("/dashboard/create")
+          this.props.history.push('/')
         )}
       </Col>
     );

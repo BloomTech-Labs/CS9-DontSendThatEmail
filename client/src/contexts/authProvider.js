@@ -9,10 +9,11 @@ class AuthProvider extends Component {
     email: ""
   };
 
+  // not using yet 
   toggleAuth = () => {
     this.setState({ auth: !this.state.auth });
   };
-
+  // data being passed in login component used to context state (eg.like store) to be consumed by the component 
   setLogin = data => {
     this.setState({
       auth: true,
@@ -26,6 +27,7 @@ class AuthProvider extends Component {
     const userData = this.state;
 
     return (
+      // pass state values inside the provider 
       <AuthContext.Provider
         value={{
           userData,

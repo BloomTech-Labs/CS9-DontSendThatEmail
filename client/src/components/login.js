@@ -29,6 +29,7 @@ class Login extends Component {
       .then(resp => {
         // const user = resp.data.user;
 
+        // save the token with Bearer attached to local Storage 
         localStorage.setItem("token", `Bearer ${resp.data.token}`);
 
         const { setLogin } = this.props.context.actions;

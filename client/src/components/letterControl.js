@@ -56,6 +56,19 @@ class LetterControl extends Component {
     }
   }
 
+  handleKeyCommand = (command) => {
+      const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
+      if (newState) {
+          this.onChange(newState);
+          return 'handled';
+      }
+      return 'not-handled';
+  }
+
+
+
+
+
   setletter(id) {
     axios
       .get(`https://dontemail.herokuapp.com/letters/${id}`, {
@@ -234,6 +247,7 @@ class LetterControl extends Component {
   parseContent(content) {
     this.setState({ content: content.blocks[0].text });
   }
+
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
@@ -281,6 +295,10 @@ class LetterControl extends Component {
     });
   }
   // render the save button based on the if the version is the most current version.
+  onBoldClick = () => {
+		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, "BOLD"));
+	};
+
   renderSave() {
     if (this.state.id === "") {
       return <Button onClick={() => this.createLetter()}>Create</Button>;
@@ -292,6 +310,7 @@ class LetterControl extends Component {
       }
     }
   }
+
   test() {
     if (this.state.sentence.length === 0) {
       return (
@@ -339,6 +358,10 @@ class LetterControl extends Component {
                   </Col>
                   <Col md="1">
                     <Button onClick={() => this.watson()}>Analyze</Button>
+
+                  </Col>
+                  <Col md="1">
+                    <Button onClick={this.onBoldClick}> Bold</Button>
                   </Col>
                 </Row>
                 <br />
@@ -362,7 +385,9 @@ class LetterControl extends Component {
                     /> */}
                     <div className="controlTextarea-styles">
                       <Editor
+
                         editorState={this.state.editorState}
+                        handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
                         placeholder={this.test()}
                         name="content"

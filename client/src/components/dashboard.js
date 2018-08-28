@@ -53,7 +53,7 @@ class Dashboard extends Component {
 
               <Link
                 style={{ textDecoration: "none", color: "white" }}
-                to="/dashboard/settings"
+                to="/dashboard/settings/options"
               >
                 <div className="link-mod">
                   <i className="fas fa-cogs" />

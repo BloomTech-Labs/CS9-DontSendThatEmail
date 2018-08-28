@@ -61,6 +61,16 @@ class Dashboard extends Component {
                   <div>Settings</div>
                 </div>
               </Link>
+
+              <Link onClick={() => localStorage.removeItem("token")}
+                to="/"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <div className="link-mod">
+                  <i className="fa fa-power-off" />
+                  <div>Log Out</div>
+                </div>
+              </Link>
             </Card>
           </Fragment>
         ) : (

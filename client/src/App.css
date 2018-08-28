@@ -23,7 +23,11 @@
 }
 
 .danger {
-  color: red;
+  color: lightcoral;
+  width :240px;
+  margin:0 auto;
+  background: white;
+  border-radius: 10px;
 }
 
 @keyframes App-logo-spin {

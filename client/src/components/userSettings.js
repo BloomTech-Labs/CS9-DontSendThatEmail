@@ -9,6 +9,7 @@ import {
   Input,
   Label
 } from "reactstrap";
+import axios from "axios";
 // import Input from "react-validation/build/input";
 // import Form from 'react-validation/build/form';
 import validator from "validator";
@@ -22,7 +23,8 @@ class UserSettings extends Component {
       password: "",
       newEmail: "",
       validateEmail: "",
-      validatePassword: ""
+      validatePassword: "",
+      invalidPass: ""
     };
   }
 
@@ -30,45 +32,35 @@ class UserSettings extends Component {
     const option = this.props.match.params.type;
     this.setState({ option });
   }
-  changeUpdate() {
-    let updates ={}
+  handleSubmit = () => {
+    let updates = {};
     if (
       this.state.password === this.state.validatePassword &&
       this.state.password !== ""
     ) {
       updates.password = this.state.password;
-    }else{
-      
+    } else {
+      this.setState({ invalidPass: "Password did not match" });
     }
     if (
       this.state.email === this.state.validateEmail &&
       this.state.email !== ""
     ) {
       updates.email = this.state.email;
-
     }
-    axios.
-    put("https://dontemail.herokuapp.com/",updates)
-    .then(resp =>{
-      console.log(resp)
-     }).catch(err=>{
-       console.log(err)
-
-     })
-  }
+    axios
+      .put("https://dontemail.herokuapp.com/", updates)
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   returnHome = () => {
     this.setState({ option: "" });
     this.props.history.push("/dashboard");
-  };
-
-  handleSubmit = () => {
-    if (this.state.password !== this.state.validatePassword) {
-      console.log("passwords do not match");
-    }
-    if (this.state.email !== this.state.validateEmail) {
-      console.log("emails do not match");
-    }
   };
 
   required = value => {
@@ -89,6 +81,8 @@ class UserSettings extends Component {
       return (
         <Fragment>
           <form onSubmit={this.handleSubmit}>
+           {this.validPass()}
+           <br/>
             <Row>
               <Col md="4">New Password</Col>
               <Col md="4">
@@ -112,7 +106,11 @@ class UserSettings extends Component {
               </Col>
             </Row>
           </form>
-          <br />
+          <Row>
+            <br />
+            <br />
+            <Col md="12">{this.renderEmailValidation()}</Col>
+          </Row>
         </Fragment>
       );
     } else if (this.state.option === "email") {
@@ -132,6 +130,7 @@ class UserSettings extends Component {
                 />
               </Col>
             </Row>
+
             <br />
             <Row>
               <Col md="4">Re-Enter Email</Col>
@@ -144,7 +143,11 @@ class UserSettings extends Component {
                 />
               </Col>
             </Row>
-            <br />
+            <Row>
+              <br />
+              <br />
+              <Col md="12">{this.renderEmailValidation()}</Col>
+            </Row>
           </Form>
         </Fragment>
       );
@@ -161,17 +164,29 @@ class UserSettings extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  renderEmailValidation = () => {
-    if (validator.isEmail(this.state.email)) {
-      return <Button onClick={() => this.handleSubmit()}>Save</Button>;
+  renderEmailValidation = type => {
+    if (type === "email") {
+      if (validator.isEmail(this.state.email)) {
+        return <Button onClick={() => this.handleSubmit()}>Save</Button>;
+      } else {
+        return <Button>Luish</Button>;
+      }
     } else {
-      return <Button>Luish</Button>;
+     
+        return <Button onClick={() => this.handleSubmit()}>Save</Button>;
+      
+      
     }
   };
 
   validEmailNotification = () => {
-    if (!validator.isEmail(this.state.email)) {
+    if (!validator.isEmail(this.state.email) && this.state.email !=="" && this.state.email.length >5) {
       return <div className="danger">Invalid Email</div>;
+    }
+  };
+  validPass = () => {
+    if (this.state.invalidPass !== "") {
+      return <div className="danger">{this.state.invalidPass}</div>;
     }
   };
 
@@ -186,11 +201,7 @@ class UserSettings extends Component {
               <CardBody>
                 <br />
                 {this.renderInput()}
-                <Row>
-                  <br />
-                  <br />
-                  <Col md="12">{this.renderEmailValidation()}</Col>
-                </Row>
+
                 <Button onClick={() => this.returnHome()}>Home</Button>
               </CardBody>
             </Card>

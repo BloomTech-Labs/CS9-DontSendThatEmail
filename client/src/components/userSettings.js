@@ -1,8 +1,17 @@
 import React, { Component, Fragment } from "react";
-import { Card, CardBody, Button, Col, Row, Form, Input, Label } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  Button,
+  Col,
+  Row,
+  Form,
+  Input,
+  Label
+} from "reactstrap";
 // import Input from "react-validation/build/input";
 // import Form from 'react-validation/build/form';
-import validator from 'validator';
+import validator from "validator";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -21,6 +30,32 @@ class UserSettings extends Component {
     const option = this.props.match.params.type;
     this.setState({ option });
   }
+  changeUpdate() {
+    let updates ={}
+    if (
+      this.state.password === this.state.validatePassword &&
+      this.state.password !== ""
+    ) {
+      updates.password = this.state.password;
+    }else{
+      
+    }
+    if (
+      this.state.email === this.state.validateEmail &&
+      this.state.email !== ""
+    ) {
+      updates.email = this.state.email;
+
+    }
+    axios.
+    put("https://dontemail.herokuapp.com/",updates)
+    .then(resp =>{
+      console.log(resp)
+     }).catch(err=>{
+       console.log(err)
+
+     })
+  }
 
   returnHome = () => {
     this.setState({ option: "" });
@@ -36,16 +71,16 @@ class UserSettings extends Component {
     }
   };
 
-  required = (value) => {
+  required = value => {
     if (!value.toString().trim().length) {
       // We can return string or jsx as the 'error' prop for the validated Component
-      return 'require';
+      return "require";
     }
   };
-   
-  email = (value) => {
+
+  email = value => {
     if (!validator.isEmail(value)) {
-      return `${value} is not a valid email.`
+      return `${value} is not a valid email.`;
     }
   };
 
@@ -84,32 +119,32 @@ class UserSettings extends Component {
       return (
         <Fragment>
           <Form>
-          <Row>
-            <Col md="4">New Email</Col>
-            <Col md="4">
-            {this.validEmailNotification()}
-              <Input
-                name="email"
-                placeholder="Change Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                validations={[this.required, this.email]}
-              />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col md="4">Re-Enter Email</Col>
-            <Col md="4">
-              <Input
-                name="validateEmail"
-                placeholder="Match Above Email"
-                value={this.state.validateEmail}
-                onChange={this.handleChange}
-              />
-            </Col>
-          </Row>
-          <br />
+            <Row>
+              <Col md="4">New Email</Col>
+              <Col md="4">
+                {this.validEmailNotification()}
+                <Input
+                  name="email"
+                  placeholder="Change Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  validations={[this.required, this.email]}
+                />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md="4">Re-Enter Email</Col>
+              <Col md="4">
+                <Input
+                  name="validateEmail"
+                  placeholder="Match Above Email"
+                  value={this.state.validateEmail}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+            <br />
           </Form>
         </Fragment>
       );
@@ -128,19 +163,17 @@ class UserSettings extends Component {
 
   renderEmailValidation = () => {
     if (validator.isEmail(this.state.email)) {
-    return <Button onClick={() => this.handleSubmit()}>Save</Button>
+      return <Button onClick={() => this.handleSubmit()}>Save</Button>;
     } else {
-      return (
-        
-      <Button>Luish</Button>)     
+      return <Button>Luish</Button>;
     }
-  } 
+  };
 
   validEmailNotification = () => {
     if (!validator.isEmail(this.state.email)) {
-      return <div className="danger">Invalid Email</div>
+      return <div className="danger">Invalid Email</div>;
     }
-  }
+  };
 
   render() {
     const { auth } = this.props.context.userData;
@@ -156,9 +189,7 @@ class UserSettings extends Component {
                 <Row>
                   <br />
                   <br />
-                  <Col md="12">
-                    {this.renderEmailValidation()}
-                  </Col>
+                  <Col md="12">{this.renderEmailValidation()}</Col>
                 </Row>
                 <Button onClick={() => this.returnHome()}>Home</Button>
               </CardBody>

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Card, CardTitle, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -59,6 +60,16 @@ class Dashboard extends Component {
                   <i className="fas fa-cogs" />
 
                   <div>Settings</div>
+                </div>
+              </Link>
+
+              <Link onClick={() => localStorage.removeItem("token")}
+                to="/"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <div className="link-mod">
+                  <i className="fa fa-power-off" />
+                  <div>Log Out</div>
                 </div>
               </Link>
             </Card>

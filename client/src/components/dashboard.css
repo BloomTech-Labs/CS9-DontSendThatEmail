@@ -2,7 +2,14 @@
 
 .card {
   height: 100vh;
-  background: #1b1f22;
+  background: green;
+  color: white;
+  padding: 5px;
+  padding-top: 20px;
+}
+.nav{
+  height: 100vh;
+  background: green;
   color: white;
   padding: 5px;
   padding-top: 20px;
@@ -30,7 +37,7 @@
   justify-content: center;
   width: 100%;
   border-bottom: 1px solid #ffffffad;
-  color: #ffffffad;
+  color: #green;
   padding: 30px;
 }
 .link-mod:hover {

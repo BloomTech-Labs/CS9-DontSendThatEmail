@@ -1,15 +1,14 @@
 Arguments: 
-
-  C:\Program Files\nodejs\node.exe C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add stripe
+  /usr/local/bin/node /usr/local/bin/yarn start
 
 PATH: 
-  C:\Users\Velsu\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Velsu\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\WINDOWS\System32\OpenSSH;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python37-32;C:\Users\Velsu\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\Velsu\AppData\Local\Programs\Python\Python36-32;C:\Users\Velsu\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Velsu\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Velsu\AppData\Roaming\Python\Python36\Scripts;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  /home/jaivon/bin:/home/jaivon/bin:/home/jaivon/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-9-oracle/bin:/usr/lib/jvm/java-9-oracle/db/bin
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  9.10.1
+  8.9.4
 
 Platform: 
   linux x64
@@ -34,20 +33,22 @@ npm manifest:
       "url": "https://github.com/Lambda-School-Labs/CS9-DontSendThatEmail/issues"
     },
     "homepage": "https://github.com/Lambda-School-Labs/CS9-DontSendThatEmail#readme",
-  
     "engines": {
-     "node": "8.9.4"
-   },
+      "node": "8.9.4"
+    },
     "dependencies": {
       "bcrypt": "^3.0.0",
       "cors": "^2.8.4",
       "express": "^4.16.3",
       "helmet": "^3.13.0",
       "mongoose": "^5.2.8",
+      "mongoose-unique-validator": "^2.0.1",
       "nodemon": "^1.18.3",
       "passport": "^0.4.0",
       "passport-jwt": "^4.0.0",
-      "passport-local": "^1.0.0"
+      "passport-local": "^1.0.0",
+      "stripe": "^6.7.0",
+      "validator": "^10.7.0"
     }
   }
 
@@ -1631,6 +1632,10 @@ Lockfile:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   
+  qs@~6.5.1:
+    version "6.5.2"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
+  
   range-parser@~1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
@@ -1743,7 +1748,7 @@ Lockfile:
     version "5.1.1"
     resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
   
-  safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
     version "5.1.2"
     resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   
@@ -1973,6 +1978,14 @@ Lockfile:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   
+  stripe@^6.7.0:
+    version "6.7.0"
+    resolved "https://registry.yarnpkg.com/stripe/-/stripe-6.7.0.tgz#d28a02c0b213e4beacc1413e94946e3014426208"
+    dependencies:
+      lodash.isplainobject "^4.0.6"
+      qs "~6.5.1"
+      safe-buffer "^5.1.1"
+  
   supports-color@^5.2.0, supports-color@^5.3.0:
     version "5.4.0"
     resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
@@ -2168,16 +2181,17 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 Trace: 
-
-  Error: Found incompatible module
-      at new MessageError (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at Object.checkOne (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:62444:11)
-      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:22773:75
-      at Generator.next (<anonymous>)
-      at step (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
-      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:116:14
-      at new Promise (<anonymous>)
-      at new F (C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:23451:28)
-      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:95:12
-      at C:\Users\Velsu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:22777:27
-
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c node ./server/server.js
+  Directory: /home/jaivon/Documents/LambdaSchool/CS9-DontSendThatEmail
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)

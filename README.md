@@ -41,14 +41,23 @@ Give an example
 
 ## Deployment
 <!-- Add additional notes about how to deploy this on a live system. -->
-Heroku: https://dontemail.herokuapp.com/
-Netlify: https://dont-email-us.netlify.com/
+* Netlify: https://dont-email-us.netlify.com/
+* Heroku: https://dontemail.herokuapp.com/
+
 
 ## Built With
-* [MERN Stack](link here) - The stack used
-* [Watson Tone Analyzer API](link here) - Note about
-* [React-Strap](link here) - Note about 
-<!-- Maybe we touch on context and draft.js?  -->
+For this application we implemented the MERN Stack which is a set of Open Source components that together, provide an end-to-end framework for building a dynamic web application. 
+![MERN Stack](2018-08-29-13-10-36.png)
+* [MongoDB](https://www.mongodb.com/what-is-mongodb) - Document database offering scalability, flexibility, querying and indexing
+* [Express.js](https://expressjs.com/) - Web framework
+* [React](https://reactjs.org/) - JavaScript library for building user interfaces
+* [Node.js](https://nodejs.org/en/about/) - JavaScript run-time server environment
+* [IMB Watson Tone Analyzer](https://console.bluemix.net/docs/services/tone-analyzer/index.html#about) - Tone Analyzer using linguistic analysis to detect emotional/language tones in written text
+* [Reactstrap](link here) - React UI Component Framework
+* [React Context API](https://reactjs.org/docs/context.html) - Production-grade, efficient API
+* [Stripe](https://stripe.com/about) - Technology company with banking infrastructure to operate on-line payment systems
+* [Passport](http://www.passportjs.org/) - Authentication middleware for Node
+* [Axios](https://github.com/axios/axios) - Promise based HTTP client for browser and node.js
 
 ## Versioning
 <!-- Not sure if we need or want? -->

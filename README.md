@@ -1,6 +1,5 @@
 # CS9-DontSendThatEmail (Check My Tone)
-<!-- One paragraph of project description goes here -->
-Welcome to DontSendThatEmail (Check My Tone)! Please see our links below in the Deployment section. 
+How many times have you written an email or other communication and spent a significant amount of time worrying about how your intended audience would interpret your message? Maybe you worried it would come across as too angry, too analytical or had a target objective in mind and wanted to be sure you were optimizing your tone in such a way to achieve your desired outcome. With "Check My Tone", you can create your written communications with confidence as the Watson Tone Analyzer utilizes deep linguistic analytic technology, providing you with an automated way to detect and understand the present tones in your messages. "Check My Tone" - the key to refining and improving your tone to help you achieve more impactful communication results!   
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.

@@ -13,12 +13,19 @@
 
 .controlTextarea-styles {
 
-
+  height:100%;
   background: white;
   color: black;
 }
+.taInput-styles{
+  resize: none;
+}
+.infoRow-styles{
+
+}
 .controlBtn-styles {
-  width: 50%;
+  display: flex;
+flex-direction: row
 }
 .fa-arrow-circle-left {
   font-size: 40px;
@@ -53,11 +60,11 @@ color:lightgreen;
 .analytical{
   background: lightgoldenrodyellow;
 
-  border-bottom:1px solid black;
+
 }
 .joy{
   background: lightgreen;
-  border-bottom:1px solid black;
+ 
 }
 .fa-smile-beam{
   color:black;
@@ -74,4 +81,13 @@ color:lightgreen;
 .fa-surprise{
   color:black;
   font-size:25px;
+}
+.success{
+  color:lightgreen;
+}
+.moreInfo-styles{
+  height: 300px;
+}
+.infoBody-styles{
+  height: 200px;
 }

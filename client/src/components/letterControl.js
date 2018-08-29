@@ -8,19 +8,12 @@ import {
   Row,
   Progress,
   Label,
-  Form
+  Form,
+  Collapse
 } from "reactstrap";
 import "./letterControl.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Editor, EditorState, convertToRaw, RichUtils } from "draft-js";
-import { TSImportEqualsDeclaration } from "babel-types";
-
-const styleMap = {
-  HIGHLIGHT: {
-    backgroundColor: "lightgreen"
-  }
-};
 
 class LetterControl extends Component {
   constructor(props) {
@@ -37,25 +30,24 @@ class LetterControl extends Component {
       analytical: 0,
       sentence: [],
       id: "",
-      icon: "",
-      editorState: EditorState.createEmpty()
+      collapse: false
     };
     // this.onChange = (editorState) => this.setState({editorState);
+
+    this.toggle = this.toggle.bind(this);
   }
 
-  onChange = editorState => {
-    this.setState({ editorState });
-    this.setState({
-      content: this.state.editorState.getCurrentContent().getPlainText()
-    });
-  };
   componentDidMount() {
     let { id } = this.props.match.params;
     if (id !== "add") {
       this.setletter(id);
     }
   }
-
+  toggle() {
+    this.setState({
+      collapse: !this.state.collapse
+    });
+  }
   setletter(id) {
     axios
       .get(`https://dontemail.herokuapp.com/letters/${id}`, {
@@ -66,7 +58,8 @@ class LetterControl extends Component {
           versions: resp.data.versions,
           name: resp.data.name,
           destination: resp.data.destination,
-          id: id
+          id: id,
+          content: resp.data.versions[resp.data.versions.length - 1].content
         });
         this.versionsCounter();
       })
@@ -237,7 +230,6 @@ class LetterControl extends Component {
   saveVersion() {
     let id = this.state.id;
     let newVersion = {};
-    this.parseContent(convertToRaw(this.state.editorState.getCurrentContent()));
     newVersion.content = this.state.content;
 
     axios
@@ -273,6 +265,7 @@ class LetterControl extends Component {
     }
     this.setState({
       versionsCounter: counter,
+      content: this.state.versions[counter].content,
       analytical: 0,
       sadness: 0,
       joy: 0,
@@ -299,9 +292,35 @@ class LetterControl extends Component {
       );
     }
   }
+  renderMoreInfoIcon = () => {
+    if (this.state.sentence.length === 0) {
+      return <i className="fas fa-info-circle fa-3x" />;
+    } else {
+      return (
+        <div>
+          <i
+            onClick={this.toggle}
+            className="fas fa-info-circle fa-3x success"
+          />
+          <Collapse
+            isOpen={this.state.collapse}
+            className={this.props.className}
+          >
+            <Card className="moreinfo-styles">
+              <CardBody className="infoBody-styles">
+                {this.renderHighlights()}
+              </CardBody>
+            </Card>
+          </Collapse>
+        </div>
+      );
+    }
+  };
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
     const { auth } = this.props.context.userData;
     return (
@@ -344,31 +363,16 @@ class LetterControl extends Component {
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
-                    {/* <Editor
-                  editorState={this.state.editorState}
-                  onChange={() => this.onChange(
-                /> */}
-                    {/* <Input
-
-
-                      className="controlTextarea-styles"
-                      type="textarea"
-                      placeholder={
-                        this.state.versions[this.state.versionsCounter].content
-                      }
-                      name="content"
-                      value={this.state.content}
-                      onChange={this.handleChange}
-                    /> */}
                     <div className="controlTextarea-styles">
-                      <Editor
-                        editorState={this.state.editorState}
-                        onChange={this.onChange}
-                        placeholder={this.test()}
+                      <Input
+                        style={{ height: 400 }}
+                        // static height please fix
+                        className="taInput-styles"
+                        type="textarea"
                         name="content"
                         value={this.state.content}
+                        onChange={this.handleChange}
                       />
-                      {this.renderHighlights()}
                     </div>
                   </Col>
                   <Col md="4">
@@ -408,34 +412,39 @@ class LetterControl extends Component {
                       >
                         {this.state.analytical}%
                       </Progress>
+                      <br />
+                      <br />
                     </div>
                   </Col>
                 </Row>
-                <br />
-                <Row className="controlBtn-styles">
-                  <Col md="6">
-                    <i
-                      className="fas fa-arrow-circle-left"
-                      onClick={() => this.changeVersion("down")}
-                    />
-                  </Col>
-                  <Col md="6">
-                    <i
-                      className="fas fa-arrow-circle-right"
-                      onClick={() => this.changeVersion("up")}
-                    />
-                  </Col>
-                </Row>
-                <br />
-                <Row className="controlBtn-styles">
-                  <Col md="6">
-                    <Link to="/dashboard">
-                      <Button>Cancel</Button>
-                    </Link>
-                  </Col>
 
-                  <Col md="6">{this.renderSave()}</Col>
+                <br />
+                <Row className="infoRow-styles">
+                  <Col md="6" className="controlBtn-styles">
+                    <Col md="6">
+                      <i
+                        className="fas fa-arrow-circle-left"
+                        onClick={() => this.changeVersion("down")}
+                      />
+                      <br />
+                      <Button>Cancel</Button>
+                    </Col>
+                    <Col md="6">
+                      <i
+                        className="fas fa-arrow-circle-right"
+                        onClick={() => this.changeVersion("up")}
+                      />
+                      <br />
+
+                      {this.renderSave()}
+                    </Col>
+                  </Col>
+                  <Col md="6">
+                  {this.renderMoreInfoIcon()}
+                  </Col>
                 </Row>
+                
+             
               </Form>
             </CardBody>
           </Card>

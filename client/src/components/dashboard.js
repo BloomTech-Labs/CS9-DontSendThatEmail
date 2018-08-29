@@ -20,19 +20,13 @@ class Dashboard extends Component {
     // console.log(auth)
 
     return (
-      <Col md="3">
+      <Col lg="2">
         {auth ? (
           <Fragment>
 
           <Nav vertical className="nav">
 
-            <Link
-              to="/dashboard"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              {" "}
-                Don't Send
-            </Link>
+        
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/documents"

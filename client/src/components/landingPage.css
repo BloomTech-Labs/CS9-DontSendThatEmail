@@ -323,3 +323,55 @@ header nav li:last-child {
     width: 100%;
   }
 }
+
+/*----------------------
+ 	Features Section
+----------------------*/
+
+.features {
+  background-color: var(--main-bg);
+}
+
+.features h3.title {
+  color: var(--tertiary);
+}
+
+.features .grid li {
+  padding: 0 30px;
+  flex-basis: 33%;
+  text-align: center;
+}
+
+.features .grid li i {
+  font-size: 50px;
+  color: var(--tertiary);
+  margin-bottom: 25px;
+}
+
+.features .grid li h4 {
+  color: var(--tertiary);
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.features .grid li p {
+  margin: 0;
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .features .grid li {
+    flex-basis: 70%;
+    margin-bottom: 65px;
+  }
+
+  .features .grid li:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .features .grid li {
+    flex-basis: 100%;
+  }
+}

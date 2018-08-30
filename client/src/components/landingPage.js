@@ -113,6 +113,30 @@ class Landing extends Component {
             </li>
           </ul>
         </section>
+        <section className="testimonials">
+          <div className="text-box">
+            <h3 className="title">What others say:</h3>
+
+            <p className="quote">
+              It's dope dawg, so dope i use it before i send any slack message,
+              give it a try!
+            </p>
+            <p className="author">— Chris</p>
+
+            <p className="quote">
+              When i want to mock up fast e-mail to my Polish Friend Luke i
+              always use Check My Tone to not sound angry anymore.
+            </p>
+            <p className="author">— Jacob</p>
+
+            <p className="quote">
+              Whether i need to skip work to play World of Warcraft i use Check
+              My Tone to write proper mail to my higher ups thinking i have
+              internet problems or i am in restroom. LOVE IT
+            </p>
+            <p className="author">— Imran</p>
+          </div>
+        </section>
       </Fragment>
     );
   }

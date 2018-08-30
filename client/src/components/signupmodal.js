@@ -34,9 +34,7 @@ class Signup extends Component {
     axios
       .post("https://dontemail.herokuapp.com/auth/register", user)
       .then(resp => {
-        console.log(resp.data);
-
-        console.log(resp);
+        this.props.history.push("/login");
       })
       .catch(err => console.log(err));
     this.setState({

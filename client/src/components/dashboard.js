@@ -26,7 +26,7 @@ class Dashboard extends Component {
 
           <Nav vertical className="nav">
 
-        
+
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/documents"
@@ -49,7 +49,7 @@ class Dashboard extends Component {
 
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to="/dashboard/settings"
+              to="/dashboard/settings/options"
             >
               <div className="link-mod">
                 <i className="fas fa-cogs" />

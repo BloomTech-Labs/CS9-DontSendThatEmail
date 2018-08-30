@@ -8,17 +8,26 @@
   padding-top: 20px;
 }
 .nav{
-  height: 100vh;
-  background: #4D3D6F;
+  height: 94.5vh;
+  background: #1f112c;
   color: white;
   padding: 5px;
   padding-top: 20px;
 }
 .card-title {
   color: #ffffff;
-  font-size: 25px;
+  font-size: 15px;
   border-bottom: 2px solid #ffffff;
   font-family: Georgia, serif;
+
+}
+.card-subtitle {
+  margin-top: 3px;
+   font-size: 13px;
+}
+.card-text {
+  font-size:12px;
+  margin-top: 3px;
 }
 .far {
   color: white;
@@ -32,6 +41,9 @@
   color: white;
   margin-right: 3%;
 }
+.fa-copy{
+  /* fix later */
+}
 .link-mod {
   display: flex;
   justify-content: center;
@@ -43,5 +55,5 @@
 .link-mod:hover {
   color: #ffffff;
   border-bottom: 1px solid #1b1f22;
-  background: #282d31;
+  background: #4D3D6F;
 }

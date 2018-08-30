@@ -13,7 +13,8 @@ import {
   DropdownItem,
   Input
  } from 'reactstrap';
-  import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./topnav.css";
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" light expand="md">
+        <Navbar className="topnav" color="dark" light expand="md">
           <i class="fas fa-bars"></i>
           <Link
             to="/dashboard"
@@ -49,10 +50,10 @@ export default class TopNav extends React.Component {
                   placeholder="Search"
                 />
               </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              <NavItem color="light">
+                <NavLink  href="https://github.com/reactstrap/reactstrap">Hello { this.props.context.userData.username }</NavLink>
               </NavItem>
-              
+
             </Nav>
           </Collapse>
         </Navbar>

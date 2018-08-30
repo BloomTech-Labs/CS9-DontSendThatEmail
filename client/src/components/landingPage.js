@@ -85,6 +85,34 @@ class Landing extends Component {
             </ul>
           </section>
         </div>
+        <section className="features">
+          <h3 className="title">Amazing Features</h3>
+
+          <ul className="grid">
+            <li>
+              <i className="fas fa-save" />
+              <h4>Store Multiple Edits</h4>
+              <p>Save Multiple Edits and come back to them whenever You wish</p>
+            </li>
+            <li>
+              <i className="fas fa-search" />
+              <h4>Detailed Analysys</h4>
+              <p>
+                Get detailed analysys on Your message, whether it is official
+                mail or one to the colleague You will be sure it has just the
+                right <em>Tone</em>
+              </p>
+            </li>
+            <li>
+              <i className="fa fa-cubes" />
+              <h4>Send Emails Directly</h4>
+              <p>
+                Copy the e-mail to the Check My Tone App and send it directly
+                from here, no need to go to external services!
+              </p>
+            </li>
+          </ul>
+        </section>
       </Fragment>
     );
   }

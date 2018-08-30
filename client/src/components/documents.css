@@ -1,11 +1,11 @@
 .documents-style {
-  height: auto;
-  width: 400px;
+  height: 200px;
+  width: 150px;
   margin: 20px;
   margin-right: 10px;
-  min-height: 445px;
+  font-size: 15px;
 }
 .fa-plus-circle {
   color: lightgreen;
-  font-size: 50px;
+  font-size: 25px;
 }

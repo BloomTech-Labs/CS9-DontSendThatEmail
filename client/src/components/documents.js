@@ -42,15 +42,15 @@ class Documents extends Component {
               <CardBody>
                 <CardTitle>{letter.name}</CardTitle>
 
-                <br />
+
                 <CardSubtitle>{letter.destination}</CardSubtitle>
-                <br />
+
                 <CardText>
                   {letter.versions[letter.versions.length - 1].content}
                 </CardText>
 
                 <Link to="/dashboard/create">
-                  <Button>Copy</Button>
+                  <i className="far fa-copy"></i>
                 </Link>
               </CardBody>
             </Card>
@@ -64,11 +64,12 @@ class Documents extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col md="7">
+      <Col md="9">
         {auth ? (
           <Row>
-            {this.listDocuments()}
             <AddLetter {...this.props} />
+            {this.listDocuments()}
+
           </Row>
         ) : (
           this.props.history.push("/")

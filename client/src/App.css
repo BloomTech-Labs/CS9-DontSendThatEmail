@@ -1,3 +1,12 @@
+:root {
+  --main-bg: #1f112c;
+  --primary: #4d3d6f;
+  --secondary: #cec0d9;
+  --tertiary: #7caef3;
+  --quarternary: #d1af6f;
+  --quinary: #1956be;
+}
+
 .App {
   text-align: center;
 }
@@ -31,6 +40,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

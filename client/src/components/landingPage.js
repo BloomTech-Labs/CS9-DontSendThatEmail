@@ -29,85 +29,115 @@ class Landing extends Component {
 
   render() {
     return (
-      <TestContext.Consumer>
-        {data => {
-          return (
-            <Fragment>
-              <div id="heading">
-                <CardTitle id="header">
-                  <nav>
-                    <a onClick={() => this.toggle("about")}>About</a>
-                    <br />
-                    <Link
-                      to="/register"
-                      style={{ textDecoration: "none", color: "#fff" }}
-                    >
-                      Sign Up
-                    </Link>
-                    <br />
-                    <Link
-                      to="/login"
-                      style={{ textDecoration: "none", color: "#fff" }}
-                    >
-                      Log In
-                    </Link>
-                  </nav>
-                </CardTitle>
+      <Fragment>
+        {" "}
+        <header>
+          <div className="logo" />
+          <nav>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/register">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/login">Log In</Link>
+            </li>
+          </nav>
+        </header>
+        <section className="hero">
+          <h1>
+            Check My Tone <span className="fas fa-check-square" />
+          </h1>
+          <h3>One Click Tone Analyzer</h3>
+          <Link to="/register" className="cta-btn pulse">
+            GET STARTED
+          </Link>
+        </section>
+        <div className="howitworks">
+          <section className="tone-work">
+            <h3 className="title">How It Works</h3>
+            <p>
+              Ever wondered if Your message sounds right? With CheckMyTone You
+              can check whether Your text has positive or negative vibes. With
+              single buton click You can take complete control of situation.
+            </p>
 
-                {/* <Modal
-                  isOpen={this.state.modalAbout}
-                  toggle={() => this.toggle("about")}
-                  className={this.props.className}
-                >
-                  <About />
-                </Modal> */}
-              </div>
-
-              <div id="title" class="slide header">
-                <h1>
-                  Check my Tone <i className="far fa-envelope-open" />
-                </h1>
-                <br />
-                <p>
-                  The only solution You need to not regret sending that e-mail!
-                </p>
-              </div>
-
-              <div id="slide1" class="slide">
-                <div class="title">
-                  <h1>Slide 1</h1>
+            <ul className="grid">
+              <li className="small">
+                <div className="small-caption">
                   <p>
-                    Lorem ipsum dolor sit amet, in velit iudico mandamus sit,
-                    persius dolorum in per, postulant mnesarchum cu nam. Malis
-                    movet ornatus id vim, feugait detracto est ea, eam eruditi
-                    conceptam in. Ne sit explicari interesset. Labores perpetua
-                    cum at. Id viris docendi denique vim.
+                    Easy to use, start typing or copy text from the other source
+                    into text input and then click Analyze
                   </p>
                 </div>
-              </div>
-
-              <div id="slide2" class="slide">
-                <div class="title">
-                  <h4 className="boxtitle">
-                    Ever wondered if Your message sounds right?
-                  </h4>
+              </li>
+              <li className="large" />
+              <li className="large" />
+              <li className="small">
+                <div className="small-caption">
                   <p>
-                    Lorem ipsum dolor sit amet, in velit iudico mandamus sit,
-                    persius dolorum in per, postulant mnesarchum cu nam. Malis
-                    movet ornatus id vim, feugait detracto est ea, eam eruditi
-                    conceptam in. Ne sit explicari interesset. Labores perpetua
-                    cum at. Id viris docendi denique vim.
+                    Power to control Tone in the palm of Your hand with detailed
+                    analysis
                   </p>
                 </div>
-                {/* <img src="https://lorempixel.com/640/480/abstract/6/" />
-                <img src="https://lorempixel.com/640/480/abstract/4/" /> */}
-              </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <section className="features">
+          <h3 className="title">Amazing Features</h3>
 
-              <div id="bg" />
-            </Fragment>
-          );
-        }}
-      </TestContext.Consumer>
+          <ul className="grid">
+            <li>
+              <i className="fas fa-save" />
+              <h4>Store Multiple Edits</h4>
+              <p>Save Multiple Edits and come back to them whenever You wish</p>
+            </li>
+            <li>
+              <i className="fas fa-search" />
+              <h4>Detailed Analysys</h4>
+              <p>
+                Get detailed analysys on Your message, whether it is official
+                mail or one to the colleague You will be sure it has just the
+                right <em>Tone</em>
+              </p>
+            </li>
+            <li>
+              <i className="fa fa-cubes" />
+              <h4>Send Emails Directly</h4>
+              <p>
+                Copy the e-mail to the Check My Tone App and send it directly
+                from here, no need to go to external services!
+              </p>
+            </li>
+          </ul>
+        </section>
+        <section className="testimonials">
+          <div className="text-box">
+            <h3 className="title">What others say:</h3>
+
+            <p className="quote">
+              It's dope dawg, so dope i use it before i send any slack message,
+              give it a try!
+            </p>
+            <p className="author">— Chris</p>
+
+            <p className="quote">
+              When i want to mock up fast e-mail to my Polish Friend Luke i
+              always use Check My Tone to not sound angry anymore.
+            </p>
+            <p className="author">— Jacob</p>
+
+            <p className="quote">
+              Whether i need to skip work to play World of Warcraft i use Check
+              My Tone to write proper mail to my higher ups thinking i have
+              internet problems or i am in restroom. LOVE IT
+            </p>
+            <p className="author">— Imran</p>
+          </div>
+        </section>
+      </Fragment>
     );
   }
 }

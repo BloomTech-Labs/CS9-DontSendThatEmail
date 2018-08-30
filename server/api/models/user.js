@@ -1,5 +1,6 @@
 // place for user model
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 11;
 const ObjectId = mongoose.Schema.Types.ObjectId;
@@ -59,5 +60,7 @@ userSchema.methods.checkPassword = function(plainTextPW, callback) {
 userSchema.methods.addLetter = function(letter_id) {
   this.letters.push(letter_id);
 };
+
+userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("User", userSchema);

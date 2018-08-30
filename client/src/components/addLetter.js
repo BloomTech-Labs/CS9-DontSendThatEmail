@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Card, CardBody, CardTitle, Button, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import './addletter.css'
 const addLetter = props => {
   console.log("some string", props.context);
   const { auth } = props.context.userData;
 
   return (
-    <Col md="4">
+    <Col className="addletter" lg="1">
       {auth ? (
         <Card className="documents-style">
           <CardBody>

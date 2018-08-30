@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Row } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import "./App.css";
 import "./components/generalstyle.css";
 import TestProvider, { TestContext } from "./contexts/test-context"; //here
 
 import { Route, BrowserRouter as Router } from "react-router-dom";
-
+import TopNav from "./components/topnav"
 import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
 import LetterControl from "./components/letterControl";
@@ -23,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <AuthProvider>
           <AuthContext.Consumer>
             {context => (
@@ -43,6 +44,15 @@ class App extends Component {
                   render={props => <Login {...props} context={context} />}
                 />
                 <Row>
+                  <Col lg="12">
+                  <Route
+                    path="/dashboard"
+                    render={props =><TopNav {...props} context={context} />}
+                  />
+                </Col>
+                </Row>
+                <Row>
+
                   <Route
                     path="/dashboard"
                     render={props => <Dashboard {...props} context={context} />}

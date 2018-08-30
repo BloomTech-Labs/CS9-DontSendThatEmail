@@ -1,14 +1,198 @@
 import React, { Component, Fragment } from "react";
-import { Card, CardBody, CardTitle, Button, Col, Input, Row } from "reactstrap";
-import { Link } from "react-router-dom";
+import {
+  Card,
+  CardBody,
+  Button,
+  Col,
+  Row,
+  Form,
+  Input,
+  Label
+} from "reactstrap";
+import axios from "axios";
+// import Input from "react-validation/build/input";
+// import Form from 'react-validation/build/form';
+import validator from "validator";
+
 class UserSettings extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      option: "",
+      email: "",
+      password: "",
+      newEmail: "",
+      validateEmail: "",
+      validatePassword: "",
+      invalidPass: ""
+    };
   }
+
+  componentDidMount() {
+    const option = this.props.match.params.type;
+    this.setState({ option });
+  }
+  handleSubmit = () => {
+    let updates = {};
+    if (
+      this.state.password === this.state.validatePassword &&
+      this.state.password !== ""
+    ) {
+      updates.password = this.state.password;
+    } else {
+      this.setState({ invalidPass: "Password did not match" });
+    }
+    if (
+      this.state.email === this.state.validateEmail &&
+      this.state.email !== ""
+    ) {
+      updates.email = this.state.email;
+    }
+    axios
+      .put("https://dontemail.herokuapp.com/", updates)
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  returnHome = () => {
+    this.setState({ option: "" });
+    this.props.history.push("/dashboard");
+  };
+
+  required = value => {
+    if (!value.toString().trim().length) {
+      // We can return string or jsx as the 'error' prop for the validated Component
+      return "require";
+    }
+  };
+
+  email = value => {
+    if (!validator.isEmail(value)) {
+      return `${value} is not a valid email.`;
+    }
+  };
+
+  renderInput = () => {
+    if (this.state.option === "password") {
+      return (
+        <Fragment>
+          <form onSubmit={this.handleSubmit}>
+           {this.validPass()}
+           <br/>
+            <Row>
+              <Col md="4">New Password</Col>
+              <Col md="4">
+                <Input
+                  name="password"
+                  placeholder="Enter New Password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col md="4">Re-Enter Password</Col>
+              <Col md="4">
+                <Input
+                  name="validatePassword"
+                  placeholder="Match Above Password"
+                  value={this.state.validatePassword}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </form>
+          <Row>
+            <br />
+            <br />
+            <Col md="12">{this.renderEmailValidation()}</Col>
+          </Row>
+        </Fragment>
+      );
+    } else if (this.state.option === "email") {
+      return (
+        <Fragment>
+          <Form>
+            <Row>
+              <Col md="4">New Email</Col>
+              <Col md="4">
+                {this.validEmailNotification()}
+                <Input
+                  name="email"
+                  placeholder="Change Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  validations={[this.required, this.email]}
+                />
+              </Col>
+            </Row>
+
+            <br />
+            <Row>
+              <Col md="4">Re-Enter Email</Col>
+              <Col md="4">
+                <Input
+                  name="validateEmail"
+                  placeholder="Match Above Email"
+                  value={this.state.validateEmail}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <br />
+              <br />
+              <Col md="12">{this.renderEmailValidation()}</Col>
+            </Row>
+          </Form>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Card>
+          <CardBody>Loading Options...</CardBody>
+        </Card>
+      );
+    }
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  renderEmailValidation = type => {
+    if (type === "email") {
+      if (validator.isEmail(this.state.email)) {
+        return <Button onClick={() => this.handleSubmit()}>Save</Button>;
+      } else {
+        return <Button>Luish</Button>;
+      }
+    } else {
+     
+        return <Button onClick={() => this.handleSubmit()}>Save</Button>;
+      
+      
+    }
+  };
+
+  validEmailNotification = () => {
+    if (!validator.isEmail(this.state.email) && this.state.email !=="" && this.state.email.length >5) {
+      return <div className="danger">Invalid Email</div>;
+    }
+  };
+  validPass = () => {
+    if (this.state.invalidPass !== "") {
+      return <div className="danger">{this.state.invalidPass}</div>;
+    }
+  };
+
   render() {
     const { auth } = this.props.context.userData;
-
+    // console.log(this.state.option);
     return (
       <Col md="8">
         {auth ? (
@@ -16,32 +200,9 @@ class UserSettings extends Component {
             <Card>
               <CardBody>
                 <br />
-                <Row>
-                  <Col md="4">Name</Col>
-                  <Col md="4">
-                    <Input />
-                  </Col>
-                </Row>
-                <br />
-                <Row>
-                  <Col md="4">Old Password</Col>
-                  <Col md="4">
-                    <Input />
-                  </Col>
-                </Row>
-                <br />
-                <Row>
-                  <Col md="4">New Password</Col>
-                  <Col md="4">
-                    <Input />
-                  </Col>
+                {this.renderInput()}
 
-                  <br />
-                  <br />
-                  <Col md="12">
-                    <Button>Save</Button>
-                  </Col>
-                </Row>
+                <Button onClick={() => this.returnHome()}>Home</Button>
               </CardBody>
             </Card>
           </Fragment>
@@ -53,3 +214,5 @@ class UserSettings extends Component {
   }
 }
 export default UserSettings;
+
+4

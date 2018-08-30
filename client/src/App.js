@@ -15,6 +15,7 @@ import Documents from "./components/documents";
 import Signup from "./components/signupmodal";
 import Login from "./components/login";
 import Billing from "./components/billing";
+import Options from "./components/settingsOption";
 
 import AuthProvider, { AuthContext } from "./contexts/authProvider";
 
@@ -70,7 +71,14 @@ class App extends Component {
                   />
                   <Route
                     exact
-                    path="/dashboard/settings"
+                    path="/dashboard/settings/options"
+                    render={props => (
+                      <Options {...props} context={context} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/dashboard/settings/options/:type"
                     render={props => (
                       <UserSettings {...props} context={context} />
                     )}

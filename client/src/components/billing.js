@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Card, CardBody, CardTitle, Button, Col, Input, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import Checkout from "./checkout.js";
+import "./settings.css"
 class Billing extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class Billing extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col md="8">
+      <Col md="8" classname="colBox-styles">
         {auth ? (
           <Fragment>
             <Card>

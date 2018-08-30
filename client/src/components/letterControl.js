@@ -9,7 +9,10 @@ import {
   Progress,
   Label,
   Form,
-  Collapse
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 import "./letterControl.css";
 import axios from "axios";
@@ -30,11 +33,13 @@ class LetterControl extends Component {
       analytical: 0,
       sentence: [],
       id: "",
-      collapse: false
+      modal: false,
+      modalTwo: false
     };
     // this.onChange = (editorState) => this.setState({editorState);
 
     this.toggle = this.toggle.bind(this);
+    this.toggleModalTwo = this.toggleModalTwo.bind(this);
   }
 
   componentDidMount() {
@@ -43,9 +48,23 @@ class LetterControl extends Component {
       this.setletter(id);
     }
   }
+  // changeURL(){
+  //   // if(this.state.content !== this.state.versions[this.state.versionsCounter].content){
+  //   //   console.log(this.state.content, '\n', this.state.versions[this.state.versions.length -1].content)
+  //   //    window.onbeforeunload = function() {
+  //   //   return "Are you sure you want to navigate away?";
+  //   // }
+  //   }
+
+  // }
   toggle() {
     this.setState({
-      collapse: !this.state.collapse
+      modal: !this.state.modal
+    });
+  }
+  toggleModalTwo() {
+    this.setState({
+      modalTwo: !this.state.modalTwo
     });
   }
   setletter(id) {
@@ -285,13 +304,49 @@ class LetterControl extends Component {
       }
     }
   }
-  test() {
-    if (this.state.sentence.length === 0) {
+  renderCancel() {
+    if (
+      this.state.content !==
+      this.state.versions[this.state.versionsCounter].content
+    ) {
       return (
-        <div>{this.state.versions[this.state.versionsCounter].content}</div>
+        <div>
+          <Button onClick={this.toggleModalTwo}>Cancel</Button>
+
+          <Modal
+            isOpen={this.state.modalTwo}
+            toggle={this.toggleModalTwo}
+            className={this.props.className}
+          >
+            <ModalHeader toggle={this.toggleModalTwo}>
+              modalTwo title
+            </ModalHeader>
+            <ModalBody>
+              Your message will be lost if you leave this page without saving.
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color="primary"
+                onClick={() => this.props.history.push("/dashboard")}
+              >
+                Leave
+              </Button>{" "}
+              <Button color="secondary" onClick={this.toggleModalTwo}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+      );
+    } else {
+      return (
+        <Link to="/dashboard">
+          <Button style={{ opacity: 0.5 }}>Cancel</Button>
+        </Link>
       );
     }
   }
+
   renderMoreInfoIcon = () => {
     if (this.state.sentence.length === 0) {
       return <i className="fas fa-info-circle fa-3x" />;
@@ -302,21 +357,61 @@ class LetterControl extends Component {
             onClick={this.toggle}
             className="fas fa-info-circle fa-3x success"
           />
-          <Collapse
-            isOpen={this.state.collapse}
+          <Modal
+            toggle={this.toggle}
+            isOpen={this.state.modal}
             className={this.props.className}
           >
-            <Card className="moreinfo-styles">
-              <CardBody className="infoBody-styles">
-                {this.renderHighlights()}
-              </CardBody>
-            </Card>
-          </Collapse>
+            <ModalHeader toggle={this.toggle}>modal title</ModalHeader>
+            <ModalBody className="">
+            {this.renderProgressBars()}
+             {this.renderHighlights()}
+              
+              
+            </ModalBody>
+            <ModalFooter>
+              <Button color="success" onClick={this.toggle}>
+                close
+              </Button>
+            </ModalFooter>
+          </Modal>
         </div>
       );
     }
   };
+  renderProgressBars() {
+    return (
+     
+        <div>
+          <Label>Anger</Label>
 
+          <Progress animated color="danger" value={this.state.anger}>
+            {this.state.anger}%
+          </Progress>
+          <br />
+          <Label>Joy</Label>
+
+          <Progress animated color="success" value={this.state.joy}>
+            {this.state.joy}%
+          </Progress>
+          <br />
+          <Label>Sadness</Label>
+
+          <Progress animated color="info" value={this.state.sadness}>
+            {this.state.sadness}%
+          </Progress>
+          <br />
+          <Label>Analytical</Label>
+
+          <Progress animated color="warning" value={this.state.analytical}>
+            {this.state.analytical}%
+          </Progress>
+          <br />
+          <br />
+        </div>
+ 
+    );
+  }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -376,45 +471,7 @@ class LetterControl extends Component {
                     </div>
                   </Col>
                   <Col md="4">
-                    <div>
-                      <Label>Anger</Label>
-
-                      <Progress
-                        animated
-                        color="danger"
-                        value={this.state.anger}
-                      >
-                        {this.state.anger}%
-                      </Progress>
-                      <br />
-                      <Label>Joy</Label>
-
-                      <Progress animated color="success" value={this.state.joy}>
-                        {this.state.joy}%
-                      </Progress>
-                      <br />
-                      <Label>Sadness</Label>
-
-                      <Progress
-                        animated
-                        color="info"
-                        value={this.state.sadness}
-                      >
-                        {this.state.sadness}%
-                      </Progress>
-                      <br />
-                      <Label>Analytical</Label>
-
-                      <Progress
-                        animated
-                        color="warning"
-                        value={this.state.analytical}
-                      >
-                        {this.state.analytical}%
-                      </Progress>
-                      <br />
-                      <br />
-                    </div>
+                  {this.renderProgressBars()}
                   </Col>
                 </Row>
 
@@ -427,7 +484,7 @@ class LetterControl extends Component {
                         onClick={() => this.changeVersion("down")}
                       />
                       <br />
-                      <Button>Cancel</Button>
+                      {this.renderCancel()}
                     </Col>
                     <Col md="6">
                       <i
@@ -439,12 +496,8 @@ class LetterControl extends Component {
                       {this.renderSave()}
                     </Col>
                   </Col>
-                  <Col md="6">
-                  {this.renderMoreInfoIcon()}
-                  </Col>
+                  <Col md="6">{this.renderMoreInfoIcon()}</Col>
                 </Row>
-                
-             
               </Form>
             </CardBody>
           </Card>

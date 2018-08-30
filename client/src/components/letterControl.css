@@ -20,9 +20,6 @@
 .taInput-styles{
   resize: none;
 }
-.infoRow-styles{
-
-}
 .controlBtn-styles {
   display: flex;
 flex-direction: row
@@ -49,38 +46,40 @@ color:lightgreen;
   min-width: 50px;
 }
 .sadness{
+  font-size: 13px;
   background: lightblue;
   border-bottom:1px solid black;
 }
 .anger{
   background: lightcoral;
- 
+  font-size: 13px;
   border-bottom:1px solid black;
 }
 .analytical{
   background: lightgoldenrodyellow;
-
+  font-size: 13px;
 
 }
 .joy{
   background: lightgreen;
+  font-size: 13px;
  
 }
 .fa-smile-beam{
   color:black;
-  font-size:25px;
+  font-size:20px;
 }
 .fa-angery{
   color:black;
-  font-size:25px;
+  font-size:20px;
 }
 .fa-sad-tear{
   color:black;
-  font-size:25px;
+  font-size:20px;
 }
 .fa-surprise{
   color:black;
-  font-size:25px;
+  font-size:20px;
 }
 .success{
   color:lightgreen;

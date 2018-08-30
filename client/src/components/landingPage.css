@@ -375,3 +375,50 @@ header nav li:last-child {
     flex-basis: 100%;
   }
 }
+
+/*--------------------
+ 	testimonials Section
+--------------------*/
+
+.testimonials {
+  background-image: url("../assets/bottom.jpg");
+  background-size: cover;
+}
+
+.text-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2%;
+  box-shadow: 2px 2px 2px var(--main-bg);
+  padding: 0.8%;
+}
+
+.testimonials .quote {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding: 0;
+  color: #fff;
+  font-style: italic;
+}
+
+.testimonials .author {
+  font-size: 18px;
+  margin-bottom: 50px;
+  color: var(--tertiary);
+}
+
+.testimonials .author:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1000px) {
+  .testimonials .quote {
+    font-size: 20px;
+  }
+
+  .testimonials .author {
+    font-size: 16px;
+  }
+}

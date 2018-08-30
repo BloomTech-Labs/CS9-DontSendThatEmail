@@ -7,7 +7,7 @@ const Options = props => {
   console.log("some string", props.context);
 
   return (
-    <Col md="8">
+    <Col classname="colBox-styles" md="8">
         <Card>
           <CardBody>
             <CardTitle>Choose Option</CardTitle>

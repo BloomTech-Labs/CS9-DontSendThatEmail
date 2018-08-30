@@ -45,6 +45,15 @@ class Landing extends Component {
             </li>
           </nav>
         </header>
+        <section className="hero">
+          <h1>
+            Check My Tone <span className="fas fa-check-square" />
+          </h1>
+          <h3>One Click Tone Analyzer</h3>
+          <Link to="/register" className="cta-btn pulse">
+            GET STARTED
+          </Link>
+        </section>
       </Fragment>
     );
   }

@@ -28,7 +28,25 @@ class Landing extends Component {
   }
 
   render() {
-    return <Fragment />;
+    return (
+      <Fragment>
+        {" "}
+        <header>
+          <div className="logo" />
+          <nav>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/register">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/login">Log In</Link>
+            </li>
+          </nav>
+        </header>
+      </Fragment>
+    );
   }
 }
 export default Landing;

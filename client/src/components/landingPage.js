@@ -54,6 +54,37 @@ class Landing extends Component {
             GET STARTED
           </Link>
         </section>
+        <div className="howitworks">
+          <section className="tone-work">
+            <h3 className="title">How It Works</h3>
+            <p>
+              Ever wondered if Your message sounds right? With CheckMyTone You
+              can check whether Your text has positive or negative vibes. With
+              single buton click You can take complete control of situation.
+            </p>
+
+            <ul className="grid">
+              <li className="small">
+                <div className="small-caption">
+                  <p>
+                    Easy to use, start typing or copy text from the other source
+                    into text input and then click Analyze
+                  </p>
+                </div>
+              </li>
+              <li className="large" />
+              <li className="large" />
+              <li className="small">
+                <div className="small-caption">
+                  <p>
+                    Power to control Tone in the palm of Your hand with detailed
+                    analysis
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
       </Fragment>
     );
   }

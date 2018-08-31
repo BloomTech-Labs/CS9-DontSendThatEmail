@@ -1,7 +1,3 @@
-.controlCol-styles{
-  border: 6px solid #1b1f22;
-  background:#1b1f22;
-}
 .card-body {
   display: flex;
   flex-direction: column;
@@ -9,10 +5,16 @@
 .col-md-6 {
   margin-bottom: 0px;
 }
-
-
+.analyze-styles {
+  width: 51%;
+}
+.edit-styles{
+  width: 51%;
+}
+.movement-btn {
+  width: 100px;
+}
 .controlTextarea-styles {
-
   height:100%;
   background: white;
   color: black;
@@ -26,17 +28,18 @@ flex-direction: row
 }
 .fa-arrow-circle-left {
   font-size: 40px;
+  margin-left: 5px;
 }
 .fa-arrow-circle-left:hover {
   cursor: grab;
-  color:lightgreen;
+  color: var(--tertiary)
 }
 .fa-arrow-circle-right {
   font-size: 40px;
 }
 .fa-arrow-circle-right:hover{
 cursor:grab;
-color:lightgreen;
+color: var(--tertiary)
 
 }
 .label {
@@ -82,11 +85,25 @@ color:lightgreen;
   font-size:20px;
 }
 .success{
-  color:lightgreen;
+  color: var(--tertiary)
 }
 .moreInfo-styles{
   height: 300px;
 }
 .infoBody-styles{
   height: 200px;
+}
+.emails-styles {
+  width: 48%;
+  margin-top: 15px;
+}
+.modal-title{
+  margin-left: 15%;
+}
+.modal-content{
+  background: var(--secondary);
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
 }

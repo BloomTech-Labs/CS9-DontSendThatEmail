@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Card, CardBody, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import "./login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -38,28 +40,32 @@ class Login extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Card>
-          <CardBody>
-            <Input
-              value={this.state.username}
-              name="username"
-              placeholder="username"
-              onChange={this.handleChange}
-            />
-
-            <br />
-            <Input
-              placeholder="password"
-              value={this.state.password}
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-            />
-            <Button type="submit">LOGIN</Button>
-          </CardBody>
-        </Card>
-      </form>
+      <div className="form-bg">
+        <form className="form animated bounce" onSubmit={this.handleSubmit}>
+          <Link to="/">
+            <div className="logo" />
+          </Link>
+          <input
+            value={this.state.username}
+            name="username"
+            placeholder="username"
+            onChange={this.handleChange}
+          />
+          <br />
+          <input
+            placeholder="password"
+            value={this.state.password}
+            name="password"
+            type="password"
+            onChange={this.handleChange}
+          />
+          <button type="submit">LOGIN</button>
+          <p className="fallback-link">
+            {" "}
+            No Account? <Link to="/register">Register</Link>
+          </p>
+        </form>
+      </div>
     );
   }
 }

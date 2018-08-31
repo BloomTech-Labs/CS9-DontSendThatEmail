@@ -1,0 +1,104 @@
+.form-bg {
+  background: url("../assets/sunset.png");
+  height: 100vh;
+}
+
+.form {
+  position: relative;
+  top: 10rem;
+  z-index: 1;
+  background: var(--primary);
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 1px solid var(--secondary);
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.form input:focus {
+  box-shadow: 2px 2px 6px var(--secondary);
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--secondary);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: var(--main-bg);
+  font-size: 14px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: var(--main-bg);
+  color: #fff;
+}
+
+.fallback-link {
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.fallback-link a {
+  color: var(--tertiary);
+}
+
+.animated {
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes bounce {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+}

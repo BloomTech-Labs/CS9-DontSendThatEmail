@@ -29,6 +29,10 @@ nav li:nth-child(2) {
   width: 260px;
 }
 
+p {
+  font-family: "Open Sans";
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -135,7 +139,7 @@ section {
 section h3.title {
   color: var(--tertiary);
   text-transform: capitalize;
-  font: bold 2rem "Open Sans", sans-serif;
+  font: bold 2rem "Roboto Slab", sans-serif;
   margin-bottom: 35px;
   text-align: center;
 }
@@ -224,13 +228,13 @@ header nav li:last-child {
 }
 
 .hero h1 {
-  font: bold 3.75rem "Open Sans", sans-serif;
+  font: bold 3.75rem "Roboto Slab", sans-serif;
   margin-bottom: 15px;
   letter-spacing: 1.5px;
 }
 
 .hero h3 {
-  font: normal 1.75rem "Open Sans", sans-serif;
+  font: normal 1.75rem "Roboto Slab", sans-serif;
   margin-bottom: 40px;
 }
 
@@ -257,8 +261,7 @@ header nav li:last-child {
 ---------------------*/
 
 .howitworks {
-  background: url("../assets/thunder.jpg");
-  background-size: cover;
+  background: url("../assets/sunset.png");
 }
 
 .tone-work {

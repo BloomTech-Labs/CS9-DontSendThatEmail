@@ -33,13 +33,18 @@ class LetterControl extends Component {
       analytical: 0,
       sentence: [],
       id: "",
+      email: "",
       modal: false,
-      modalTwo: false
+      modalTwo: false,
+      modalThree: false,
+      modalFour: false
     };
     // this.onChange = (editorState) => this.setState({editorState);
 
     this.toggle = this.toggle.bind(this);
     this.toggleModalTwo = this.toggleModalTwo.bind(this);
+    this.toggleThree = this.toggleThree.bind(this);
+    this.toggleFour = this.toggleFour.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +70,16 @@ class LetterControl extends Component {
   toggleModalTwo() {
     this.setState({
       modalTwo: !this.state.modalTwo
+    });
+  }
+  toggleThree() {
+    this.setState({
+      modalThree: !this.state.modalThree
+    });
+  }
+  toggleFour() {
+    this.setState({
+      modalFour: !this.state.modalFour
     });
   }
   setletter(id) {
@@ -295,12 +310,33 @@ class LetterControl extends Component {
   // render the save button based on the if the version is the most current version.
   renderSave() {
     if (this.state.id === "") {
-      return <Button className="btn movement-btn" onClick={() => this.createLetter()}>Create</Button>;
+      return (
+        <Button
+          className="btn movement-btn"
+          onClick={() => this.createLetter()}
+        >
+          Create
+        </Button>
+      );
     } else {
       if (this.state.versionsCounter + 1 === this.state.versions.length) {
-        return <Button className="btn movement-btn" onClick={() => this.saveVersion()}>Save</Button>;
+        return (
+          <Button
+            className="btn movement-btn"
+            onClick={() => this.saveVersion()}
+          >
+            Save
+          </Button>
+        );
       } else {
-        return <Button className="btn movement-btn" onClick={() => this.saveVersion()}>Save As</Button>;
+        return (
+          <Button
+            className="btn movement-btn"
+            onClick={() => this.saveVersion()}
+          >
+            Save As
+          </Button>
+        );
       }
     }
   }
@@ -311,7 +347,9 @@ class LetterControl extends Component {
     ) {
       return (
         <div>
-          <Button className="btn movement-btn" onClick={this.toggleModalTwo}>Cancel</Button>
+          <Button className="btn movement-btn" onClick={this.toggleModalTwo}>
+            Cancel
+          </Button>
 
           <Modal
             isOpen={this.state.modalTwo}
@@ -331,7 +369,11 @@ class LetterControl extends Component {
               >
                 Leave
               </Button>{" "}
-              <Button className="btn movement-btn" color="secondary" onClick={this.toggleModalTwo}>
+              <Button
+                className="btn movement-btn"
+                color="secondary"
+                onClick={this.toggleModalTwo}
+              >
                 Cancel
               </Button>
             </ModalFooter>
@@ -341,7 +383,9 @@ class LetterControl extends Component {
     } else {
       return (
         <Link to="/dashboard">
-          <Button className="btn movement-btn" style={{ opacity: 0.5 }}>Cancel</Button>
+          <Button className="btn movement-btn" style={{ opacity: 0.5 }}>
+            Cancel
+          </Button>
         </Link>
       );
     }
@@ -364,10 +408,8 @@ class LetterControl extends Component {
           >
             <ModalHeader toggle={this.toggle}>modal title</ModalHeader>
             <ModalBody className="">
-            {this.renderProgressBars()}
-             {this.renderHighlights()}
-              
-              
+              {this.renderProgressBars()}
+              {this.renderHighlights()}
             </ModalBody>
             <ModalFooter>
               <Button color="success" onClick={this.toggle}>
@@ -379,37 +421,77 @@ class LetterControl extends Component {
       );
     }
   };
+
+  emailModal = () => {
+    return (
+      <React.Fragment>
+        <ModalHeader toggle={this.toggleThree}>
+          Would you like to send this email?
+        </ModalHeader>
+        <ModalBody>
+          <Label>Send To</Label>
+          <Input placeholder="email..." 
+            name="email"
+            onChange={this.handleChange}
+            value={this.state.email}
+            />
+          <br/>
+          <br/>
+          {this.state.content}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.toggleFour}>
+            Send
+          </Button>{" "}
+          <Modal className={this.props.className}
+            isOpen={this.state.modalFour} toggle={this.toggleFour}>
+            <ModalHeader toggle={this.toggleFour}>
+              Email Sent
+            </ModalHeader>
+            <ModalBody>
+              {`Your email was sent to ${this.state.email}`}
+            </ModalBody>
+            <ModalFooter>
+           <Button color="success" onClick={this.toggleFour}>Close</Button>{' '}
+         </ModalFooter>
+          </Modal>
+          <Button color="secondary" onClick={this.toggleThree}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </React.Fragment>
+    );
+  };
+
   renderProgressBars() {
     return (
-     
-        <div>
-          <Label>Anger</Label>
+      <div>
+        <Label>Anger</Label>
 
-          <Progress animated color="danger" value={this.state.anger}>
-            {this.state.anger}%
-          </Progress>
-          <br />
-          <Label>Joy</Label>
+        <Progress animated color="danger" value={this.state.anger}>
+          {this.state.anger}%
+        </Progress>
+        <br />
+        <Label>Joy</Label>
 
-          <Progress animated color="success" value={this.state.joy}>
-            {this.state.joy}%
-          </Progress>
-          <br />
-          <Label>Sadness</Label>
+        <Progress animated color="success" value={this.state.joy}>
+          {this.state.joy}%
+        </Progress>
+        <br />
+        <Label>Sadness</Label>
 
-          <Progress animated color="info" value={this.state.sadness}>
-            {this.state.sadness}%
-          </Progress>
-          <br />
-          <Label>Analytical</Label>
+        <Progress animated color="info" value={this.state.sadness}>
+          {this.state.sadness}%
+        </Progress>
+        <br />
+        <Label>Analytical</Label>
 
-          <Progress animated color="warning" value={this.state.analytical}>
-            {this.state.analytical}%
-          </Progress>
-          <br />
-          <br />
-        </div>
- 
+        <Progress animated color="warning" value={this.state.analytical}>
+          {this.state.analytical}%
+        </Progress>
+        <br />
+        <br />
+      </div>
     );
   }
   handleChange = e => {
@@ -471,9 +553,7 @@ class LetterControl extends Component {
                       />
                     </div>
                   </Col>
-                  <Col md="4">
-                  {this.renderProgressBars()}
-                  </Col>
+                  <Col md="4">{this.renderProgressBars()}</Col>
                 </Row>
 
                 <br />
@@ -501,7 +581,16 @@ class LetterControl extends Component {
                   </Col>
                 </Row>
                 <div className="emails-styles">
-                  <Button className="btn">Send Email</Button>
+                  <Button className="btn" onClick={this.toggleThree}>
+                    Send Email
+                  </Button>
+                  <Modal
+                    className={this.props.className}
+                    isOpen={this.state.modalThree}
+                    toggle={this.toggleThree}
+                  >
+                    {this.emailModal()}
+                  </Modal>
                 </div>
               </Form>
             </CardBody>

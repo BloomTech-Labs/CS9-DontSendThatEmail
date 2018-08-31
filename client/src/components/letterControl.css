@@ -97,3 +97,13 @@ color: var(--tertiary)
   width: 48%;
   margin-top: 15px;
 }
+.modal-title{
+  margin-left: 15%;
+}
+.modal-content{
+  background: var(--secondary);
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}

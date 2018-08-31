@@ -64,7 +64,7 @@ class Documents extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col className="documents-background" md="9">
+      <Col className="documents-background" md="10">
         {auth ? (
           <Row>
             <AddLetter {...this.props} />

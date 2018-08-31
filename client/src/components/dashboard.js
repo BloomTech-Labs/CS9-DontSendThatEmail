@@ -20,14 +20,14 @@ class Dashboard extends Component {
     // console.log(auth)
 
     return (
-      <Col lg="2">
+      <Col className="sidebar" lg="2">
         {auth ? (
           <Fragment>
 
           <Nav vertical className="nav">
             <Link
               to="/dashboard/documents" >
-              <div className="logo"></div>
+              <div className="dash-logo"></div>
             </Link>
 
             <i className="fa fa-user" aria-hidden="true"></i>

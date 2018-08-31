@@ -12,7 +12,7 @@ class Billing extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col md="8" classname="colBox-styles">
+      <Col md="10" classname="colBox-styles">
         {auth ? (
           <Fragment>
             <Card>

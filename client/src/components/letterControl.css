@@ -93,3 +93,7 @@ color: var(--tertiary)
 .infoBody-styles{
   height: 200px;
 }
+.emails-styles {
+  width: 48%;
+  margin-top: 15px;
+}

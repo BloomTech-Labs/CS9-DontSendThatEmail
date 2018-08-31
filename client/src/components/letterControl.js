@@ -500,6 +500,9 @@ class LetterControl extends Component {
                     </Col>
                   </Col>
                 </Row>
+                <div className="emails-styles">
+                  <Button className="btn">Send Email</Button>
+                </div>
               </Form>
             </CardBody>
           </Card>

@@ -1,10 +1,15 @@
 
-.logo {
-  background: url("../assets/CheckMyTone_Logo.svg");
+.dash-logo {
+  background: url("../assets/logo.png");
   background-size: cover;
-  margin-left:30px
+  margin-left:45px;
+  height: 82px;
+  width: 260px;
 }
-
+.sidebar{
+  padding-left:0px;
+  padding-right:0px;
+}
 .fa-user {
   background: #4D3D6F;
   padding:10px;
@@ -13,7 +18,7 @@
   width:60px;
   height:60px;
   border-radius: 50%;
-  margin-left:128px;
+  margin-left:148px;
   margin-top: 20px;
 }
 .documents{

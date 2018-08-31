@@ -51,7 +51,7 @@ class App extends Component {
                   /> */}
                 {/* </Col> */}
                 {/* </Row> */}
-                <Row>
+                <Row className="body-background">
 
                   <Route
                     path="/dashboard"

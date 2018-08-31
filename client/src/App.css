@@ -7,6 +7,15 @@
   --quinary: #1956be;
 }
 
+.body-background{
+  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.addletter{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .App {
   text-align: center;
 }

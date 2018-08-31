@@ -295,12 +295,12 @@ class LetterControl extends Component {
   // render the save button based on the if the version is the most current version.
   renderSave() {
     if (this.state.id === "") {
-      return <Button onClick={() => this.createLetter()}>Create</Button>;
+      return <Button className="btn movement-btn" onClick={() => this.createLetter()}>Create</Button>;
     } else {
       if (this.state.versionsCounter + 1 === this.state.versions.length) {
-        return <Button onClick={() => this.saveVersion()}>Save</Button>;
+        return <Button className="btn movement-btn" onClick={() => this.saveVersion()}>Save</Button>;
       } else {
-        return <Button onClick={() => this.saveVersion()}>Save As</Button>;
+        return <Button className="btn movement-btn" onClick={() => this.saveVersion()}>Save As</Button>;
       }
     }
   }
@@ -311,7 +311,7 @@ class LetterControl extends Component {
     ) {
       return (
         <div>
-          <Button onClick={this.toggleModalTwo}>Cancel</Button>
+          <Button className="btn movement-btn" onClick={this.toggleModalTwo}>Cancel</Button>
 
           <Modal
             isOpen={this.state.modalTwo}
@@ -331,7 +331,7 @@ class LetterControl extends Component {
               >
                 Leave
               </Button>{" "}
-              <Button color="secondary" onClick={this.toggleModalTwo}>
+              <Button className="btn movement-btn" color="secondary" onClick={this.toggleModalTwo}>
                 Cancel
               </Button>
             </ModalFooter>
@@ -341,7 +341,7 @@ class LetterControl extends Component {
     } else {
       return (
         <Link to="/dashboard">
-          <Button style={{ opacity: 0.5 }}>Cancel</Button>
+          <Button className="btn movement-btn" style={{ opacity: 0.5 }}>Cancel</Button>
         </Link>
       );
     }
@@ -349,13 +349,13 @@ class LetterControl extends Component {
 
   renderMoreInfoIcon = () => {
     if (this.state.sentence.length === 0) {
-      return <i className="fas fa-info-circle fa-3x" />;
+      return <i className="fas fa-info-circle fa-2x" />;
     } else {
       return (
         <div>
           <i
             onClick={this.toggle}
-            className="fas fa-info-circle fa-3x success"
+            className="fas fa-info-circle fa-2x success"
           />
           <Modal
             toggle={this.toggle}
@@ -425,8 +425,8 @@ class LetterControl extends Component {
             <CardBody>
               <br />
               <Form>
-                <Row>
-                  <Col md="3">
+                <Row className="edit-styles">
+                  <Col md="6">
                     <Input
                       placeholder={this.state.name}
                       name="name"
@@ -442,8 +442,8 @@ class LetterControl extends Component {
                   </Col>
                 </Row>
                 <br />
-                <Row>
-                  <Col md="3">
+                <Row className="analyze-styles">
+                  <Col md="6">
                     <Input
                       placeholder={this.state.destination}
                       name="destination"
@@ -451,9 +451,10 @@ class LetterControl extends Component {
                       onChange={this.handleChange}
                     />
                   </Col>
-                  <Col md="1">
+                  <Col md="3">
                     <Button onClick={() => this.watson()}>Analyze</Button>
                   </Col>
+                  <Col md="2">{this.renderMoreInfoIcon()}</Col>
                 </Row>
                 <br />
                 <Row className="rowTextArea-styles">
@@ -484,6 +485,7 @@ class LetterControl extends Component {
                         onClick={() => this.changeVersion("down")}
                       />
                       <br />
+                      <br />
                       {this.renderCancel()}
                     </Col>
                     <Col md="6">
@@ -492,11 +494,11 @@ class LetterControl extends Component {
                         onClick={() => this.changeVersion("up")}
                       />
                       <br />
+                      <br />
 
                       {this.renderSave()}
                     </Col>
                   </Col>
-                  <Col md="6">{this.renderMoreInfoIcon()}</Col>
                 </Row>
               </Form>
             </CardBody>

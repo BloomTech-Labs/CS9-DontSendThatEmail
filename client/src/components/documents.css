@@ -5,6 +5,9 @@
   margin-right: 10px;
   font-size: 15px;
 }
+.documents-background{
+  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+}
 .fa-plus-circle {
   color: lightgreen;
   font-size: 25px;

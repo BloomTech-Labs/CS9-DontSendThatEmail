@@ -25,13 +25,19 @@ class Dashboard extends Component {
           <Fragment>
 
           <Nav vertical className="nav">
+            <Link
+              to="/dashboard/documents" >
+              <div className="logo"></div>
+            </Link>
 
-
+            <i className="fa fa-user" aria-hidden="true"></i>
+            <div className="user">Hello, { this.props.context.userData.username }</div>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/documents"
             >
-              <div className="link-mod">
+
+              <div className="link-mod documents">
                 <i className="far fa-file" />
                 <div>Documents</div>
               </div>
@@ -41,7 +47,7 @@ class Dashboard extends Component {
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/billing"
             >
-              <div className="link-mod">
+              <div className="link-mod billing">
                 <i className="fas fa-money-bill-wave-alt" />
                 <div>Billing</div>
               </div>
@@ -51,7 +57,7 @@ class Dashboard extends Component {
               style={{ textDecoration: "none", color: "white" }}
               to="/dashboard/settings/options"
             >
-              <div className="link-mod">
+              <div className="link-mod setting">
                 <i className="fas fa-cogs" />
 
                 <div>Settings</div>

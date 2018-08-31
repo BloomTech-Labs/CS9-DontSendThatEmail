@@ -5,7 +5,7 @@ import "./components/generalstyle.css";
 import TestProvider, { TestContext } from "./contexts/test-context"; //here
 
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import TopNav from "./components/topnav"
+// import TopNav from "./components/topnav"
 import Dashboard from "./components/dashboard";
 import AddLetter from "./components/addLetter";
 import LetterControl from "./components/letterControl";
@@ -43,14 +43,14 @@ class App extends Component {
                   path="/login"
                   render={props => <Login {...props} context={context} />}
                 />
-                <Row>
+                {/* <Row>
                   <Col lg="12">
                   <Route
                     path="/dashboard"
                     render={props =><TopNav {...props} context={context} />}
-                  />
-                </Col>
-                </Row>
+                  /> */}
+                {/* </Col> */}
+                {/* </Row> */}
                 <Row>
 
                   <Route

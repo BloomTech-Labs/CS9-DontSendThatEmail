@@ -1,5 +1,29 @@
 
+.logo {
+  background: url("../assets/CheckMyTone_Logo.svg");
+  background-size: cover;
+  margin-left:30px
+}
 
+.fa-user {
+  background: #4D3D6F;
+  padding:10px;
+  border: solid;
+  font-size: 30px;
+  width:60px;
+  height:60px;
+  border-radius: 50%;
+  margin-left:128px;
+  margin-top: 20px;
+}
+.documents{
+  margin-top: 31px;
+  font-size: 20px
+}
+.user{
+  margin-top:15px;
+  margin-bottom:40px;
+}
 .card {
   height: 100vh;
   background: #4D3D6F;
@@ -8,16 +32,17 @@
   padding-top: 20px;
 }
 .nav{
-  height: 94.5vh;
+  height: 99vh;
   background: #1f112c;
   color: white;
   padding: 5px;
   padding-top: 20px;
+  font-size: 18px;
 }
 .card-title {
   color: #ffffff;
   font-size: 15px;
-  border-bottom: 2px solid #ffffff;
+
   font-family: Georgia, serif;
 
 }
@@ -48,9 +73,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  border-bottom: 1px solid #ffffffad;
   color: #green;
   padding: 30px;
+  font-size: 20px;
 }
 .link-mod:hover {
   color: #ffffff;

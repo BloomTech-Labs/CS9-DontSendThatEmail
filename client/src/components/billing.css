@@ -1,0 +1,33 @@
+.billing-styles {
+    display: flex;
+    justify-content: center;
+}
+.billingBoxes-styles {
+    margin: 10px;
+    min-height: 300px;
+    color: white;
+    background: var(--primary);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin-top: 20px;
+    padding: 0.3rem;
+}
+.premium {
+    border: 1px solid goldenrod;
+}
+.premium-logo {
+    background: url("../assets/premium.png");
+    background-size: cover;
+    margin-left:45px;
+    height: 82px;
+    width: 260px;
+    margin: 0 auto;
+  }
+  .billing-bg {
+    background: url("../assets/sunset.png")
+  }
+  .billing-label {
+      font-size: 2.2rem;
+      color: white;
+      letter-spacing: .2ch;
+      margin-top: 20px;
+  }

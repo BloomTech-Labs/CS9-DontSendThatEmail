@@ -2,9 +2,10 @@
 .dash-logo {
   background: url("../assets/logo.png");
   background-size: cover;
-  margin-left:45px;
+  
   height: 82px;
-  width: 260px;
+  display:flex;
+  justify-content: center;
 }
 .table{
   background-color: green;
@@ -21,8 +22,8 @@
   width:60px;
   height:60px;
   border-radius: 50%;
-
-
+  margin-left:148px;
+  margin-top: 20px;
 }
 .documents{
   margin-top: 31px;
@@ -31,6 +32,8 @@
 .user{
   margin-top:15px;
   margin-bottom:40px;
+  display:flex;
+  justify-content: center;
 }
 .card {
   height: 100vh;
@@ -99,8 +102,4 @@
   margin-right: 0px;
   height:70vh;
   overflow-y: auto;
-}
-.search{
-  width:200px;
-
 }

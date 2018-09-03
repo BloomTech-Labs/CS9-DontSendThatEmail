@@ -21,3 +21,10 @@
 .topbox{
   height:40vh;
 }
+
+input[type=text]{
+  width:200px;
+  background-color:var(--tone1);
+  border:none;
+
+}

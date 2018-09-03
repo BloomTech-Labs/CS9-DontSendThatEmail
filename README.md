@@ -24,20 +24,20 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo.
 
-## Running the tests
+<!-- ## Running the tests
 Explain how to run the automated tests for this system.
 
 ### Break down into end to end tests
 Explain what these tests test and why.
 ```
 Give an example
-```
+``` -->
 
-### And coding style tests
+<!-- ### And coding style tests
 Explain what these tests test and why.
 ```
 Give an example
-```
+``` -->
 
 ## Deployment
 <!-- Add additional notes about how to deploy this on a live system. -->
@@ -53,21 +53,30 @@ For this application we implemented the MERN Stack which is a set of Open Source
 * [React](https://reactjs.org/) - JavaScript library for building user interfaces
 * [Node.js](https://nodejs.org/en/about/) - JavaScript run-time server environment
 * [IMB Watson Tone Analyzer](https://console.bluemix.net/docs/services/tone-analyzer/index.html#about) - Tone Analyzer using linguistic analysis to detect emotional/language tones in written text
-* [Reactstrap](link here) - React UI Component Framework
+* [Reactstrap](https://reactstrap.github.io/) - React UI Component Framework
 * [React Context API](https://reactjs.org/docs/context.html) - Production-grade, efficient API
 * [Stripe](https://stripe.com/about) - Technology company with banking infrastructure to operate on-line payment systems
 * [Passport](http://www.passportjs.org/) - Authentication middleware for Node
+* [Passport-JWT](https://www.npmjs.com/package/passport-jwt) - Passport strategy for authenticating with JSON Web Token
 * [Axios](https://github.com/axios/axios) - Promise based HTTP client for browser and node.js
+* [Bootstrap](https://getbootstrap.com/) - Open source toolkit 
+* [FontAwesome](https://fontawesome.com/v4.7.0/icons/) - Icons used throughout website
+* [Validator.js](https://www.npmjs.com/package/validator) - Library of string validators and sanitizers
+* [React Router DOM](https://www.npmjs.com/package/react-router-dom) - DOM bindings for React Router
 
-## Versioning
+<!-- ## Versioning -->
 <!-- Not sure if we need or want? -->
 
 ## Authors
-See the list of [contributors](https://github.com/Lambda-School-Labs/CS9-DontSendThatEmail/graphs/contributors) who participated in making this project. 
+![Dev Team](2018-09-03-14-39-13.png)
+* [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
+* [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 
+* [Kaitlyn Flynn](https://www.linkedin.com/in/kaitlynflynn/)
+* [Jacob Lyerla](https://www.linkedin.com/in/jacob-lyerla-38946334/)
+* [Jaivon Massena-Poole](https://www.linkedin.com/in/jaivonmassena/)
 
 ## License
-<!-- Not sure if we need or want? -->
-This project is licensed under... 
+This project is licensed under...
 
 ## Acknowledgments
 * Hat tip to anyone whose code was used

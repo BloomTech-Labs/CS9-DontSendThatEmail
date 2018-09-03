@@ -18,30 +18,52 @@ import Billing from "./components/billing";
 import Options from "./components/settingsOption";
 
 import AuthProvider, { AuthContext } from "./contexts/authProvider";
+import posed, { PoseGroup } from "react-pose";
+import { Switch, Link } from "react-router-dom";
+
+const RouteContainer = posed.div({
+  enter: { opacity: 1, delay: 300, beforeChildren: true },
+  exit: { opacity: 0 }
+});
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-
         <AuthProvider>
           <AuthContext.Consumer>
             {context => (
               <React.Fragment>
                 <Route
-                  exact
-                  path="/"
-                  render={props => <LandingPage {...props} context={context} />}
-                />
-                <Route
-                  exact
-                  path="/register"
-                  render={props => <Signup {...props} context={context} />}
-                />
-                <Route
-                  exact
-                  path="/login"
-                  render={props => <Login {...props} context={context} />}
+                  render={({ location }) => (
+                    <PoseGroup>
+                      <RouteContainer key={location.key}>
+                        <Switch location={location}>
+                          <Route
+                            exact
+                            path="/"
+                            render={props => (
+                              <LandingPage {...props} context={context} />
+                            )}
+                          />
+                          <Route
+                            exact
+                            path="/register"
+                            render={props => (
+                              <Signup {...props} context={context} />
+                            )}
+                          />
+                          <Route
+                            exact
+                            path="/login"
+                            render={props => (
+                              <Login {...props} context={context} />
+                            )}
+                          />
+                        </Switch>
+                      </RouteContainer>
+                    </PoseGroup>
+                  )}
                 />
                 {/* <Row>
                   <Col lg="12">
@@ -52,7 +74,6 @@ class App extends Component {
                 {/* </Col> */}
                 {/* </Row> */}
                 <Row className="body-background">
-
                   <Route
                     path="/dashboard"
                     render={props => <Dashboard {...props} context={context} />}
@@ -72,9 +93,7 @@ class App extends Component {
                   <Route
                     exact
                     path="/dashboard/settings/options"
-                    render={props => (
-                      <Options {...props} context={context} />
-                    )}
+                    render={props => <Options {...props} context={context} />}
                   />
                   <Route
                     exact

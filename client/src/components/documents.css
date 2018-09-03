@@ -14,3 +14,10 @@
   color: lightgreen;
   font-size: 25px;
 }
+.cardstuff{
+  height:100vh;
+  overflow: scroll;
+}
+.topbox{
+  height:40vh;
+}

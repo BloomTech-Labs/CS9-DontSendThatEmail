@@ -78,6 +78,14 @@ For this application we implemented the MERN Stack which is a set of Open Source
 ## License
 This project is licensed under...
 
+Stock photos used for this project:
+From PEXELS
+* [Keyboard Stock Photo](https://www.pexels.com/photo/closeup-photo-of-black-and-blue-keyboard-1194713/) - photo credit by Marta Branco
+* [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen
+
+From Unsplash
+* [Hands on keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
+
 ## Acknowledgments
 * Hat tip to anyone whose code was used
 * Inspiration

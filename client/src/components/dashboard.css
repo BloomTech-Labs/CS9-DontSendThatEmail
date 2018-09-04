@@ -2,17 +2,25 @@
 .dash-logo {
   background: url("../assets/logo.png");
   background-size: cover;
-  
+
   height: 82px;
   display:flex;
   justify-content: center;
 }
-.table{
-  background-color: green;
-}
+
 .sidebar{
   padding-left:0px;
   padding-right:0px;
+  box-shadow: 14px 0px 4px -6px rgba(0,0,0,0.75);
+}
+.fa{
+  cursor: pointer;
+}
+.far{
+  cursor: pointer;
+}
+.fas{
+  cursor: pointer;
 }
 .fa-user {
   background: #4D3D6F;
@@ -92,14 +100,4 @@
   color: #ffffff;
   border-bottom: 1px solid #1b1f22;
   background: #4D3D6F;
-}
-.documentsbox{
-  height:100vh;
-  overflow: hidden;
-}
-.databox{
-  margin-left: 0px;
-  margin-right: 0px;
-  height:70vh;
-  overflow-y: auto;
 }

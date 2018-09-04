@@ -82,11 +82,12 @@ This project is licensed under MIT License
 Copyright (c) 2018 Lambda Labs
 
 Stock photos used for this project:
-
+<br/>
 From PEXELS
 * [Keyboard Stock Photo](https://www.pexels.com/photo/closeup-photo-of-black-and-blue-keyboard-1194713/) - photo credit by Marta Branco
-* [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen
 * ['How It Works' Stock Photo](https://www.pexels.com/photo/sunset-storm-sun-rocks-34090/) - photo credit by Negative Space
+<!-- * [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen -->
+
 
 From Unsplash
 * [Hands on Keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org

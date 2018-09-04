@@ -69,6 +69,9 @@ For this application we implemented the MERN Stack which is a set of Open Source
 
 ## Authors
 ![Dev Team](2018-09-03-14-39-13.png)
+
+Connect with us on
+![LinkedIn Logo](2018-09-04-14-07-37.png)
 * [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
 * [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 
 * [Kaitlyn Flynn](https://www.linkedin.com/in/kaitlynflynn/)
@@ -76,17 +79,20 @@ For this application we implemented the MERN Stack which is a set of Open Source
 * [Jaivon Massena-Poole](https://www.linkedin.com/in/jaivonmassena/)
 
 ## License
-This project is licensed under...
+This project is licensed under MIT License
+Copyright (c) 2018 Lambda Labs
 
 Stock photos used for this project:
+
 From PEXELS
 * [Keyboard Stock Photo](https://www.pexels.com/photo/closeup-photo-of-black-and-blue-keyboard-1194713/) - photo credit by Marta Branco
 * [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen
+* ['How It Works' Stock Photo](https://www.pexels.com/photo/sunset-storm-sun-rocks-34090/) - photo credit by Negative Space
 
 From Unsplash
-* [Hands on keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
+* [Hands on Keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
 
-## Acknowledgments
+<!-- ## Acknowledgments
 * Hat tip to anyone whose code was used
 * Inspiration
-* Etc
+* Etc -->

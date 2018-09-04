@@ -61,6 +61,7 @@ class Documents extends Component {
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
             <div>{letter.name}</div>
             <div>{letter.destination}</div>
+            <time>August 19</time>
           </Link>
           <div className="databox-icons">
           <i class="fa fa-trash" aria-hidden="true" />
@@ -76,7 +77,7 @@ class Documents extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col className="documentsbox" md="10">  
+      <Col className="documentsbox" md="10">
         {auth ? (
           <Fragment>
             <Row className="topbox">
@@ -91,9 +92,9 @@ class Documents extends Component {
             <Row className="databox">
               <Row className="header-row">
                 <div className="header-text">
+                  <div className="textstuff">Subject</div>
                   <div className="textstuff">To</div>
-                  <div className="textstuff">From</div>
-                  <div className="textstuff">Created At</div>
+                  <div className="textstuff">Created at</div>
                 </div>
                 <div className="header-icons">
                   <i class="fas fa-th" />
@@ -103,7 +104,7 @@ class Documents extends Component {
               </Row>
               <Row className="listsofdocuments">
                 {this.listDocuments()}
-                {this.listDocuments()}
+
               </Row>
             </Row>
           </Fragment>

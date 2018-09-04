@@ -9,10 +9,9 @@
   width:100%;
   height:30px;
   display: flex;
-  justify-content: space-between;
-  margin-left: 25px;
+  justify-content: center;
 
-  
+
 }
 .documents-background {
   background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
@@ -31,6 +30,7 @@
   height: 40vh;
   display: flex;
   justify-content: space-between;
+  
 }
 
 input[type="text"] {
@@ -55,8 +55,7 @@ input[type="text"] {
   overflow: hidden;
 }
 .databox {
-  margin-left: 0px;
-  margin-right: 0px;
+
   height: 70vh;
   display: flex;
   align-content: space-between;
@@ -66,14 +65,20 @@ input[type="text"] {
   height: 100vh;
   overflow-y: auto;
   margin-left: 10%;
-  width: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
 }
 .tablerow {
 color:white !important;
 text-decoration: none;
 display:flex;
 justify-content: space-between;
-width: 25%;
+width: 35%;
+margin-left: 9%;
+margin-right: 9%;
+
 }
 .table{
   color:white;
@@ -91,7 +96,7 @@ width: 80%;
   margin-right: 40px;
   margin-top: 40px;
   background-color: var(--tone1);
-
+  box-shadow: inset 0px 5px 5px 0px rgba(0,0,0,0.75);
 }
 .header-icons{
   display:flex;
@@ -102,13 +107,23 @@ width: 80%;
 }
 .header-text{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width:30%;
   margin-right: 40px;
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  width: 58%;
+  margin-right: 7%;
+  margin-top: 8px;
+
 }
 .databox-icons{
   display: flex;
   justify-content: space-evenly;
   width:10%;
   align-content: flex-end;
+  margin-top: 10px;
+}
+input[type="checkbox"]{
+  transform: scale(1.5);
+  margin-top: 10px;
 }

@@ -51,18 +51,18 @@ input[type="text"] {
   color: white;
 }
 .documentsbox {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 .databox {
 
-  height: 70vh;
+  height: 50%;
   display: flex;
   align-content: space-between;
   box-shadow: 1px -1px 4px 0px rgba(0, 0, 0, 0.75);
 }
 .listsofdocuments {
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin-left: 10%;
   width: 100%;

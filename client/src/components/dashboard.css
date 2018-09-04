@@ -44,14 +44,14 @@
   justify-content: center;
 }
 .card {
-  height: 100vh;
+  height: 100%;
   background: #4D3D6F;
   color: white;
   padding: 5px;
   padding-top: 20px;
 }
 .nav{
-  height: 99vh;
+  height: 100%;
   background: #1f112c;
   color: white;
   padding-top: 20px;

@@ -41,7 +41,7 @@ class Login extends Component {
   render() {
     return (
       <div className="form-bg">
-        <form className="form animated bounce" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <Link to="/">
             <div className="logo" />
           </Link>

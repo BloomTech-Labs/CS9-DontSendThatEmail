@@ -1,5 +1,6 @@
 .form-bg {
   background: url("../assets/sunset.png");
+  background-size: cover;
   height: 100vh;
 }
 
@@ -57,48 +58,4 @@
 
 .fallback-link a {
   color: var(--tertiary);
-}
-
-.animated {
-  -webkit-animation-duration: 1.2s;
-  animation-duration: 1.2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  -webkit-animation-iteration-count: 1;
-}
-
-@-webkit-keyframes bounce {
-  0%,
-  20%,
-  40%,
-  60%,
-  80%,
-  100% {
-    -webkit-transform: translateY(0);
-  }
-  50% {
-    -webkit-transform: translateY(-10px);
-  }
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  40%,
-  60%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.bounce {
-  -webkit-animation-name: bounce;
-  animation-name: bounce;
 }

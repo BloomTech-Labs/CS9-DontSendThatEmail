@@ -19,7 +19,7 @@ const addLetter = props => {
           </CardBody>
         </Card>
       ) : (
-        props.history.push("/dashboard/create")
+        props.history.push("/")
       )}
     </Col>
   );

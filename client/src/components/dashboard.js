@@ -26,7 +26,7 @@ class Dashboard extends Component {
 
           <Nav vertical className="nav">
             <Link
-              to="/dashboard/documents" >
+              to="/dashboard" >
               <div className="dash-logo"></div>
             </Link>
 
@@ -34,7 +34,7 @@ class Dashboard extends Component {
             <div className="user">Hello, { this.props.context.userData.username }</div>
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to="/dashboard/documents"
+              to="/dashboard"
             >
 
               <div className="link-mod documents">
@@ -77,7 +77,7 @@ class Dashboard extends Component {
 
           </Fragment>
         ) : (
-          this.props.history.push("/dashboard/create")
+          this.props.history.push("/")
         )}
       </Col>
     );

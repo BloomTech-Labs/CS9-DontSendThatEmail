@@ -19,7 +19,7 @@
   padding-right: 0px;
 }
 .fa-plus-circle {
-  color: lightgreen;
+  color: var(--tertiary);
   font-size: 25px;
 }
 .cardstuff {

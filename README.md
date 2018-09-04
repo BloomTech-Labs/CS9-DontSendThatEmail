@@ -69,7 +69,7 @@ For this application we implemented the MERN Stack which is a set of Open Source
 ## Authors
 ![Dev Team](2018-09-03-14-39-13.png)
 
-Connect with us on
+Connect with us on<br/>
 ![LinkedIn Logo](2018-09-04-14-07-37.png)
 * [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
 * [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 
@@ -80,7 +80,7 @@ Connect with us on
 ## License
 This project is licensed under MIT License
 Copyright (c) 2018 Lambda Labs
-
+<br/>
 Stock photos used for this project:
 <br/>
 From PEXELS

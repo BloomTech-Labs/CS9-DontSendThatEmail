@@ -4,7 +4,7 @@ import SignupModal from "./signupmodal";
 import LogInModal from "./login";
 import About from "./about";
 import "./landingPage.css";
-import { Modal, Card, CardTitle } from "reactstrap";
+import { Modal, Card, CardTitle, Row } from "reactstrap";
 import { TestContext } from "../contexts/test-context"; // here
 import Fade from "react-reveal/Fade";
 class Landing extends Component {
@@ -69,7 +69,7 @@ class Landing extends Component {
           <i className="arrow animated bounce fas fa-angle-down fa-3x" />
         </section>
         <div className="howitworks" id="how">
-          <section className="tone-work">
+          {/* <section className="tone-work">
             <Fade top>
               <h3 className="title">How It Works</h3>
               <p>
@@ -99,11 +99,71 @@ class Landing extends Component {
                 </li>
               </ul>
             </Fade>
+          </section> */}
+          <section className="tonework">
+            <Fade top>
+              <h3 className="title">How It Works</h3>
+              <div class="container">
+                <div className="row circ">
+                  <div className="col-md-8 d-flex align-items-center mt-2">
+                    <div class="circle-icon mr-4">1</div>
+                    <div class="media-body">
+                      <h5>Register New Account</h5>
+                      <p>
+                        Simply click{" "}
+                        <Link to="/register" className="anchor">
+                          here
+                        </Link>{" "}
+                        to register new account and start using Check My Tone
+                        instantly. Login with Your account and create new
+                        document.{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4 my-2">
+                    <i class="fas fa-sign-in-alt fa-5x hiw-icon" />
+                  </div>
+                </div>
+                <div className="row circ">
+                  <div className="col-md-8 d-flex align-items-center my-4">
+                    <div class="circle-icon mr-4">2</div>
+                    <div class="media-body">
+                      <h5>Write And Analyze</h5>
+                      <p>
+                        Start writing Your message by filling the necessary
+                        fields and when You are ready hit "Analyze". Our
+                        application will do all the magic and assess the Tone of
+                        Your statement.{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4 mt-4">
+                    <i class="fas fa-glasses fa-5x hiw-icon" />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-8 d-flex align-items-center mt-4">
+                    <div class="circle-icon mr-4">3</div>
+                    <div class="media-body">
+                      <h5>And You Are Done!</h5>
+                      <p>
+                        And that's it. You can view detailed report by pressing
+                        "Details" or directly send Your message as e-mail from
+                        Check My Tone application.{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4 mt-4">
+                    <i class="fas fa-clipboard-check fa-5x hiw-icon" />
+                  </div>
+                </div>
+              </div>
+            </Fade>
           </section>
         </div>
         <section className="features">
           <Fade top>
-            <h3 className="title">Amazing Features</h3>
+            <h3 className="title">Additional Features</h3>
 
             <ul className="grid">
               <li>

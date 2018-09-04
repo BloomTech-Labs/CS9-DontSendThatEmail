@@ -18,9 +18,9 @@ nav {
   list-style: none;
 }
 
-nav li:nth-child(2) {
+/* nav li:nth-child(2) {
   border-bottom: 3px solid var(--secondary);
-}
+} */
 
 .logo {
   background: url("../assets/logo.png") no-repeat top left;
@@ -81,39 +81,6 @@ a:hover {
   /* background: var(--quinary); */
   color: #fff;
   border: 2px solid var(--secondary);
-}
-
-.pulse {
-  animation: pulse 3s 3;
-}
-.pulse:hover {
-  animation: none;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(206, 192, 217, 0.4);
-  }
-  70% {
-    -webkit-box-shadow: 0 0 0 20px rgba(206, 192, 217, 0);
-  }
-  100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(206, 192, 217, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(206, 192, 217, 0.4);
-    box-shadow: 0 0 0 0 rgba(206, 192, 217, 0.4);
-  }
-  70% {
-    -moz-box-shadow: 0 0 0 20px rgba(206, 192, 217, 0);
-    box-shadow: 0 0 0 20px rgba(206, 192, 217, 0);
-  }
-  100% {
-    -moz-box-shadow: 0 0 0 0 rgba(206, 192, 217, 0);
-    box-shadow: 0 0 0 0 rgba(206, 192, 217, 0);
-  }
 }
 
 section {
@@ -238,6 +205,13 @@ header nav li:last-child {
   margin-bottom: 40px;
 }
 
+.arrow {
+  position: absolute;
+  bottom: 0;
+  right: 46%;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 800px) {
   .hero {
     min-height: 600px;
@@ -261,69 +235,80 @@ header nav li:last-child {
 ---------------------*/
 
 .howitworks {
-  background: url("../assets/sunset.png");
-}
-
-.tone-work {
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-.tone-work .grid li {
-  padding: 20px;
-  height: 300px;
-  border-radius: 3px;
-
-  background-clip: content-box;
+  background: url("../assets/purple7.jpg");
   background-size: cover;
-  background-position: center;
-  background-color: #333;
+  height: 99vh;
+  filter: grayscale(20%);
 }
 
-.tone-work .grid li.small {
-  flex-basis: 40%;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url("../assets/purple-keyboard.jpg");
-  background-size: cover;
+.howitworks h3.title {
+  color: var(--main-bg);
+  margin-bottom: 60px;
 }
 
-.tone-work .grid li:nth-child(2) {
-  background-image: url("../assets/typing.jpg");
-}
-
-.tone-work .grid li:nth-child(3) {
-  background-image: url("../assets/result.jpg");
-}
-
-.tone-work .grid li:nth-child(4) {
-  background-image: url("../assets/handlight.jpg");
-}
-
-.small-caption {
-  color: #fff;
-  font-size: 1.4rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  height: 100%;
-}
-
-.small-caption p {
+.circle-icon {
+  box-shadow: 0px 9px 12px 0px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+  color: var(--main-bg);
+  font-size: 3rem;
   text-align: center;
-  font-weight: bold;
-  padding-top: 1.4rem;
-  text-shadow: 0.6px 0.6px 0.4px var(--secondary);
+  line-height: 80px;
+  font-weight: 300;
+  transition: all 0.3s ease;
 }
 
-.tone-work .grid li.large {
-  flex-basis: 60%;
+.circle-icon:hover {
+  background: var(--main-bg);
+  color: #fff;
 }
 
-@media (max-width: 1024px) {
-  .tone-work .grid li.small,
-  .tone-work .grid li.large {
-    flex-basis: 100%;
+.circ {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.circ p {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--main-bg);
+  margin-bottom: 0.7rem;
+}
+
+.anchor {
+  color: var(--primary);
+}
+
+.howimg {
+  background: url("../assets/purple-keyboard.jpg");
+  background-size: cover;
+  width: 90%;
+  border-radius: 3px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.hiw-icon {
+  color: #fff;
+  text-shadow: 2px 6px var(--primary);
+  margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+  .circle-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+    line-height: 50px;
   }
-  .tone-work {
-    width: 100%;
+  .hiw-icon {
+    display: none;
   }
 }
 
@@ -530,11 +515,4 @@ header nav li:last-child {
     text-shadow: 0px 0px 0px #fff;
     transform: scale(1);
   }
-}
-
-.arrow {
-  position: absolute;
-  bottom: 0;
-  right: 46%;
-  margin-bottom: 20px;
 }

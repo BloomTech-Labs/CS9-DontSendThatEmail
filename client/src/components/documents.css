@@ -30,7 +30,6 @@
   height: 40vh;
   display: flex;
   justify-content: space-between;
-
 }
 
 input[type="text"] {
@@ -49,20 +48,23 @@ input[type="text"] {
 }
 .textstuff {
   color: white;
+  margin-right: 156px;
+  margin-left: 61px;
 }
 .documentsbox {
   height: 100%;
   overflow: hidden;
 }
 .databox {
-
-  height: 70vh;
+  height: 50%;
   display: flex;
   align-content: space-between;
   box-shadow: 1px -1px 4px 0px rgba(0, 0, 0, 0.75);
+
 }
+
 .listsofdocuments {
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin-left: 10%;
   width: 100%;
@@ -78,8 +80,8 @@ justify-content: space-between;
 width: 35%;
 margin-left: 9%;
 margin-right: 9%;
-
 }
+
 .table{
   color:white;
 width: 80%;
@@ -114,7 +116,6 @@ width: 80%;
   width: 58%;
   margin-right: 7%;
   margin-top: 8px;
-
 }
 .databox-icons{
   display: flex;

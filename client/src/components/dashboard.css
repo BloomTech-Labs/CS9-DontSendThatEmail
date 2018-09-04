@@ -2,13 +2,25 @@
 .dash-logo {
   background: url("../assets/logo.png");
   background-size: cover;
-  margin-left:45px;
+
   height: 82px;
-  width: 260px;
+  display:flex;
+  justify-content: center;
 }
+
 .sidebar{
   padding-left:0px;
   padding-right:0px;
+  box-shadow: 14px 0px 4px -6px rgba(0,0,0,0.75);
+}
+.fa{
+  cursor: pointer;
+}
+.far{
+  cursor: pointer;
+}
+.fas{
+  cursor: pointer;
 }
 .fa-user {
   background: #4D3D6F;
@@ -28,6 +40,8 @@
 .user{
   margin-top:15px;
   margin-bottom:40px;
+  display:flex;
+  justify-content: center;
 }
 .card {
   height: 100vh;
@@ -40,7 +54,6 @@
   height: 99vh;
   background: #1f112c;
   color: white;
-  padding: 5px;
   padding-top: 20px;
   font-size: 18px;
 }

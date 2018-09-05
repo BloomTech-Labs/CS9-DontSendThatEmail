@@ -14,7 +14,7 @@ class Billing extends Component {
     const { auth } = this.props.context.userData;
 
     return (
-      <Col className="billing-bg" md="10" sm="12">
+      <Col className="billing-bg" md="10">
         {auth ? (
           <Fragment>
             <Form>

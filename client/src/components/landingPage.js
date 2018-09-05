@@ -7,6 +7,7 @@ import "./landingPage.css";
 import { Modal, Card, CardTitle, Row } from "reactstrap";
 import { TestContext } from "../contexts/test-context"; // here
 import Fade from "react-reveal/Fade";
+
 class Landing extends Component {
   constructor() {
     super();
@@ -56,9 +57,9 @@ class Landing extends Component {
               <div class="sp-globe" />
 
               <h2 class="frame-5">
-                <span>Write, </span>
-                <span>Analyze, </span>
-                <span>Send.</span>
+                <span>Write </span>
+                <span>Analyze </span>
+                <span>Send</span>
               </h2>
             </div>
           </div>
@@ -114,8 +115,8 @@ class Landing extends Component {
                         <Link to="/register" className="anchor">
                           here
                         </Link>{" "}
-                        to register new account and start using Check My Tone
-                        instantly. Login with Your account and create new
+                        to register a new account and start using <b>Check My Tone</b>
+                        &nbsp;instantly. Login with your account and create a new
                         document.{" "}
                       </p>
                     </div>
@@ -130,10 +131,10 @@ class Landing extends Component {
                     <div class="media-body">
                       <h5>Write And Analyze</h5>
                       <p>
-                        Start writing Your message by filling the necessary
-                        fields and when You are ready hit "Analyze". Our
+                        Start writing your message by filling in the necessary
+                        fields and when you are ready hit <b>"Analyze"</b>. Our
                         application will do all the magic and assess the Tone of
-                        Your statement.{" "}
+                        your statement.{" "}
                       </p>
                     </div>
                   </div>
@@ -147,8 +148,8 @@ class Landing extends Component {
                     <div class="media-body">
                       <h5>And You Are Done!</h5>
                       <p>
-                        And that's it. You can view detailed report by pressing
-                        "Details" or directly send Your message as e-mail from
+                        And that's it! You can view a detailed report by pressing
+                        "Details" or directly send your message as an e-mail from the
                         Check My Tone application.{" "}
                       </p>
                     </div>
@@ -170,24 +171,24 @@ class Landing extends Component {
                 <i className="fas fa-save" />
                 <h4>Store Multiple Edits</h4>
                 <p>
-                  Save Multiple Edits and come back to them whenever You wish
+                  Save <b>multiple edits</b> and come back to them whenever you wish right where you left off
                 </p>
               </li>
               <li>
                 <i className="fas fa-search" />
-                <h4>Detailed Analysys</h4>
+                <h4>Detailed Analysis</h4>
                 <p>
-                  Get detailed analysys on Your message, whether it is official
-                  mail or one to the colleague You will be sure it has just the
-                  right <em>Tone</em>
+                  Get <b>detailed analysis</b> on your messages, whether it is a professional
+                  e-mail to your boss or a casual e-mail to a friend, you will be sure it has just 
+                  the right <b><em>Tone</em></b>
                 </p>
               </li>
               <li>
                 <i className="fa fa-cubes" />
                 <h4>Send Emails Directly</h4>
                 <p>
-                  Copy the e-mail to the Check My Tone App and send it directly
-                  from here, no need to go to external services!
+                  Create your e-mail instantly with the Check My Tone app and <b>send it directly</b>
+                  &nbsp;from here, no need to use external services!
                 </p>
               </li>
             </ul>

@@ -59,3 +59,9 @@
 .fallback-link a {
   color: var(--tertiary);
 }
+
+@media (max-width: 1024px) {
+  .form-bg {
+    min-width: 100%;
+  }
+}

@@ -1,7 +1,6 @@
 .dash-logo {
   background: url("../assets/logo.png");
   background-size: cover;
-
   height: 82px;
   display: flex;
   justify-content: center;
@@ -29,7 +28,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  margin-left: 148px;
+
   margin-top: 20px;
 }
 .documents {
@@ -48,6 +47,10 @@
   color: white;
   padding: 5px;
   padding-top: 20px;
+  -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+
 }
 .nav {
   height: 100vh;

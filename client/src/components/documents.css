@@ -54,7 +54,6 @@ input[type="text"] {
   overflow: hidden;
 }
 .databox {
-
   height: 50%;
   display: flex;
   align-content: space-between;

@@ -1,4 +1,4 @@
-// place for Letter0 router
+// place for Letter router
 const router = require("express").Router();
 const User = require("../models/user");
 const { login, authenticate, localStrategy } = require("../controllers/login");
@@ -38,20 +38,20 @@ router.get("/:id", protected, (req, res) => {
 });
 
 router.post("/", protected, (req, res) => {
-  const { name, content } = req.body;
+  const { name, content, destination } = req.body;
   // find the current logged in user
   User.findById(req.user._id)
     .then(user => {
       if (!user) {
         res.status(404).json("user not found!");
       } else {
-        const newLetter = new Letter({ name, user_id: req.user._id });
+        const newLetter = new Letter({ name, destination, user_id: req.user._id });
         newLetter.versions.push({ content });
         newLetter
           .save()
           .then(saved => {
-            // define new letter, push content to it's versions array and save. Call custom addLetter method (found in user model) on the logged in user
-            // method pushes saved letter's id to users letters array as ref points, then save the user
+            // define new letter, push content to its versions array and save. Call custom addLetter method (found in user model) 
+            // on the logged in user. method pushes saved letter's id to users letters array as ref points, then save the user
             user.addLetter(saved._id);
             user.save();
             res.status(201).json(saved);
@@ -72,7 +72,7 @@ router.post("/updateLetter/:id", (req, res) => {
   const id = req.params.id;
   const { content } = req.body;
 
-  // Insert possible check for if `content` was provided here
+  // Insert possible check if `content` was provided here
   Letter.findById(id).then(letter => {
     letter.versions.push({ content });
     letter

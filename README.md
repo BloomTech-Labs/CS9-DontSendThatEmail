@@ -1,11 +1,10 @@
 # CS9-DontSendThatEmail (Check My Tone)
 How many times have you written an email or other communication and spent a significant amount of time worrying about how your intended audience would interpret your message? Maybe you worried it would come across as too angry, too analytical or had a target objective in mind and wanted to be sure you were optimizing your tone in such a way to achieve your desired outcome. With "Check My Tone", you can create your written communications with confidence as the Watson Tone Analyzer utilizes deep linguistic analytic technology, providing you with an automated way to detect and understand the present tones in your messages. "Check My Tone" - the key to refining and improving your tone to help you achieve more impactful communication results!   
 
-## Getting Started
+<!-- ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-<!-- Will we need this being we are deploying? -->
 What things you need to install the software and how to install them.
 ```
 give examples
@@ -22,7 +21,7 @@ And repeat
 until finished
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+End with an example of getting some data out of the system or using it for a little demo. -->
 
 <!-- ## Running the tests
 Explain how to run the automated tests for this system.
@@ -69,6 +68,9 @@ For this application we implemented the MERN Stack which is a set of Open Source
 
 ## Authors
 ![Dev Team](2018-09-03-14-39-13.png)
+
+Connect with us on<br/>
+![LinkedIn Logo](2018-09-04-14-07-37.png)
 * [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
 * [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 
 * [Kaitlyn Flynn](https://www.linkedin.com/in/kaitlynflynn/)
@@ -76,17 +78,21 @@ For this application we implemented the MERN Stack which is a set of Open Source
 * [Jaivon Massena-Poole](https://www.linkedin.com/in/jaivonmassena/)
 
 ## License
-This project is licensed under...
-
+This project is licensed under MIT License
+Copyright (c) 2018 Lambda Labs
+<br/>
 Stock photos used for this project:
+<br/>
 From PEXELS
 * [Keyboard Stock Photo](https://www.pexels.com/photo/closeup-photo-of-black-and-blue-keyboard-1194713/) - photo credit by Marta Branco
-* [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen
+* ['How It Works' Stock Photo](https://www.pexels.com/photo/sunset-storm-sun-rocks-34090/) - photo credit by Negative Space
+<!-- * [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen -->
+
 
 From Unsplash
-* [Hands on keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
+* [Hands on Keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
 
-## Acknowledgments
+<!-- ## Acknowledgments
 * Hat tip to anyone whose code was used
 * Inspiration
-* Etc
+* Etc -->

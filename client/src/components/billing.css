@@ -28,6 +28,7 @@
 .billing-bg {
   background: url("../assets/sunset.png");
   background-size: cover;
+  height: 100vh;
 }
 .billing-label {
   font-size: 2.2rem;

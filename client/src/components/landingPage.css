@@ -286,14 +286,6 @@ h5 {
   color: var(--primary);
 }
 
-.howimg {
-  background: url("../assets/purple-keyboard.jpg");
-  background-size: cover;
-  width: 90%;
-  border-radius: 3px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
 .hiw-icon {
   color: #fff;
   text-shadow: 2px 6px var(--primary);

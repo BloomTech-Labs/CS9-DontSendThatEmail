@@ -28,10 +28,16 @@
 .billing-bg {
   background: url("../assets/sunset.png");
   background-size: cover;
-  height: 100vh;
 }
 .billing-label {
   font-size: 2.2rem;
   color: white;
   letter-spacing: 0.2ch;
+}
+
+@media (max-width: 1024px) {
+  .billing-bg {
+    min-width: 100%;
+    height: 100%;
+  }
 }

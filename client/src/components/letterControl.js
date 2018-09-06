@@ -31,6 +31,10 @@ class LetterControl extends Component {
       sadness: 0,
       joy: 0,
       analytical: 0,
+      angerModal: 0,
+      sadnessModal: 0,
+      joyModal: 0,
+      analyticalModal: 0,
       sentence: [],
       id: "",
       email: "",
@@ -169,78 +173,90 @@ class LetterControl extends Component {
   }
 
   renderHighlights() {
-    if (this.state.sentence !== []) {
-      let curStr = this.state.versions[this.state.versionsCounter].content;
-      let regexStr = curStr.match(/[\s\w,'"]+(\!|\?|\.)/g);
-      if (regexStr === undefined) {
-        regexStr = curStr;
-      }
-      return this.state.sentence.map((tone, index) => (
-        <div>{this.checkTone(tone, regexStr, index)}</div>
-      ));
-    } else return this.state.content;
-  }
+    if (this.state.sadnessModal === 0 && this.state.angerModal === 0 && this.state.analyticalModal === 0 && this.state.joyModal === 0)  {
+    let sadness = 0;
+    let anger = 0;
+    let joy = 0;
+    let analytical = 0;
 
-  checkTone(tone, regexStr, index) {
-    let largestTone = this.setupClass(tone.tones);
-    //let icon = this.rendericons(largestTone)
-
-    if (tone.text.includes(regexStr[index].trim())) {
-      if (largestTone === "joy") {
-        return (
-          <div className={largestTone}>
-            <br />
-            <i class="fas fa-smile-beam" />
-            <br />
-            {regexStr[index]}
-            <br />
-            <i class="fas fa-smile-beam" />
-            <br />
-            <br />
-          </div>
-        );
-      } else if (largestTone === "anger") {
-        return (
-          <div className={largestTone}>
-            <br />
-            <i class="fas fa-angry" />
-            <br />
-            {regexStr[index]}
-            <br />
-            <i class="fas fa-angry" />
-            <br />
-            <br />
-          </div>
-        );
-      } else if (largestTone === "sadness") {
-        return (
-          <div className={largestTone}>
-            <br />
-            <i class="fas fa-sad-tear" />
-            <br />
-            {regexStr[index]}
-            <br />
-            <i class="fas fa-sad-tear" />
-            <br />
-            <br />
-          </div>
-        );
-      } else if (largestTone === "analytical") {
-        return (
-          <div className={largestTone}>
-            <br />
-            <i class="fas fa-surprise" />
-            <br />
-            {regexStr[index]}
-            <br />
-            <i class="fas fa-surprise" />
-            <br />
-            <br />
-          </div>
-        );
+    this.state.sentence.forEach(sentence => {
+      let biggestObj = this.setupScore(sentence.tones);
+      if (biggestObj.tone_id === "sadness") {
+        sadness += Math.floor(biggestObj.score * 100);
+      } else if (biggestObj.tone_id === "anger") {
+        anger += Math.floor(biggestObj.score * 100);
+      } else if (biggestObj.tone_id === "analytical") {
+        analytical += Math.floor(biggestObj.score * 100);
+      } else if (biggestObj.tone_id === "joy") {
+        joy += Math.floor(biggestObj.score * 100);
       }
-    } else {
-      return <div>{regexStr[index]}</div>;
+    });
+    console.log(joy);
+    this.setState({
+      sadnessModal: sadness,
+      angerModal: anger,
+      joyModal: joy,
+      analyticalModal: analytical
+    });
+    return this.state.sentence.map(sentence => {
+      let tone = this.setupClass(sentence.tones);
+      return this.checkTone(tone, sentence.text);
+    });
+  }}
+
+  checkTone(tone, toneStr) {
+    if (tone === "joy") {
+      return (
+        <div className={tone}>
+          <br />
+          <i class="fas fa-smile-beam" />
+          <br />
+          {toneStr}
+          <br />
+          <i class="fas fa-smile-beam" />
+          <br />
+          <br />
+        </div>
+      );
+    } else if (tone === "anger") {
+      return (
+        <div className={tone}>
+          <br />
+          <i class="fas fa-angry" />
+          <br />
+          {toneStr}
+          <br />
+          <i class="fas fa-angry" />
+          <br />
+          <br />
+        </div>
+      );
+    } else if (tone === "sadness") {
+      return (
+        <div className={tone}>
+          <br />
+          <i class="fas fa-sad-tear" />
+          <br />
+          {toneStr}
+          <br />
+          <i class="fas fa-sad-tear" />
+          <br />
+          <br />
+        </div>
+      );
+    } else if (tone === "analytical") {
+      return (
+        <div className={tone}>
+          <br />
+          <i class="fas fa-surprise" />
+          <br />
+          {toneStr}
+          <br />
+          <i class="fas fa-surprise" />
+          <br />
+          <br />
+        </div>
+      );
     }
   }
 
@@ -255,6 +271,19 @@ class LetterControl extends Component {
     });
 
     return biggestObj.tone_id;
+  }
+
+  setupScore(tones) {
+    let greatest = 0;
+    let biggestObj = {};
+    tones.forEach(tone => {
+      if (greatest < tone.score) {
+        greatest = tone.score;
+        biggestObj = tone;
+      }
+    });
+
+    return biggestObj;
   }
 
   // save the content of the current content
@@ -406,9 +435,14 @@ class LetterControl extends Component {
             isOpen={this.state.modal}
             className={this.props.className}
           >
-            <ModalHeader toggle={this.toggle}>modal title</ModalHeader>
+            <ModalHeader toggle={this.toggle}>Advanced Analytics</ModalHeader>
             <ModalBody className="">
-              {this.renderProgressBars()}
+              {this.renderProgressBars(
+                this.state.anger,
+                this.state.joy,
+                this.state.sadness,
+                this.state.analytical
+              )}
               {this.renderHighlights()}
             </ModalBody>
             <ModalFooter>
@@ -430,30 +464,34 @@ class LetterControl extends Component {
         </ModalHeader>
         <ModalBody>
           <Label>Send To</Label>
-          <Input placeholder="email..." 
+          <Input
+            placeholder="email..."
             name="email"
             onChange={this.handleChange}
             value={this.state.email}
-            />
-          <br/>
-          <br/>
+          />
+          <br />
+          <br />
           {this.state.content}
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={this.toggleFour}>
             Send
           </Button>{" "}
-          <Modal className={this.props.className}
-            isOpen={this.state.modalFour} toggle={this.toggleFour}>
-            <ModalHeader toggle={this.toggleFour}>
-              Email Sent
-            </ModalHeader>
+          <Modal
+            className={this.props.className}
+            isOpen={this.state.modalFour}
+            toggle={this.toggleFour}
+          >
+            <ModalHeader toggle={this.toggleFour}>Email Sent</ModalHeader>
             <ModalBody>
               {`Your email was sent to ${this.state.email}`}
             </ModalBody>
             <ModalFooter>
-           <Button color="success" onClick={this.toggleFour}>Close</Button>{' '}
-         </ModalFooter>
+              <Button color="success" onClick={this.toggleFour}>
+                Close
+              </Button>{" "}
+            </ModalFooter>
           </Modal>
           <Button color="secondary" onClick={this.toggleThree}>
             Cancel
@@ -463,31 +501,31 @@ class LetterControl extends Component {
     );
   };
 
-  renderProgressBars() {
+  renderProgressBars(anger, joy, sadness, analytical) {
     return (
       <div>
         <Label>Anger</Label>
 
-        <Progress animated color="danger" value={this.state.anger}>
-          {this.state.anger}%
+        <Progress animated color="danger" value={anger}>
+          {anger}%
         </Progress>
         <br />
         <Label>Joy</Label>
 
-        <Progress animated color="success" value={this.state.joy}>
-          {this.state.joy}%
+        <Progress animated color="success" value={joy}>
+          {joy}%
         </Progress>
         <br />
         <Label>Sadness</Label>
 
-        <Progress animated color="info" value={this.state.sadness}>
-          {this.state.sadness}%
+        <Progress animated color="info" value={sadness}>
+          {sadness}%
         </Progress>
         <br />
         <Label>Analytical</Label>
 
-        <Progress animated color="warning" value={this.state.analytical}>
-          {this.state.analytical}%
+        <Progress animated color="warning" value={analytical}>
+          {analytical}%
         </Progress>
         <br />
         <br />
@@ -553,7 +591,14 @@ class LetterControl extends Component {
                       />
                     </div>
                   </Col>
-                  <Col md="4">{this.renderProgressBars()}</Col>
+                  <Col md="4">
+                    {this.renderProgressBars(
+                      this.state.angerModal,
+                      this.state.joyModal,
+                      this.state.sadnessModal,
+                      this.state.analyticalModal
+                    )}
+                  </Col>
                 </Row>
 
                 <br />

@@ -169,40 +169,43 @@ class LetterControl extends Component {
           joy,
           analytical
         });
+
+        let sadnessModal = 0;
+        let angerModal = 0;
+        let joyModal = 0;
+        let analyticalModal = 0;
+
+        this.state.sentence.forEach(sentence => {
+          let biggestObj = this.setupScore(sentence.tones);
+          if (biggestObj.tone_id === "sadness") {
+            sadnessModal +=
+              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
+          } else if (biggestObj.tone_id === "anger") {
+            angerModal +=
+              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
+          } else if (biggestObj.tone_id === "analytical") {
+            analyticalModal +=
+              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
+          } else if (biggestObj.tone_id === "joy") {
+            joyModal +=
+              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
+          }
+        });
+        this.setState({
+          sadnessModal,
+          angerModal,
+          joyModal,
+          analyticalModal
+        });
       });
   }
 
   renderHighlights() {
-    if (this.state.sadnessModal === 0 && this.state.angerModal === 0 && this.state.analyticalModal === 0 && this.state.joyModal === 0)  {
-    let sadness = 0;
-    let anger = 0;
-    let joy = 0;
-    let analytical = 0;
-
-    this.state.sentence.forEach(sentence => {
-      let biggestObj = this.setupScore(sentence.tones);
-      if (biggestObj.tone_id === "sadness") {
-        sadness += Math.floor(biggestObj.score * 100);
-      } else if (biggestObj.tone_id === "anger") {
-        anger += Math.floor(biggestObj.score * 100);
-      } else if (biggestObj.tone_id === "analytical") {
-        analytical += Math.floor(biggestObj.score * 100);
-      } else if (biggestObj.tone_id === "joy") {
-        joy += Math.floor(biggestObj.score * 100);
-      }
-    });
-    console.log(joy);
-    this.setState({
-      sadnessModal: sadness,
-      angerModal: anger,
-      joyModal: joy,
-      analyticalModal: analytical
-    });
     return this.state.sentence.map(sentence => {
       let tone = this.setupClass(sentence.tones);
       return this.checkTone(tone, sentence.text);
     });
-  }}
+  }
 
   checkTone(tone, toneStr) {
     if (tone === "joy") {
@@ -438,10 +441,10 @@ class LetterControl extends Component {
             <ModalHeader toggle={this.toggle}>Advanced Analytics</ModalHeader>
             <ModalBody className="">
               {this.renderProgressBars(
-                this.state.anger,
-                this.state.joy,
-                this.state.sadness,
-                this.state.analytical
+                this.state.angerModal,
+                this.state.joyModal,
+                this.state.sadnessModal,
+                this.state.analyticalm
               )}
               {this.renderHighlights()}
             </ModalBody>
@@ -593,10 +596,10 @@ class LetterControl extends Component {
                   </Col>
                   <Col md="4">
                     {this.renderProgressBars(
-                      this.state.angerModal,
-                      this.state.joyModal,
-                      this.state.sadnessModal,
-                      this.state.analyticalModal
+                      this.state.anger,
+                      this.state.joy,
+                      this.state.sadness,
+                      this.state.analytical
                     )}
                   </Col>
                 </Row>

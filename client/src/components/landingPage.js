@@ -198,7 +198,7 @@ class Landing extends Component {
           <Fade top>
             <div className="text-box">
               <h3 className="title">What others say:</h3>
-
+              <i class="fas fa-quote-left fa-2x"></i><i class="fas fa-quote-right fa-2x"></i>
               <p className="quote">
                 "Check My Tone has saved me from sending a poorly worded e-mail
                 more times than I can remember!"

@@ -1,3 +1,4 @@
+
 .documents-style {
   height: 300px;
   width: 200px;
@@ -44,7 +45,6 @@ input[type="text"] {
   width: 100%;
   margin-left: 9px;
   height: 40px;
-
 }
 .textstuff {
   color: white;
@@ -69,13 +69,11 @@ input[type="text"] {
   margin-top: 20px;
 }
 .tablerow {
-color:white !important;
-text-decoration: none;
-display:flex;
-justify-content: space-between;
-width: 35%;
-margin-left: 9%;
-margin-right: 9%;
+  color:white !important;
+  text-decoration: none;
+  display:flex;
+  justify-content: space-between;
+  width: 47%;
 
 }
 .table{
@@ -124,4 +122,22 @@ width: 80%;
 input[type="checkbox"]{
   transform: scale(1.5);
   margin-top: 10px;
+}
+.destination{
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap:nowrap;
+
+}
+.letter-name{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.time{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
 }

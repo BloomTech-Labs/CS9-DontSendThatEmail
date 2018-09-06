@@ -28,7 +28,6 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-
   margin-top: 20px;
 }
 .documents {
@@ -41,6 +40,7 @@
   display: flex;
   justify-content: center;
 }
+
 .card {
   height: 100vh;
   background: #4d3d6f;

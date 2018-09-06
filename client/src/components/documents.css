@@ -1,3 +1,4 @@
+
 .documents-style {
   height: 300px;
   width: 200px;
@@ -10,16 +11,15 @@
   height:30px;
   display: flex;
   justify-content: center;
-
-
 }
+
 .documents-background {
   background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
   padding-left: 0px;
   padding-right: 0px;
 }
 .fa-plus-circle {
-  color: lightgreen;
+  color: var(--tertiary);
   font-size: 25px;
 }
 .cardstuff {
@@ -30,7 +30,7 @@
   height: 40vh;
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 input[type="text"] {
@@ -45,39 +45,35 @@ input[type="text"] {
   width: 100%;
   margin-left: 9px;
   height: 40px;
-
 }
 .textstuff {
   color: white;
 }
 .documentsbox {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 .databox {
-
-  height: 70vh;
+  height: 50%;
   display: flex;
   align-content: space-between;
   box-shadow: 1px -1px 4px 0px rgba(0, 0, 0, 0.75);
 }
 .listsofdocuments {
-  height: 100vh;
+  height: 500px;
   overflow-y: auto;
   margin-left: 10%;
   width: 100%;
   display: flex;
   justify-content: flex-end;
-
+  margin-top: 20px;
 }
 .tablerow {
-color:white !important;
-text-decoration: none;
-display:flex;
-justify-content: space-between;
-width: 35%;
-margin-left: 9%;
-margin-right: 9%;
+  color:white !important;
+  text-decoration: none;
+  display:flex;
+  justify-content: space-between;
+  width: 47%;
 
 }
 .table{
@@ -126,4 +122,22 @@ width: 80%;
 input[type="checkbox"]{
   transform: scale(1.5);
   margin-top: 10px;
+}
+.destination{
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap:nowrap;
+
+}
+.letter-name{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.time{
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
 }

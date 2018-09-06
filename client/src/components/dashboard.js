@@ -29,8 +29,9 @@ class Dashboard extends Component {
               to="/dashboard/documents" >
               <div className="dash-logo"></div>
             </Link>
-
+            <div className="avat">
             <i className="fa fa-user" aria-hidden="true"></i>
+          </div>
             <div className="user">Hello, { this.props.context.userData.username }</div>
             <Link
               style={{ textDecoration: "none", color: "white" }}

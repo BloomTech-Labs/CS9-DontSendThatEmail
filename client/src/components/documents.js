@@ -59,15 +59,15 @@ class Documents extends Component {
         <div className="letterBox">
           <input type="checkbox" />
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
-            <div>{letter.name}</div>
-            <div>{letter.destination}</div>
-            <time>August 19</time>
+            <div className="letter-name">{letter.name}</div>
+            <div className="destination">{letter.destination}</div>
+            <time className="time">August 19</time>
           </Link>
           <div className="databox-icons">
-          <i class="fa fa-trash" aria-hidden="true" />
-          <i class="far fa-copy" />
-          <i class="fas fa-ellipsis-v" />
-        </div>
+            <i class="fa fa-trash" aria-hidden="true" />
+            <i class="far fa-copy" />
+            <i class="fas fa-ellipsis-v" />
+          </div>
         </div>
       </Fragment>
     ));
@@ -83,8 +83,6 @@ class Documents extends Component {
             <Row className="topbox">
               <div className="create-template">
                 <AddLetter {...this.props} />
-                <AddResume {...this.props} />
-                <AddResume {...this.props} />
               </div>
 
               <Input id="search" type="text" placeholder="search" />
@@ -102,10 +100,7 @@ class Documents extends Component {
                   <i class="fas fa-list" />
                 </div>
               </Row>
-              <Row className="listsofdocuments">
-                {this.listDocuments()}
-
-              </Row>
+              <Row className="listsofdocuments">{this.listDocuments()}</Row>
             </Row>
           </Fragment>
         ) : (

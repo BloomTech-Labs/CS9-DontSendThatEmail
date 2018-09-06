@@ -31,10 +31,6 @@ class LetterControl extends Component {
       sadness: 0,
       joy: 0,
       analytical: 0,
-      angerModal: 0,
-      sadnessModal: 0,
-      joyModal: 0,
-      analyticalModal: 0,
       sentence: [],
       id: "",
       email: "",
@@ -169,97 +165,82 @@ class LetterControl extends Component {
           joy,
           analytical
         });
-
-        let sadnessModal = 0;
-        let angerModal = 0;
-        let joyModal = 0;
-        let analyticalModal = 0;
-
-        this.state.sentence.forEach(sentence => {
-          let biggestObj = this.setupScore(sentence.tones);
-          if (biggestObj.tone_id === "sadness") {
-            sadnessModal +=
-              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
-          } else if (biggestObj.tone_id === "anger") {
-            angerModal +=
-              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
-          } else if (biggestObj.tone_id === "analytical") {
-            analyticalModal +=
-              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
-          } else if (biggestObj.tone_id === "joy") {
-            joyModal +=
-              Math.floor(biggestObj.score * 100) / this.state.sentence.length;
-          }
-        });
-        this.setState({
-          sadnessModal,
-          angerModal,
-          joyModal,
-          analyticalModal
-        });
       });
   }
 
   renderHighlights() {
-    return this.state.sentence.map(sentence => {
-      let tone = this.setupClass(sentence.tones);
-      return this.checkTone(tone, sentence.text);
-    });
+    if (this.state.sentence !== []) {
+      let curStr = this.state.versions[this.state.versionsCounter].content;
+      let regexStr = curStr.match(/[\s\w,'"]+(\!|\?|\.)/g);
+      if (regexStr === undefined) {
+        regexStr = curStr;
+      }
+      return this.state.sentence.map((tone, index) => (
+        <div>{this.checkTone(tone, regexStr, index)}</div>
+      ));
+    } else return this.state.content;
   }
 
-  checkTone(tone, toneStr) {
-    if (tone === "joy") {
-      return (
-        <div className={tone}>
-          <br />
-          <i class="fas fa-smile-beam" />
-          <br />
-          {toneStr}
-          <br />
-          <i class="fas fa-smile-beam" />
-          <br />
-          <br />
-        </div>
-      );
-    } else if (tone === "anger") {
-      return (
-        <div className={tone}>
-          <br />
-          <i class="fas fa-angry" />
-          <br />
-          {toneStr}
-          <br />
-          <i class="fas fa-angry" />
-          <br />
-          <br />
-        </div>
-      );
-    } else if (tone === "sadness") {
-      return (
-        <div className={tone}>
-          <br />
-          <i class="fas fa-sad-tear" />
-          <br />
-          {toneStr}
-          <br />
-          <i class="fas fa-sad-tear" />
-          <br />
-          <br />
-        </div>
-      );
-    } else if (tone === "analytical") {
-      return (
-        <div className={tone}>
-          <br />
-          <i class="fas fa-surprise" />
-          <br />
-          {toneStr}
-          <br />
-          <i class="fas fa-surprise" />
-          <br />
-          <br />
-        </div>
-      );
+  checkTone(tone, regexStr, index) {
+    let largestTone = this.setupClass(tone.tones);
+    //let icon = this.rendericons(largestTone)
+
+    if (tone.text.includes(regexStr[index].trim())) {
+      if (largestTone === "joy") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-smile-beam" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-smile-beam" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "anger") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-angry" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-angry" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "sadness") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-sad-tear" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-sad-tear" />
+            <br />
+            <br />
+          </div>
+        );
+      } else if (largestTone === "analytical") {
+        return (
+          <div className={largestTone}>
+            <br />
+            <i class="fas fa-surprise" />
+            <br />
+            {regexStr[index]}
+            <br />
+            <i class="fas fa-surprise" />
+            <br />
+            <br />
+          </div>
+        );
+      }
+    } else {
+      return <div>{regexStr[index]}</div>;
     }
   }
 
@@ -274,19 +255,6 @@ class LetterControl extends Component {
     });
 
     return biggestObj.tone_id;
-  }
-
-  setupScore(tones) {
-    let greatest = 0;
-    let biggestObj = {};
-    tones.forEach(tone => {
-      if (greatest < tone.score) {
-        greatest = tone.score;
-        biggestObj = tone;
-      }
-    });
-
-    return biggestObj;
   }
 
   // save the content of the current content
@@ -438,14 +406,9 @@ class LetterControl extends Component {
             isOpen={this.state.modal}
             className={this.props.className}
           >
-            <ModalHeader toggle={this.toggle}>Advanced Analytics</ModalHeader>
+            <ModalHeader toggle={this.toggle}>modal title</ModalHeader>
             <ModalBody className="">
-              {this.renderProgressBars(
-                this.state.angerModal,
-                this.state.joyModal,
-                this.state.sadnessModal,
-                this.state.analyticalm
-              )}
+              {this.renderProgressBars()}
               {this.renderHighlights()}
             </ModalBody>
             <ModalFooter>
@@ -504,31 +467,31 @@ class LetterControl extends Component {
     );
   };
 
-  renderProgressBars(anger, joy, sadness, analytical) {
+  renderProgressBars() {
     return (
       <div>
         <Label>Anger</Label>
 
-        <Progress animated color="danger" value={anger}>
-          {anger}%
+        <Progress animated color="danger" value={this.state.anger}>
+          {this.state.anger}%
         </Progress>
         <br />
         <Label>Joy</Label>
 
-        <Progress animated color="success" value={joy}>
-          {joy}%
+        <Progress animated color="success" value={this.state.joy}>
+          {this.state.joy}%
         </Progress>
         <br />
         <Label>Sadness</Label>
 
-        <Progress animated color="info" value={sadness}>
-          {sadness}%
+        <Progress animated color="info" value={this.state.sadness}>
+          {this.state.sadness}%
         </Progress>
         <br />
         <Label>Analytical</Label>
 
-        <Progress animated color="warning" value={analytical}>
-          {analytical}%
+        <Progress animated color="warning" value={this.state.analytical}>
+          {this.state.analytical}%
         </Progress>
         <br />
         <br />
@@ -548,37 +511,53 @@ class LetterControl extends Component {
             <CardBody>
               <br />
               <Form>
-                <Row className="edit-styles">
-                  <Col md="6">
-                    <Input
-                      placeholder={this.state.name}
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                    />
-                  </Col>
-                  <Col md="3">
-                    <div className="versionsCounter-styles">
-                      Edit {this.state.versionsCounter + 1}/
-                      {this.state.versions.length}
-                    </div>
-                  </Col>
-                </Row>
-                <br />
-                <Row className="analyze-styles">
-                  <Col md="6">
-                    <Input
-                      placeholder={this.state.destination}
-                      name="destination"
-                      value={this.state.destination}
-                      onChange={this.handleChange}
-                    />
-                  </Col>
-                  <Col md="3">
-                    <Button onClick={() => this.watson()}>Analyze</Button>
-                  </Col>
-                  <Col md="2">{this.renderMoreInfoIcon()}</Col>
-                </Row>
+                {!this.state.id ? (
+                  <React.Fragment>
+                    <Row className="edit-styles">
+                      <Col md="3">
+                        <div className="versionsCounter-styles">
+                          Edit {this.state.versionsCounter + 1}/
+                          {this.state.versions.length}
+                        </div>
+                      </Col>
+                    </Row>
+                    <br />
+                    <Row className="analyze-styles">
+                      <Col md="6">
+                        <Input
+                          placeholder={this.state.name}
+                          name="name"
+                          onChange={this.handleChange}
+                        />
+                      </Col>
+                      <Col md="3">
+                        <Button onClick={() => this.watson()}>Analyze</Button>
+                      </Col>
+                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
+                    </Row>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <Row className="edit-styles">
+                      <Col md="3">
+                        <div className="versionsCounter-styles">
+                          Edit {this.state.versionsCounter + 1}/
+                          {this.state.versions.length}
+                        </div>
+                      </Col>
+                    </Row>
+                    <br />
+                    <Row className="analyze-styles">
+                      <Col md="6">
+                      <Label>{this.state.name}</Label>
+                      </Col>
+                      <Col md="3">
+                        <Button onClick={() => this.watson()}>Analyze</Button>
+                      </Col>
+                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
+                    </Row>
+                  </React.Fragment>
+                )}
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
@@ -594,14 +573,7 @@ class LetterControl extends Component {
                       />
                     </div>
                   </Col>
-                  <Col md="4">
-                    {this.renderProgressBars(
-                      this.state.anger,
-                      this.state.joy,
-                      this.state.sadness,
-                      this.state.analytical
-                    )}
-                  </Col>
+                  <Col md="4">{this.renderProgressBars()}</Col>
                 </Row>
 
                 <br />

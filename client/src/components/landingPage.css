@@ -107,7 +107,7 @@ section h3.title {
   color: var(--tertiary);
   text-transform: capitalize;
   font: bold 2rem "Roboto Slab", sans-serif;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -381,6 +381,7 @@ h5 {
   padding: 0;
   color: #fff;
   font-style: italic;
+  margin-top: 35px;
 }
 
 .testimonials .author {

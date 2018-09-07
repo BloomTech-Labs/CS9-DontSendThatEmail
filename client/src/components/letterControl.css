@@ -21,6 +21,23 @@
 }
 .taInput-styles{
   resize: none;
+  box-shadow: inset 0px 5px 5px 0px rgba(0,0,0,0.75);
+
+  border-radius: 1%;
+  outline: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  background-color: var(--secondary);
+
+}
+
+.taInput-styles:focus{
+  border: none;
+  box-shadow: inset 0px 5px 5px 0px rgba(0,0,0,0.75);
+  outline: none;
+  background-color: var(--secondary);
+
 }
 .controlBtn-styles {
   display: flex;
@@ -66,7 +83,7 @@ color: var(--tertiary)
 .joy{
   background: lightgreen;
   font-size: 13px;
- 
+
 }
 .fa-smile-beam{
   color:black;

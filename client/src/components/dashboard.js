@@ -35,7 +35,7 @@ class Dashboard extends Component {
             <div className="user">Hello, { this.props.context.userData.username }</div>
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to="/dashboard/documents"
+              to="/dashboard"
             >
 
               <div className="link-mod documents">

@@ -60,7 +60,7 @@ input[type="text"] {
   box-shadow: 1px -1px 4px 0px rgba(0, 0, 0, 0.75);
 }
 .listsofdocuments {
-  height: 500px;
+  max-height: 500px;
   overflow-y: auto;
   margin-left: 10%;
   width: 100%;
@@ -104,11 +104,9 @@ width: 80%;
 .header-text{
   display: flex;
   justify-content: space-evenly;
-  width:30%;
   margin:0 auto;
   box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
   width: 98%;
-
   margin-top: 8px;
 
 }

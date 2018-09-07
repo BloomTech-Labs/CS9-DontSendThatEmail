@@ -7,21 +7,13 @@ const addLetter = props => {
   const { auth } = props.context.userData;
 
   return (
-    <Col className="addletter" lg="1">
-      {auth ? (
-        <Link to="/dashboard/create/add">
-          <Card className="documents-style">
-            <CardBody>
-              <CardTitle>Add a new letter</CardTitle>
-              <br />
+    <Col className="" lg="1">
+           <Link to="/dashboard/create/add">
+          <br />
 
-              <i className="fas fa-plus-circle" />
-            </CardBody>
-          </Card>
+          <i className="fas fa-plus-circle" />
         </Link>
-      ) : (
-        props.history.push("/dashboard/create")
-      )}
+      
     </Col>
   );
 };

@@ -5,6 +5,7 @@ import axios from "axios";
 import "./documents.css";
 import AddLetter from "./addLetter";
 import AddResume from "./addresume";
+import addLetter from "./addLetter";
 class Documents extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +31,7 @@ class Documents extends Component {
   }
 
   handleChange = (id, e) => {
+    console.log(e)
     const checked = e.target.checked;
     if (checked === true) {
       this.state.checkedIds.push(id);
@@ -45,23 +47,26 @@ class Documents extends Component {
       <Fragment>
         <div className="letterBox">
           <input
+          key={letter._id}
             type="checkbox"
             name={this.props.name}
             defaultChecked={this.props.defaultChecked}
             onChange={this.handleChange.bind(this, letter._id)}
           />
+          
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
             <div className="letter-name">{letter.name}</div>
             <time className="time">August 19</time>
           </Link>
           <div className="databox-icons">
+
+          
             <i
               onClick={() => this.deleteItems(letter._id)}
               className="fa fa-trash"
               aria-hidden="true"
             />
-            <i className="far fa-copy" />
-            <i className="fas fa-ellipsis-v" />
+           
           </div>
         </div>
       </Fragment>
@@ -92,6 +97,7 @@ class Documents extends Component {
         .catch(err => {});
     }
   };
+  
   render() {
     const { auth } = this.props.context.userData;
     return (
@@ -101,6 +107,7 @@ class Documents extends Component {
             <Row className="databox">
               <Row className="header-row">
                 <div className="header-text">
+                <div><AddLetter {...this.props}/></div>
                 <i
               onClick={() => this.deleteItems()}
               className="fa fa-trash"

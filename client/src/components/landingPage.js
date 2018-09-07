@@ -1,39 +1,16 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./landingPage.css";
 import Fade from "react-reveal/Fade";
 
-class Landing extends Component {
-  constructor() {
-    super();
-    this.state = {
-      modalAbout: false,
-      modalSignup: false,
-      modalLogin: false
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+const Landing = () => {
 
-  toggle(type) {
-    if (type === "about") {
-      this.setState({ modalAbout: !this.state.modalAbout });
-    } else if (type === "sign up") {
-      this.setState({ modalSignup: !this.state.modalSignup });
-    } else {
-      this.setState({ modalLogin: !this.state.modalLogin });
-    }
-  }
-
-  render() {
     return (
       <Fragment>
         {" "}
         <header>
           <div className="logo" />
           <nav>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
             <li>
               <Link to="/register">Sign Up</Link>
             </li>
@@ -193,5 +170,5 @@ class Landing extends Component {
       </Fragment>
     );
   }
-}
+
 export default Landing;

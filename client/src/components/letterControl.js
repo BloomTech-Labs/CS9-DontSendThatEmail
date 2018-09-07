@@ -548,41 +548,57 @@ class LetterControl extends Component {
             <CardBody>
               <br />
               <Form>
-                <Row className="edit-styles">
-                  <Col md="6">
-                    <Input
-                      placeholder={this.state.name}
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                    />
-                  </Col>
-                  <Col md="3">
-                    <div className="versionsCounter-styles">
-                      Edit {this.state.versionsCounter + 1}/
-                      {this.state.versions.length}
-                    </div>
-                  </Col>
-                </Row>
-                <br />
-                <Row className="analyze-styles">
-                  <Col md="6">
-                    <Input
-                      placeholder={this.state.destination}
-                      name="destination"
-                      value={this.state.destination}
-                      onChange={this.handleChange}
-                    />
-                  </Col>
-                  <Col md="3">
-                    <Button onClick={() => this.watson()}>Analyze</Button>
-                  </Col>
-                  <Col md="2">{this.renderMoreInfoIcon()}</Col>
-                </Row>
+                {!this.state.id ? (
+                  <React.Fragment>
+
+
+                        <div className="versionsCounter-styles">
+                          Edit {this.state.versionsCounter + 1}/
+                          {this.state.versions.length}
+                        </div>
+
+
+                    <br />
+                    <Row className="analyze-styles">
+                      <Col md="6">
+                        <Input
+                          placeholder={this.state.name}
+                          name="name"
+                          onChange={this.handleChange}
+                        />
+                      </Col>
+                      <Col md="3">
+                        <Button onClick={() => this.watson()}>Analyze</Button>
+                      </Col>
+                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
+                    </Row>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+
+
+                        <div className="versionsCounter-styles">
+                          Edit {this.state.versionsCounter + 1}/
+                          {this.state.versions.length}
+                        </div>
+                        
+
+                    <br />
+                    <Row className="analyze-styles">
+                      <Col md="6">
+                      <Label>{this.state.name}</Label>
+                      </Col>
+                      <Col md="3">
+                        <Button onClick={() => this.watson()}>Analyze</Button>
+                      </Col>
+                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
+                    </Row>
+                  </React.Fragment>
+                )}
                 <br />
                 <Row className="rowTextArea-styles">
                   <Col md="6">
-                    <div className="controlTextarea-styles">
+                    <div>
                       <Input
                         style={{ height: 400 }}
                         // static height please fix
@@ -594,14 +610,7 @@ class LetterControl extends Component {
                       />
                     </div>
                   </Col>
-                  <Col md="4">
-                    {this.renderProgressBars(
-                      this.state.anger,
-                      this.state.joy,
-                      this.state.sadness,
-                      this.state.analytical
-                    )}
-                  </Col>
+                  <Col md="4">{this.renderProgressBars()}</Col>
                 </Row>
 
                 <br />

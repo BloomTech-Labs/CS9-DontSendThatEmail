@@ -42,7 +42,7 @@
 }
 
 .card {
-  height: 100vh;
+  height: 76%;
   background: #4d3d6f;
   color: white;
   padding: 5px;
@@ -50,6 +50,8 @@
   -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+  margin-top: 100px;
+  margin-left: 73px;
 
 }
 .nav {

@@ -115,7 +115,7 @@ class LetterControl extends Component {
     if (this.state.content !== "") {
       letter.content = this.state.content;
     }
-    // NOTE: Route not accepting destination info from user defaulting to N/A
+    
     axios
       .post("https://dontemail.herokuapp.com/letters", letter, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -203,14 +203,14 @@ class LetterControl extends Component {
   renderHighlights() {
     return this.state.sentence.map(sentence => {
       let tone = this.setupClass(sentence.tones);
-      return this.checkTone(tone, sentence.text);
+      return this.checkTone(tone, sentence.text, sentence._id);
     });
   }
 
-  checkTone(tone, toneStr) {
+  checkTone(tone, toneStr, id) {
     if (tone === "joy") {
       return (
-        <div className={tone}>
+        <div key={id} className={tone}>
           <br />
           <i class="fas fa-smile-beam" />
           <br />
@@ -223,7 +223,7 @@ class LetterControl extends Component {
       );
     } else if (tone === "anger") {
       return (
-        <div className={tone}>
+        <div key={id} className={tone}>
           <br />
           <i class="fas fa-angry" />
           <br />
@@ -236,7 +236,7 @@ class LetterControl extends Component {
       );
     } else if (tone === "sadness") {
       return (
-        <div className={tone}>
+        <div key={id} className={tone}>
           <br />
           <i class="fas fa-sad-tear" />
           <br />
@@ -249,7 +249,7 @@ class LetterControl extends Component {
       );
     } else if (tone === "analytical") {
       return (
-        <div className={tone}>
+        <div key={id} className={tone}>
           <br />
           <i class="fas fa-surprise" />
           <br />

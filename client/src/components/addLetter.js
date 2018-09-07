@@ -1,7 +1,6 @@
 import React from "react";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import "./addletter.css";
 
 const addLetter = props => {
 

@@ -1,17 +1,6 @@
 import React, { Component, Fragment } from "react";
-import {
-  Card,
-  CardBody,
-  Button,
-  Col,
-  Row,
-  Form,
-  Input,
-  Label
-} from "reactstrap";
+import { Card, CardBody, Button, Col, Label } from "reactstrap";
 import axios from "axios";
-// import Input from "react-validation/build/input";
-// import Form from 'react-validation/build/form';
 import validator from "validator";
 
 class UserSettings extends Component {
@@ -50,9 +39,7 @@ class UserSettings extends Component {
     }
     axios
       .put("https://dontemail.herokuapp.com/", updates)
-      .then(resp => {
-        console.log(resp);
-      })
+      .then(resp => {})
       .catch(err => {
         console.log(err);
       });
@@ -87,7 +74,7 @@ class UserSettings extends Component {
               </Label>
               <br />
               {this.validPass()}
-            
+
               <input
                 name="password"
                 placeholder="Enter New Password"
@@ -113,7 +100,7 @@ class UserSettings extends Component {
           <Label style={{ color: "white", letterSpacing: ".2ch" }}>
             Change Email
           </Label>
-          <br/>
+          <br />
           {this.validEmailNotification()}
           <input
             name="email"
@@ -179,7 +166,6 @@ class UserSettings extends Component {
 
   render() {
     const { auth } = this.props.context.userData;
-    // console.log(this.state.option);
     return (
       <Col className="form-bg" md="10">
         {auth ? (
@@ -195,5 +181,3 @@ class UserSettings extends Component {
   }
 }
 export default UserSettings;
-
-4;

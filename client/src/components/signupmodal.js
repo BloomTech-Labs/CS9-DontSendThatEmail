@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
-import { Card, Input, Button, CardBody } from "reactstrap";
 import axios from "axios";
 import "./login.css";
 
@@ -23,10 +22,7 @@ class Signup extends Component {
   };
 
   handleSubmit = e => {
-    console.log("clicked");
-    console.log("props", this.props);
     e.preventDefault();
-    // const setLogin = this.props.context.actions.setLogin;
     const user = {
       username: this.state.username,
       password: this.state.password,

@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./documents.css";
 import AddLetter from "./addLetter";
-import AddResume from "./addresume";
-import addLetter from "./addLetter";
 class Documents extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +29,6 @@ class Documents extends Component {
   }
 
   handleChange = (id, e) => {
-    console.log(e)
     const checked = e.target.checked;
     if (checked === true) {
       this.state.checkedIds.push(id);

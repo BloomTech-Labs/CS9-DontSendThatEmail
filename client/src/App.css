@@ -6,19 +6,21 @@
   --quarternary: #d1af6f;
   --quinary: #1956be;
   --tone1: #212531;
-  --tone2: #2f3441
+  --tone2: #2f3441;
 }
 
-.body-background{
-  background: linear-gradient(180deg, var(--tone2)40%,var(--tone1)  30%);
+.body-background {
+  background: linear-gradient(180deg, var(--tone2) 40%, var(--tone1) 30%);
   padding-left: 0px;
   padding-right: 0px;
   margin-right: 0px;
 }
-.addletter{
+
+.addletter {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 .App {
   text-align: center;
 }

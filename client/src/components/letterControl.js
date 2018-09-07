@@ -659,4 +659,5 @@ class LetterControl extends Component {
     );
   }
 }
+
 export default LetterControl;

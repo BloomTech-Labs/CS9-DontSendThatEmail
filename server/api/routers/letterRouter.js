@@ -45,12 +45,16 @@ router.post("/", protected, (req, res) => {
       if (!user) {
         res.status(404).json("user not found!");
       } else {
-        const newLetter = new Letter({ name, destination, user_id: req.user._id });
+        const newLetter = new Letter({
+          name,
+          destination,
+          user_id: req.user._id
+        });
         newLetter.versions.push({ content });
         newLetter
           .save()
           .then(saved => {
-            // define new letter, push content to its versions array and save. Call custom addLetter method (found in user model) 
+            // define new letter, push content to its versions array and save. Call custom addLetter method (found in user model)
             // on the logged in user. method pushes saved letter's id to users letters array as ref points, then save the user
             user.addLetter(saved._id);
             user.save();

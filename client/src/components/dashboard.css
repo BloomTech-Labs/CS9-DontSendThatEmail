@@ -11,15 +11,19 @@
   padding-right: 0px;
   box-shadow: 14px 0px 4px -6px rgba(0, 0, 0, 0.75);
 }
+
 .fa {
   cursor: pointer;
 }
+
 .far {
   cursor: pointer;
 }
+
 .fas {
   cursor: pointer;
 }
+
 .fa-user {
   background: #4d3d6f;
   padding: 10px;
@@ -30,10 +34,12 @@
   border-radius: 50%;
   margin-top: 20px;
 }
+
 .documents {
   margin-top: 31px;
   font-size: 20px;
 }
+
 .user {
   margin-top: 15px;
   margin-bottom: 40px;
@@ -52,8 +58,8 @@
   box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
   margin-top: 100px;
   margin-left: 73px;
-
 }
+
 .nav {
   height: 100vh;
   background: #1f112c;
@@ -61,28 +67,33 @@
   padding-top: 20px;
   font-size: 18px;
 }
+
 .card-title {
   color: #ffffff;
   font-size: 1rem;
-
   font-family: Georgia, serif;
 }
+
 .card-subtitle {
   margin-top: 3px;
   font-size: 13px;
 }
+
 .card-text {
   font-size: 12px;
   margin-top: 3px;
 }
+
 .far {
   color: white;
   margin-right: 3%;
 }
+
 .fas {
   color: white;
   margin-right: 3%;
 }
+
 .fa {
   color: white;
   margin-right: 3%;
@@ -95,6 +106,7 @@
   padding: 30px;
   font-size: 20px;
 }
+
 .link-mod:hover {
   color: #ffffff;
 }

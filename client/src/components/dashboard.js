@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Col, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -75,4 +76,5 @@ class Dashboard extends Component {
     );
   }
 }
+
 export default Dashboard;

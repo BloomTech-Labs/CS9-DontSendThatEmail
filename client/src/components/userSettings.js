@@ -180,4 +180,5 @@ class UserSettings extends Component {
     );
   }
 }
+
 export default UserSettings;

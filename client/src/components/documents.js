@@ -1,104 +1,122 @@
 import React, { Component, Fragment } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  Button,
-  CardSubtitle,
-  CardText,
-  Table,
-  Input
-} from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./documents.css";
 import AddLetter from "./addLetter";
 import AddResume from "./addresume";
+import addLetter from "./addLetter";
 class Documents extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      letters: []
+      letters: [],
+      checkedIds: []
     };
   }
   componentDidMount() {
-    //let id = this.props.context.userData.id
-
+  
+    this.setLetters()
+  }
+  setLetters(){
+  //let id = this.props.context.userData.id
     axios
-      .get(`https://dontemail.herokuapp.com/letters`, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(resp => {
-        this.setState({ letters: resp.data.letters });
-      })
-      .catch(err => {});
+    .get(`https://dontemail.herokuapp.com/letters`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(resp => {
+      this.setState({ letters: resp.data.letters });
+    })
+    .catch(err => {});    
   }
 
+  handleChange = (id, e) => {
+    console.log(e)
+    const checked = e.target.checked;
+    if (checked === true) {
+      this.state.checkedIds.push(id);
+    } else {
+      const filteredArr = this.state.checkedIds.filter(stateId => {
+        return stateId !== id;
+      });
+      this.setState({ checkedIds: filteredArr });
+    }
+  };
   listDocuments() {
     return this.state.letters.map(letter => (
       <Fragment>
-        {/* <Card className="documents-style">
-              <CardBody>
-                <CardTitle>{letter.name}</CardTitle>
-
-
-                <CardSubtitle>{letter.destination}</CardSubtitle>
-
-                <CardText>
-                  {letter.versions[letter.versions.length - 1].content}
-                </CardText>
-
-                <Link to="/dashboard/create">
-                  <i className="far fa-copy"></i>
-                </Link>
-              </CardBody>
-            </Card> */}
-
         <div className="letterBox">
-          <input type="checkbox" />
+          <input
+          key={letter._id}
+            type="checkbox"
+            name={this.props.name}
+            defaultChecked={this.props.defaultChecked}
+            onChange={this.handleChange.bind(this, letter._id)}
+          />
+          
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
             <div className="letter-name">{letter.name}</div>
-            <div className="destination">{letter.destination}</div>
             <time className="time">August 19</time>
           </Link>
           <div className="databox-icons">
-            <i class="fa fa-trash" aria-hidden="true" />
-            <i class="far fa-copy" />
-            <i class="fas fa-ellipsis-v" />
+
+          
+            <i
+              onClick={() => this.deleteItems(letter._id)}
+              className="fa fa-trash"
+              aria-hidden="true"
+            />
+           
           </div>
         </div>
       </Fragment>
     ));
   }
-
+  deleteItems = id => {
+    if (this.state.checkedIds.length !== 0) {
+      this.state.checkedIds.forEach(checkId => {
+        axios
+          .delete(`https://dontemail.herokuapp.com/letters/${checkId}`, {
+            headers: { Authorization: localStorage.getItem("token") }
+          })
+          .then(resp => {
+            this.setState({ checkedIds: [] });
+            this.setLetters()
+          })
+          .catch(err => {});
+      });
+    } else {
+      axios
+        .delete(`https://dontemail.herokuapp.com/letters/${id}`, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(resp => {
+          this.setState({ checkedIds: [] });
+          this.setLetters()
+        })
+        .catch(err => {});
+    }
+  };
+  
   render() {
     const { auth } = this.props.context.userData;
-
     return (
       <Col className="documentsbox" md="10">
         {auth ? (
           <Fragment>
-            <Row className="topbox">
-              <div className="create-template">
-                <AddLetter {...this.props} />
-              </div>
-
-              <Input id="search" type="text" placeholder="search" />
-            </Row>
             <Row className="databox">
               <Row className="header-row">
                 <div className="header-text">
+                <div><AddLetter {...this.props}/></div>
+                <i
+              onClick={() => this.deleteItems()}
+              className="fa fa-trash"
+              aria-hidden="true"
+            />
                   <div className="textstuff">Subject</div>
-                  <div className="textstuff">To</div>
                   <div className="textstuff">Created at</div>
                 </div>
-                <div className="header-icons">
-                  <i class="fas fa-th" />
-                  <i class="fas fa-sort-alpha-down" />
-                  <i class="fas fa-list" />
-                </div>
+                >
               </Row>
               <Row className="listsofdocuments">{this.listDocuments()}</Row>
             </Row>

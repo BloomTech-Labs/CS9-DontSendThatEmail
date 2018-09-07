@@ -81,7 +81,7 @@ class App extends Component {
                   <Route
                     exact
                     path="/dashboard"
-                    render={props => <AddLetter {...props} context={context} />}
+                    render={props => <Documents {...props} context={context} />}
                   />
                   <Route
                     exact
@@ -102,11 +102,7 @@ class App extends Component {
                       <UserSettings {...props} context={context} />
                     )}
                   />
-                  <Route
-                    exact
-                    path="/dashboard/documents"
-                    render={props => <Documents {...props} context={context} />}
-                  />
+            
                   <Route
                     exact
                     path="/dashboard/billing"

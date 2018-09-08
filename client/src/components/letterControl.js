@@ -115,7 +115,7 @@ class LetterControl extends Component {
     if (this.state.content !== "") {
       letter.content = this.state.content;
     }
-    
+
     axios
       .post("https://dontemail.herokuapp.com/letters", letter, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -444,7 +444,7 @@ class LetterControl extends Component {
                 this.state.angerModal,
                 this.state.joyModal,
                 this.state.sadnessModal,
-                this.state.analyticalm
+                this.state.analyticalModal
               )}
               {this.renderHighlights()}
             </ModalBody>
@@ -550,13 +550,10 @@ class LetterControl extends Component {
               <Form>
                 {!this.state.id ? (
                   <React.Fragment>
-
-
-                        <div className="versionsCounter-styles">
-                          Edit {this.state.versionsCounter + 1}/
-                          {this.state.versions.length}
-                        </div>
-
+                    <div className="versionsCounter-styles">
+                      Edit {this.state.versionsCounter + 1}/
+                      {this.state.versions.length}
+                    </div>
 
                     <br />
                     <Row className="analyze-styles">
@@ -575,18 +572,15 @@ class LetterControl extends Component {
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
-
-
-                        <div className="versionsCounter-styles">
-                          Edit {this.state.versionsCounter + 1}/
-                          {this.state.versions.length}
-                        </div>
-                        
+                    <div className="versionsCounter-styles">
+                      Edit {this.state.versionsCounter + 1}/
+                      {this.state.versions.length}
+                    </div>
 
                     <br />
                     <Row className="analyze-styles">
                       <Col md="6">
-                      <Label>{this.state.name}</Label>
+                        <Label>{this.state.name}</Label>
                       </Col>
                       <Col md="3">
                         <Button onClick={() => this.watson()}>Analyze</Button>
@@ -610,7 +604,14 @@ class LetterControl extends Component {
                       />
                     </div>
                   </Col>
-                  <Col md="4">{this.renderProgressBars()}</Col>
+                  <Col md="4">
+                    {this.renderProgressBars(
+                      this.state.anger,
+                      this.state.joy,
+                      this.state.sadness,
+                      this.state.analytical
+                    )}
+                  </Col>
                 </Row>
 
                 <br />

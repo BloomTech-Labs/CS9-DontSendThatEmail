@@ -1,44 +1,16 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import SignupModal from "./signupmodal";
-import LogInModal from "./login";
-import About from "./about";
 import "./landingPage.css";
-import { Modal, Card, CardTitle, Row } from "reactstrap";
-import { TestContext } from "../contexts/test-context"; // here
 import Fade from "react-reveal/Fade";
 
-class Landing extends Component {
-  constructor() {
-    super();
-    this.state = {
-      modalAbout: false,
-      modalSignup: false,
-      modalLogin: false
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+const Landing = () => {
 
-  toggle(type) {
-    if (type === "about") {
-      this.setState({ modalAbout: !this.state.modalAbout });
-    } else if (type === "sign up") {
-      this.setState({ modalSignup: !this.state.modalSignup });
-    } else {
-      this.setState({ modalLogin: !this.state.modalLogin });
-    }
-  }
-
-  render() {
     return (
       <Fragment>
         {" "}
         <header>
           <div className="logo" />
           <nav>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
             <li>
               <Link to="/register">Sign Up</Link>
             </li>
@@ -51,12 +23,11 @@ class Landing extends Component {
           <h1>
             Check My Tone <span className="fas fa-check-square" />
           </h1>
-          {/* <h3>One Click Tone Analyzer</h3> */}
-          <div class="sp-container">
-            <div class="sp-content">
-              <div class="sp-globe" />
+          <div className="sp-container">
+            <div className="sp-content">
+              <div className="sp-globe" />
 
-              <h2 class="frame-5">
+              <h2 className="frame-5">
                 <span>Write </span>
                 <span>Analyze </span>
                 <span>Send</span>
@@ -70,65 +41,35 @@ class Landing extends Component {
           <i className="arrow animated bounce fas fa-angle-down fa-3x" />
         </section>
         <div className="howitworks" id="how">
-          {/* <section className="tone-work">
-            <Fade top>
-              <h3 className="title">How It Works</h3>
-              <p>
-                Ever wondered if Your message sounds right? With CheckMyTone You
-                can check whether Your text has positive or negative vibes. With
-                single buton click You can take complete control of situation.
-              </p>
-
-              <ul className="grid">
-                <li className="small">
-                  <div className="small-caption">
-                    <p>
-                      Easy to use, start typing or copy text from the other
-                      source into text input and then click Analyze
-                    </p>
-                  </div>
-                </li>
-                <li className="large" />
-                <li className="large" />
-                <li className="small">
-                  <div className="small-caption">
-                    <p>
-                      Power to control Tone in the palm of Your hand with
-                      detailed analysis
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </Fade>
-          </section> */}
           <section className="tonework">
             <Fade top>
               <h3 className="title">How It Works</h3>
-              <div class="container">
+              <div className="container">
                 <div className="row circ">
                   <div className="col-md-8 d-flex align-items-center mt-2">
-                    <div class="circle-icon mr-4">1</div>
-                    <div class="media-body">
+                    <div className="circle-icon mr-4">1</div>
+                    <div className="media-body">
                       <h5>Register New Account</h5>
                       <p>
                         Simply click{" "}
                         <Link to="/register" className="anchor">
                           here
                         </Link>{" "}
-                        to register a new account and start using <b>Check My Tone</b>
-                        &nbsp;instantly. Login with your account and create a new
-                        document.{" "}
+                        to register a new account and start using{" "}
+                        <b>Check My Tone</b>
+                        &nbsp;instantly. Login with your account and create a
+                        new document.{" "}
                       </p>
                     </div>
                   </div>
                   <div className="col-md-4 my-2">
-                    <i class="fas fa-sign-in-alt fa-5x hiw-icon" />
+                    <i className="fas fa-sign-in-alt fa-5x hiw-icon" />
                   </div>
                 </div>
                 <div className="row circ">
                   <div className="col-md-8 d-flex align-items-center my-4">
-                    <div class="circle-icon mr-4">2</div>
-                    <div class="media-body">
+                    <div className="circle-icon mr-4">2</div>
+                    <div className="media-body">
                       <h5>Write And Analyze</h5>
                       <p>
                         Start writing your message by filling in the necessary
@@ -139,23 +80,23 @@ class Landing extends Component {
                     </div>
                   </div>
                   <div className="col-md-4 mt-4">
-                    <i class="fas fa-glasses fa-5x hiw-icon" />
+                    <i className="fas fa-glasses fa-5x hiw-icon" />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-8 d-flex align-items-center mt-4">
-                    <div class="circle-icon mr-4">3</div>
-                    <div class="media-body">
+                    <div className="circle-icon mr-4">3</div>
+                    <div className="media-body">
                       <h5>And You Are Done!</h5>
                       <p>
-                        And that's it! You can view a detailed report by pressing
-                        "Details" or directly send your message as an e-mail from the
-                        Check My Tone application.{" "}
+                        And that's it! You can view a detailed report by
+                        pressing "Details" or directly send your message as an
+                        e-mail from the Check My Tone application.{" "}
                       </p>
                     </div>
                   </div>
                   <div className="col-md-4 mt-4">
-                    <i class="fas fa-clipboard-check fa-5x hiw-icon" />
+                    <i className="fas fa-clipboard-check fa-5x hiw-icon" />
                   </div>
                 </div>
               </div>
@@ -171,23 +112,28 @@ class Landing extends Component {
                 <i className="fas fa-save" />
                 <h4>Store Multiple Edits</h4>
                 <p>
-                  Save <b>multiple edits</b> and come back to them whenever you wish right where you left off
+                  Save <b>multiple edits</b> and come back to them whenever you
+                  wish right where you left off
                 </p>
               </li>
               <li>
                 <i className="fas fa-search" />
                 <h4>Detailed Analysis</h4>
                 <p>
-                  Get <b>detailed analysis</b> on your messages, whether it is a professional
-                  e-mail to your boss or a casual e-mail to a friend, you will be sure it has just 
-                  the right <b><em>Tone</em></b>
+                  Get <b>detailed analysis</b> on your messages, whether it is a
+                  professional e-mail to your boss or a casual e-mail to a
+                  friend, you will be sure it has just the right{" "}
+                  <b>
+                    <em>Tone</em>
+                  </b>
                 </p>
               </li>
               <li>
                 <i className="fa fa-cubes" />
                 <h4>Send Emails Directly</h4>
                 <p>
-                  Create your e-mail instantly with the Check My Tone app and <b>send it directly</b>
+                  Create your e-mail instantly with the Check My Tone app and{" "}
+                  <b>send it directly</b>
                   &nbsp;from here, no need to use external services!
                 </p>
               </li>
@@ -198,7 +144,8 @@ class Landing extends Component {
           <Fade top>
             <div className="text-box">
               <h3 className="title">What others say:</h3>
-              <i class="fas fa-quote-left fa-2x"></i><i class="fas fa-quote-right fa-2x"></i>
+              <i className="fas fa-quote-left fa-2x" />
+              <i className="fas fa-quote-right fa-2x" />
               <p className="quote">
                 "Check My Tone has saved me from sending a poorly worded e-mail
                 more times than I can remember!"
@@ -206,15 +153,15 @@ class Landing extends Component {
               <p className="author">— Chris</p>
 
               <p className="quote">
-                "Given my anxiety, I'm always worried how my words are going to be 
-                perceived by others. Check My Tone gives me the confidence that my 
-                message will be received as I intended."
+                "Given my anxiety, I'm always worried how my words are going to
+                be perceived by others. Check My Tone gives me the confidence
+                that my message will be received as I intended."
               </p>
               <p className="author">— Clementine</p>
 
               <p className="quote">
-                "This literally saved my job on at least one occasion! Definitely
-                use it to check your e-mails!" 
+                "This literally saved my job on at least one occasion!
+                Definitely use it to check your e-mails!"
               </p>
               <p className="author">— Imran</p>
             </div>
@@ -223,5 +170,5 @@ class Landing extends Component {
       </Fragment>
     );
   }
-}
+
 export default Landing;

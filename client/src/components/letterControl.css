@@ -2,124 +2,146 @@
   display: flex;
   flex-direction: column;
 }
+
 .col-md-6 {
   margin-bottom: 0px;
 }
+
 .analyze-styles {
   width: 51%;
 }
-.edit-styles{
+
+.edit-styles {
   width: 51%;
 }
+
 .movement-btn {
   width: 100px;
 }
+
 .controlTextarea-styles {
-  height:100%;
+  height: 100%;
   background: white;
   color: black;
 }
-.taInput-styles{
-  resize: none;
-  box-shadow: inset 0px 5px 5px 0px rgba(0,0,0,0.75);
 
+.taInput-styles {
+  resize: none;
+  box-shadow: inset 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
   border-radius: 1%;
   outline: none;
   border: none;
   overflow: auto;
   outline: none;
   background-color: var(--secondary);
-
 }
 
-.taInput-styles:focus{
+.taInput-styles:focus {
   border: none;
-  box-shadow: inset 0px 5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
   outline: none;
   background-color: var(--secondary);
-
 }
+
 .controlBtn-styles {
   display: flex;
-flex-direction: row
+  flex-direction: row;
 }
+
 .fa-arrow-circle-left {
   font-size: 40px;
   margin-left: 5px;
 }
+
 .fa-arrow-circle-left:hover {
   cursor: grab;
-  color: var(--tertiary)
+  color: var(--tertiary);
 }
+
 .fa-arrow-circle-right {
   font-size: 40px;
 }
-.fa-arrow-circle-right:hover{
-cursor:grab;
-color: var(--tertiary)
 
+.fa-arrow-circle-right:hover {
+  cursor: grab;
+  color: var(--tertiary);
 }
+
 .label {
   color: red;
 }
-.versionsCounter-styles{
+
+.versionsCounter-styles {
   min-width: 50px;
 }
-.sadness{
+
+.sadness {
   font-size: 13px;
   background: lightblue;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
 }
-.anger{
+
+.anger {
   background: lightcoral;
   font-size: 13px;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
 }
-.analytical{
+
+.analytical {
   background: lightgoldenrodyellow;
   font-size: 13px;
-
 }
-.joy{
+
+.joy {
   background: lightgreen;
   font-size: 13px;
+}
 
+.fa-smile-beam {
+  color: black;
+  font-size: 20px;
 }
-.fa-smile-beam{
-  color:black;
-  font-size:20px;
+
+.fa-angry {
+  color: black;
+  font-size: 20px;
 }
-.fa-angry{
-  color:black;
-  font-size:20px;
+
+.fa-sad-tear {
+  color: black;
+  font-size: 20px;
 }
-.fa-sad-tear{
-  color:black;
-  font-size:20px;
+
+.fa-surprise {
+  color: black;
+  font-size: 20px;
 }
-.fa-surprise{
-  color:black;
-  font-size:20px;
+
+.success {
+  color: var(--tertiary);
 }
-.success{
-  color: var(--tertiary)
-}
-.moreInfo-styles{
+
+.moreInfo-styles {
   height: 300px;
 }
-.infoBody-styles{
+
+.infoBody-styles {
   height: 200px;
 }
+
 .emails-styles {
   width: 48%;
   margin-top: 15px;
 }
-.modal-title{
+
+.modal-title {
   margin-left: 15%;
 }
-.modal-content{
+
+.modal-content {
   background: var(--secondary);
 }
+
 .modal-footer {
   display: flex;
   justify-content: center;

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import { Row } from "reactstrap";
 import "./App.css";
 import "./components/generalstyle.css";
-import TestProvider, { TestContext } from "./contexts/test-context"; //here
-
-import { Route, BrowserRouter as Router } from "react-router-dom";
-// import TopNav from "./components/topnav"
+import { Route } from "react-router-dom";
 import Dashboard from "./components/dashboard";
-import AddLetter from "./components/addLetter";
 import LetterControl from "./components/letterControl";
 import UserSettings from "./components/userSettings";
 import LandingPage from "./components/landingPage";
@@ -16,10 +12,9 @@ import Signup from "./components/signupmodal";
 import Login from "./components/login";
 import Billing from "./components/billing";
 import Options from "./components/settingsOption";
-
 import AuthProvider, { AuthContext } from "./contexts/authProvider";
 import posed, { PoseGroup } from "react-pose";
-import { Switch, Link } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -65,14 +60,6 @@ class App extends Component {
                     </PoseGroup>
                   )}
                 />
-                {/* <Row>
-                  <Col lg="12">
-                  <Route
-                    path="/dashboard"
-                    render={props =><TopNav {...props} context={context} />}
-                  /> */}
-                {/* </Col> */}
-                {/* </Row> */}
                 <Row className="body-background">
                   <Route
                     path="/dashboard"
@@ -102,7 +89,7 @@ class App extends Component {
                       <UserSettings {...props} context={context} />
                     )}
                   />
-            
+
                   <Route
                     exact
                     path="/dashboard/billing"

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Col, Input, Row, Form, Label } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Col, Row, Form, Label } from "reactstrap";
 import Checkout from "./checkout.js";
 import "./settings.css";
 import "./billing.css";

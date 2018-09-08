@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Card, CardBody, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
@@ -21,7 +20,6 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // const setLogin = this.props.context.actions.setLogin;
     const user = {
       username: this.state.username,
       password: this.state.password
@@ -29,8 +27,6 @@ class Login extends Component {
     axios
       .post("https://dontemail.herokuapp.com/auth/login", user)
       .then(resp => {
-        // const user = resp.data.user;
-
         localStorage.setItem("token", `Bearer ${resp.data.token}`);
 
         const { setLogin } = this.props.context.actions;

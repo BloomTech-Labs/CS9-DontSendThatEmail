@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./documents.css";
 import AddLetter from "./addLetter";
-import AddResume from "./addresume";
-import addLetter from "./addLetter";
+
 class Documents extends Component {
   constructor(props) {
     super(props);
@@ -15,23 +14,21 @@ class Documents extends Component {
     };
   }
   componentDidMount() {
-  
-    this.setLetters()
+    this.setLetters();
   }
-  setLetters(){
-  //let id = this.props.context.userData.id
+  setLetters() {
+    //let id = this.props.context.userData.id
     axios
-    .get(`https://dontemail.herokuapp.com/letters`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
-    .then(resp => {
-      this.setState({ letters: resp.data.letters });
-    })
-    .catch(err => {});    
+      .get(`https://dontemail.herokuapp.com/letters`, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(resp => {
+        this.setState({ letters: resp.data.letters });
+      })
+      .catch(err => {});
   }
 
   handleChange = (id, e) => {
-    console.log(e)
     const checked = e.target.checked;
     if (checked === true) {
       this.state.checkedIds.push(id);
@@ -42,31 +39,29 @@ class Documents extends Component {
       this.setState({ checkedIds: filteredArr });
     }
   };
+  
   listDocuments() {
     return this.state.letters.map(letter => (
       <Fragment>
         <div className="letterBox">
           <input
-          key={letter._id}
+            key={letter._id}
             type="checkbox"
             name={this.props.name}
             defaultChecked={this.props.defaultChecked}
             onChange={this.handleChange.bind(this, letter._id)}
           />
-          
+
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
             <div className="letter-name">{letter.name}</div>
             <time className="time">August 19</time>
           </Link>
           <div className="databox-icons">
-
-          
             <i
               onClick={() => this.deleteItems(letter._id)}
               className="fa fa-trash"
               aria-hidden="true"
             />
-           
           </div>
         </div>
       </Fragment>
@@ -81,7 +76,7 @@ class Documents extends Component {
           })
           .then(resp => {
             this.setState({ checkedIds: [] });
-            this.setLetters()
+            this.setLetters();
           })
           .catch(err => {});
       });
@@ -92,12 +87,12 @@ class Documents extends Component {
         })
         .then(resp => {
           this.setState({ checkedIds: [] });
-          this.setLetters()
+          this.setLetters();
         })
         .catch(err => {});
     }
   };
-  
+
   render() {
     const { auth } = this.props.context.userData;
     return (
@@ -107,12 +102,14 @@ class Documents extends Component {
             <Row className="databox">
               <Row className="header-row">
                 <div className="header-text">
-                <div><AddLetter {...this.props}/></div>
-                <i
-              onClick={() => this.deleteItems()}
-              className="fa fa-trash"
-              aria-hidden="true"
-            />
+                  <div>
+                    <AddLetter {...this.props} />
+                  </div>
+                  <i
+                    onClick={() => this.deleteItems()}
+                    className="fa fa-trash"
+                    aria-hidden="true"
+                  />
                   <div className="textstuff">Subject</div>
                   <div className="textstuff">Created at</div>
                 </div>

@@ -1,6 +1,7 @@
 const Validator = require("validator");
 const isEmpty = require("../validation/is-empty");
 
+// Validates length of password and ensures input field is not empty
 const validateUpdatePassword = ({ email, password }) => {
   let errors = {};
   password = !isEmpty(password) ? password : "";

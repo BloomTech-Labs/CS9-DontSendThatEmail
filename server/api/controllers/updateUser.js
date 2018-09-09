@@ -10,6 +10,7 @@ const updateUser = (req, res) => {
       res.status(404).json(err.message);
     }
 
+    // Conditional check using Validator to check which input was passed the request & if it is valid
     if (req.body.email && req.body.password) {
       const { errors, isValid } = validateUpdateInput(req.body);
       if (!isValid) return res.status(400).json(errors);

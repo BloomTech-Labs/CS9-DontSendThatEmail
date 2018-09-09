@@ -1,6 +1,8 @@
 const Validator = require("validator");
 const isEmpty = require("../validation/is-empty");
 
+// Validation for updating user email and password
+// Also checks length of characters
 const validateUpdateInput = ({ email, password }) => {
   let errors = {};
   email = !isEmpty(email) ? email : "";

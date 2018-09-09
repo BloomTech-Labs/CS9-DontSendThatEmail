@@ -29,8 +29,7 @@ For this application we implemented the MERN Stack which is a set of Open Source
 
 ## Authors
 ![Dev Team](2018-09-03-14-39-13.png)
-
-<br/>
+<br>
 ![LinkedIn Logo](2018-09-04-14-07-37.png)
 * [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
 * [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 

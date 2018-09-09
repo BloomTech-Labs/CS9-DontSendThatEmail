@@ -8,7 +8,7 @@ How many times have you written an email or other communication and spent a sign
 
 
 ## Built With
-For this application we implemented the MERN Stack which is a set of Open Source components that together, provide an end-to-end framework for building a dynamic web application. This application is completely written in JavaScript. 
+For this application we implemented the MERN Stack which is a set of Open Source components that together, provide an end-to-end framework for building a dynamic web application. This application is completely written in JavaScript.<br> 
 ![MERN Stack](2018-08-29-13-10-36.png)
 * [MongoDB](https://www.mongodb.com/what-is-mongodb) - Document database offering scalability, flexibility, querying and indexing
 * [Express.js](https://expressjs.com/) - Web framework

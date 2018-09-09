@@ -41,7 +41,10 @@ For this application we implemented the MERN Stack which is a set of Open Source
 ## License
 This project is licensed under MIT License
 <br/>
-Copyright (c) 2018 Lambda Labs  Stock photos used for this project:
+Copyright (c) 2018 Lambda Labs  
+<br>
+<br>
+Stock photos used for this project:
 <br><br>
 
 From PEXELS

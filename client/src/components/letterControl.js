@@ -469,8 +469,9 @@ class LetterControl extends Component {
           <Input
             placeholder="email..."
             name="email"
+            value={this.state.name}
             onChange={this.handleChange}
-            value={this.state.email}
+         
           />
         </ModalBody>
         <ModalFooter>
@@ -487,7 +488,7 @@ class LetterControl extends Component {
 
   renderProgressBars(anger, joy, sadness, analytical) {
     return (
-      <div>
+      <div className="progress-styles">
         <Label>Anger</Label>
 
         <Progress animated color="danger" value={anger}>
@@ -545,7 +546,7 @@ class LetterControl extends Component {
                     />
                     <br />
                   </Col>
-                  <Col md="6" lg="6" xl="3">
+                  <Col  md="6" lg="6" xl="3">
                     <Button
                       className="analyzeBtn-styles btn-styles"
                       onClick={() => this.watson()}

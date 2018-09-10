@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Card, CardTitle, Col } from "reactstrap";
+import { Col, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -10,32 +11,26 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props.context.userData;
-    console.log(this.props);
-    // if (!auth){
-
-    // this.props.history.push('/')
-    // }
-
-    // console.log('props',   this.props)
-    // console.log(auth)
 
     return (
-      <Col md="3">
+      <Col className="sidebar" lg="2">
         {auth ? (
           <Fragment>
-            <Card className="dashboardnav-styles">
-              <Link
-                to="/dashboard"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                {" "}
-                <CardTitle>Don't Send</CardTitle>
+            <Nav vertical className="nav">
+              <Link to="/dashboard">
+                <div className="dash-logo" />
               </Link>
+              <div className="avat">
+                <i className="fa fa-user" aria-hidden="true" />
+              </div>
+              <div className="user">
+                Hello, {this.props.context.userData.username}
+              </div>
               <Link
                 style={{ textDecoration: "none", color: "white" }}
-                to="/dashboard/documents"
+                to="/dashboard"
               >
-                <div className="link-mod">
+                <div className="link-mod documents">
                   <i className="far fa-file" />
                   <div>Documents</div>
                 </div>
@@ -45,7 +40,7 @@ class Dashboard extends Component {
                 style={{ textDecoration: "none", color: "white" }}
                 to="/dashboard/billing"
               >
-                <div className="link-mod">
+                <div className="link-mod billing">
                   <i className="fas fa-money-bill-wave-alt" />
                   <div>Billing</div>
                 </div>
@@ -53,21 +48,33 @@ class Dashboard extends Component {
 
               <Link
                 style={{ textDecoration: "none", color: "white" }}
-                to="/dashboard/settings"
+                to="/dashboard/settings/options"
               >
-                <div className="link-mod">
+                <div className="link-mod setting">
                   <i className="fas fa-cogs" />
 
                   <div>Settings</div>
                 </div>
               </Link>
-            </Card>
+
+              <Link
+                onClick={() => localStorage.removeItem("token")}
+                to="/"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <div className="link-mod">
+                  <i className="fa fa-power-off" />
+                  <div>Log Out</div>
+                </div>
+              </Link>
+            </Nav>
           </Fragment>
         ) : (
-          this.props.history.push("/dashboard/create")
+          this.props.history.push("/")
         )}
       </Col>
     );
   }
 }
+
 export default Dashboard;

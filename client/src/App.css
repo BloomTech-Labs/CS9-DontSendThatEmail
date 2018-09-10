@@ -1,5 +1,29 @@
+:root {
+  --main-bg: #1f112c;
+  --primary: #4d3d6f;
+  --secondary: #cec0d9;
+  --tertiary: #7caef3;
+  --quarternary: #d1af6f;
+  --quinary: #1956be;
+  --tone1: #212531;
+  --tone2: #2f3441;
+}
+
+.body-background {
+  background: var(--tone1);
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.addletter {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -23,6 +47,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

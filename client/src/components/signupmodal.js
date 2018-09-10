@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Card, Input, Button, CardBody } from "reactstrap";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
+import "./login.css";
 
 //implemented signup component
 class Signup extends Component {
@@ -21,11 +21,9 @@ class Signup extends Component {
     });
   };
 
+  // Take the data from input field & use it to register the user & push to login
   handleSubmit = e => {
-    console.log("clicked");
-    console.log("props", this.props);
     e.preventDefault();
-    // const setLogin = this.props.context.actions.setLogin;
     const user = {
       username: this.state.username,
       password: this.state.password,
@@ -34,9 +32,7 @@ class Signup extends Component {
     axios
       .post("https://dontemail.herokuapp.com/auth/register", user)
       .then(resp => {
-        console.log(resp.data);
-
-        console.log(resp);
+        this.props.history.push("/login");
       })
       .catch(err => console.log(err));
     this.setState({
@@ -56,38 +52,44 @@ class Signup extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {/* Calls redirect function when true triggers redirect */}
-        {this.renderRedirect()}
-        <Card>
-          <CardBody>
-            <Input
-              placeholder="username"
-              value={this.state.username}
-              name="username"
-              onChange={this.handleChange}
-            />
+      <div className="form-bg">
+        <form className="form" onSubmit={this.handleSubmit}>
+          <Link to="/">
+            <div className="logo" />
+          </Link>
+          {/* Calls redirect function when true triggers redirect */}
+          {this.renderRedirect()}
+          <input
+            placeholder="username"
+            value={this.state.username}
+            name="username"
+            onChange={this.handleChange}
+          />
 
-            <br />
-            <Input
-              placeholder="password"
-              value={this.state.password}
-              name="password"
-              onChange={this.handleChange}
-            />
+          <br />
+          <input
+            placeholder="password"
+            value={this.state.password}
+            name="password"
+            type="password"
+            onChange={this.handleChange}
+          />
 
-            <br />
-            <Input
-              placeholder="email"
-              value={this.state.email}
-              name="email"
-              onChange={this.handleChange}
-            />
+          <br />
+          <input
+            placeholder="email"
+            value={this.state.email}
+            name="email"
+            onChange={this.handleChange}
+          />
 
-            <Button>SIGN UP</Button>
-          </CardBody>
-        </Card>
-      </form>
+          <button>REGISTER</button>
+          <p className="fallback-link">
+            {" "}
+            Already Registered? <Link to="/login">Login</Link>
+          </p>
+        </form>
+      </div>
     );
   }
 }

@@ -24,7 +24,6 @@ class LetterControl extends Component {
     this.state = {
       versions: [{ content: "Content..." }],
       name: "Name",
-      destination: "To",
       content: "",
       versionsCounter: 0,
       anger: 0,
@@ -43,7 +42,6 @@ class LetterControl extends Component {
       modalThree: false,
       modalFour: false
     };
-    // this.onChange = (editorState) => this.setState({editorState);
 
     this.toggle = this.toggle.bind(this);
     this.toggleModalTwo = this.toggleModalTwo.bind(this);
@@ -57,15 +55,8 @@ class LetterControl extends Component {
       this.setletter(id);
     }
   }
-  // changeURL(){
-  //   // if(this.state.content !== this.state.versions[this.state.versionsCounter].content){
-  //   //   console.log(this.state.content, '\n', this.state.versions[this.state.versions.length -1].content)
-  //   //    window.onbeforeunload = function() {
-  //   //   return "Are you sure you want to navigate away?";
-  //   // }
-  //   }
-
-  // }
+  
+  // Toggles for modals
   toggle() {
     this.setState({
       modal: !this.state.modal
@@ -86,6 +77,8 @@ class LetterControl extends Component {
       modalFour: !this.state.modalFour
     });
   }
+
+  // Fetches letter based on id, sets content to newest letter version
   setletter(id) {
     axios
       .get(`https://dontemail.herokuapp.com/letters/${id}`, {
@@ -95,7 +88,6 @@ class LetterControl extends Component {
         this.setState({
           versions: resp.data.versions,
           name: resp.data.name,
-          destination: resp.data.destination,
           id: id,
           content: resp.data.versions[resp.data.versions.length - 1].content
         });
@@ -103,19 +95,16 @@ class LetterControl extends Component {
       })
       .catch(err => {});
   }
+
   // allow user to create new letter
   createLetter() {
     let letter = {};
     if (this.state.name !== "Name") {
       letter.name = this.state.name;
     }
-    if (this.state.destination !== "To") {
-      letter.destination = this.state.destination;
-    }
     if (this.state.content !== "") {
       letter.content = this.state.content;
     }
-
     axios
       .post("https://dontemail.herokuapp.com/letters", letter, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -127,6 +116,7 @@ class LetterControl extends Component {
       });
   }
 
+  // Call Watson API; passing in the text & the auth username/pw
   watson() {
     const text = {
       text: this.state.versions[this.state.versionsCounter].content
@@ -147,6 +137,8 @@ class LetterControl extends Component {
         let anger = 0;
         let joy = 0;
         let analytical = 0;
+        // For each tone in document tone off of the response data
+        // pull values from the score setting it onto declared variables above
         resp.data.document_tone.tones.forEach(tone => {
           if (tone.tone_id === "sadness") {
             sadness += Math.floor(tone.score * 100);
@@ -159,6 +151,8 @@ class LetterControl extends Component {
           }
         });
 
+        // If response returns a sentence tone, set sentence tone 
+        // to sentence on state
         if (resp.data.sentences_tone !== undefined) {
           this.setState({
             sentence: resp.data.sentences_tone
@@ -176,6 +170,8 @@ class LetterControl extends Component {
         let joyModal = 0;
         let analyticalModal = 0;
 
+        // Same concept as above for doc tones, but divided by sentence length
+        // results will show in our advanced analytics modal
         this.state.sentence.forEach(sentence => {
           let biggestObj = this.setupScore(sentence.tones);
           if (biggestObj.tone_id === "sadness") {
@@ -201,13 +197,17 @@ class LetterControl extends Component {
       });
   }
 
+  // Map out styled sentences
   renderHighlights() {
     return this.state.sentence.map(sentence => {
       let tone = this.setupClass(sentence.tones);
       return this.checkTone(tone, sentence.text, sentence._id);
     });
   }
-
+ 
+  // Takes in the tone which is a string with the highest emotion
+  // Takes in the sentence text & id using those to return JSX based on
+  // what tone was sent into the function
   checkTone(tone, toneStr, id) {
     if (tone === "joy") {
       return (
@@ -262,6 +262,7 @@ class LetterControl extends Component {
     }
   }
 
+  // Takes in tone object, returns highest emotion as a string
   setupClass(tones) {
     let greatest = 0;
     let biggestObj = {};
@@ -275,6 +276,7 @@ class LetterControl extends Component {
     return biggestObj.tone_id;
   }
 
+  // Returns the highest emotion value as an integer
   setupScore(tones) {
     let greatest = 0;
     let biggestObj = {};
@@ -422,6 +424,7 @@ class LetterControl extends Component {
     }
   }
 
+  // Based on if sentence tone exist, render this "Advanced Analytics" button active to bring up modal
   renderMoreInfoIcon = () => {
     if (this.state.sentence.length === 0) {
       return <i className="fas fa-info-circle fa-2x" />;

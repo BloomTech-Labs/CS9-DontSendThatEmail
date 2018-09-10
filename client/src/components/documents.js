@@ -17,7 +17,6 @@ class Documents extends Component {
     this.setLetters();
   }
   setLetters() {
-    //let id = this.props.context.userData.id
     axios
       .get(`https://dontemail.herokuapp.com/letters`, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -28,6 +27,7 @@ class Documents extends Component {
       .catch(err => {});
   }
 
+  // Verifies if checkbox is selected. Pushes id into array or filters id out of array based on if true.
   handleChange = (id, e) => {
     const checked = e.target.checked;
     if (checked === true) {
@@ -71,11 +71,15 @@ class Documents extends Component {
     ));
   }
 
+
   formatStamp(timestamp){
     let date = new Date(timestamp)
     return date.toDateString()
     
   }
+
+  // Checks if checked id length is < 0 & if it is, it will delete every letter tied to id
+
   deleteItems = id => {
     if (this.state.checkedIds.length !== 0) {
       this.state.checkedIds.forEach(checkId => {

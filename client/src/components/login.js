@@ -18,6 +18,7 @@ class Login extends Component {
     });
   };
 
+  // Takes the data from input fields. Sets the reponse token on state & pushes user to dashboard
   handleSubmit = e => {
     e.preventDefault();
     const user = {

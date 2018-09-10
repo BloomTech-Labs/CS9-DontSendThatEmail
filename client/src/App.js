@@ -16,6 +16,7 @@ import AuthProvider, { AuthContext } from "./contexts/authProvider";
 import posed, { PoseGroup } from "react-pose";
 import { Switch } from "react-router-dom";
 
+// Router transitional animation with React pose
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
   exit: { opacity: 0 }
@@ -29,6 +30,7 @@ class App extends Component {
           <AuthContext.Consumer>
             {context => (
               <React.Fragment>
+                {/* Wrap routes with PoseGroup so PoseGroup will tell which parts to animate */}
                 <Route
                   render={({ location }) => (
                     <PoseGroup>

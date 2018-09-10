@@ -1,12 +1,11 @@
-// place for Letter router
 const router = require("express").Router();
 const User = require("../models/user");
 const { login, authenticate, localStrategy } = require("../controllers/login");
 const { protected, jwtStrategy } = require("../jwt/jwt");
 const passport = require("passport");
-
 const Letter = require("../models/letter");
 
+// Passing protected middleware to check if user is logged in
 router.get("/", protected, (req, res) => {
   // grabs an id from the request issues by JWT
   const userid = req.user._id;
@@ -54,8 +53,9 @@ router.post("/", protected, (req, res) => {
         newLetter
           .save()
           .then(saved => {
-            // define new letter, push content to its versions array and save. Call custom addLetter method (found in user model)
-            // on the logged in user. method pushes saved letter's id to users letters array as ref points, then save the user
+            // define new letter, push content to its versions array and save.  
+            // Call custom addLetter method (found in user model) on the logged in user.
+            // method pushes saved letter's id to users letters array as ref points, then save the user
             user.addLetter(saved._id);
             user.save();
             res.status(201).json(saved);
@@ -70,9 +70,7 @@ router.post("/", protected, (req, res) => {
     });
 });
 
-// http://localhost:5000/letters/updateLetter
-
-router.post("/updateLetter/:id", (req, res) => {
+router.post("/updateLetter/:id", protected, (req, res) => {
   const id = req.params.id;
   const { content } = req.body;
 
@@ -97,7 +95,7 @@ router.delete("/:id", protected, (req, res) => {
       if (response) {
         res
           .status(200)
-          .json({ message: `successfully deleted the letter with id: ${id}` });
+          .json({ message: `Successfully deleted the letter with id: ${id}` });
       } else {
         res.status(404).json({
           message: "The letter with the specified ID does not exist."

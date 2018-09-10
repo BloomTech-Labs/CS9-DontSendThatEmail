@@ -1,51 +1,14 @@
 # CS9-DontSendThatEmail (Check My Tone)
 How many times have you written an email or other communication and spent a significant amount of time worrying about how your intended audience would interpret your message? Maybe you worried it would come across as too angry, too analytical or had a target objective in mind and wanted to be sure you were optimizing your tone in such a way to achieve your desired outcome. With "Check My Tone", you can create your written communications with confidence as the Watson Tone Analyzer utilizes deep linguistic analytic technology, providing you with an automated way to detect and understand the present tones in your messages. "Check My Tone" - the key to refining and improving your tone to help you achieve more impactful communication results!   
 
-<!-- ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-What things you need to install the software and how to install them.
-```
-give examples
-```
-
-### Installing
-A step by step series of examples that tell you how to get a development env running. Say what the step will be.
-```
-Give the example
-```
-
-And repeat
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo. -->
-
-<!-- ## Running the tests
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-Explain what these tests test and why.
-```
-Give an example
-``` -->
-
-<!-- ### And coding style tests
-Explain what these tests test and why.
-```
-Give an example
-``` -->
 
 ## Deployment
-<!-- Add additional notes about how to deploy this on a live system. -->
 * Netlify: https://dont-email-us.netlify.com/
 * Heroku: https://dontemail.herokuapp.com/
 
 
 ## Built With
-For this application we implemented the MERN Stack which is a set of Open Source components that together, provide an end-to-end framework for building a dynamic web application. 
+For this application we implemented the MERN Stack which is a set of Open Source components that together, provide an end-to-end framework for building a dynamic web application. This application is completely written in JavaScript.<br> 
 ![MERN Stack](2018-08-29-13-10-36.png)
 * [MongoDB](https://www.mongodb.com/what-is-mongodb) - Document database offering scalability, flexibility, querying and indexing
 * [Express.js](https://expressjs.com/) - Web framework
@@ -63,13 +26,10 @@ For this application we implemented the MERN Stack which is a set of Open Source
 * [Validator.js](https://www.npmjs.com/package/validator) - Library of string validators and sanitizers
 * [React Router DOM](https://www.npmjs.com/package/react-router-dom) - DOM bindings for React Router
 
-<!-- ## Versioning -->
-<!-- Not sure if we need or want? -->
 
 ## Authors
 ![Dev Team](2018-09-03-14-39-13.png)
-
-Connect with us on<br/>
+<br>
 ![LinkedIn Logo](2018-09-04-14-07-37.png)
 * [Christopher Beards](https://www.linkedin.com/in/christopher-beards-1292b529/) 
 * [Lukasz Busk](https://www.linkedin.com/in/%C5%82ukasz-bu%C5%9Bk-75313b16a/) 
@@ -79,20 +39,17 @@ Connect with us on<br/>
 
 ## License
 This project is licensed under MIT License
-Copyright (c) 2018 Lambda Labs
 <br/>
+Copyright (c) 2018 Lambda Labs  
+<br>
+<br>
 Stock photos used for this project:
-<br/>
+<br><br>
+
 From PEXELS
 * [Keyboard Stock Photo](https://www.pexels.com/photo/closeup-photo-of-black-and-blue-keyboard-1194713/) - photo credit by Marta Branco
 * ['How It Works' Stock Photo](https://www.pexels.com/photo/sunset-storm-sun-rocks-34090/) - photo credit by Negative Space
-<!-- * [Secondary Keyboard Stock Photo](https://www.pexels.com/photo/apple-magic-keyboard-1309766/) - photo credit by Tom Swinnen -->
 
 
 From Unsplash
 * [Hands on Keyboard Stock Photo](https://unsplash.com/photos/I_pOqP6kCOI) - photo credit by freestocks.org
-
-<!-- ## Acknowledgments
-* Hat tip to anyone whose code was used
-* Inspiration
-* Etc -->

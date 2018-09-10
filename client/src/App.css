@@ -10,7 +10,7 @@
 }
 
 .body-background {
-  background: linear-gradient(180deg, var(--tone2) 40%, var(--tone1) 30%);
+  background: var(--tone1);
   padding-left: 0px;
   padding-right: 0px;
   margin-right: 0px;
@@ -23,6 +23,7 @@
 
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {

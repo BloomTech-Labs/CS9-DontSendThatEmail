@@ -42,8 +42,11 @@ class Documents extends Component {
   
   listDocuments() {
     return this.state.letters.map(letter => (
+     
       <Fragment>
+        
         <div className="letterBox">
+        
           <input
             key={letter._id}
             type="checkbox"
@@ -54,7 +57,7 @@ class Documents extends Component {
 
           <Link className="tablerow" to={`/dashboard/create/${letter._id}`}>
             <div className="letter-name">{letter.name}</div>
-            <time className="time">August 19</time>
+            <time className="time">{this.formatStamp(letter.timestamp)}</time>
           </Link>
           <div className="databox-icons">
             <i
@@ -66,6 +69,12 @@ class Documents extends Component {
         </div>
       </Fragment>
     ));
+  }
+
+  formatStamp(timestamp){
+    let date = new Date(timestamp)
+    return date.toDateString()
+    
   }
   deleteItems = id => {
     if (this.state.checkedIds.length !== 0) {
@@ -101,22 +110,29 @@ class Documents extends Component {
           <Fragment>
             <Row className="databox">
               <Row className="header-row">
+             
                 <div className="header-text">
-                  <div>
-                    <AddLetter {...this.props} />
-                  </div>
-                  <i
+            
+                  
+                 
+                 
+
+                  <div className="textstuff">
+                  <AddLetter {...this.props} />
+                   <i
                     onClick={() => this.deleteItems()}
                     className="fa fa-trash"
                     aria-hidden="true"
                   />
-                  <div className="textstuff">Subject</div>
+                  Subject</div>
                   <div className="textstuff">Created at</div>
+                  
                 </div>
                 >
               </Row>
               <Row className="listsofdocuments">{this.listDocuments()}</Row>
             </Row>
+           
           </Fragment>
         ) : (
           this.props.history.push("/")

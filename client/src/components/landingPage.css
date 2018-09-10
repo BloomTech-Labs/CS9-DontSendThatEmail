@@ -236,7 +236,7 @@ header nav li:last-child {
 .howitworks {
   background: url("../assets/purple7.jpg");
   background-size: cover;
-  height: 99vh;
+  min-height: 99vh;
   filter: grayscale(20%);
 }
 

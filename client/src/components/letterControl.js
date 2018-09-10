@@ -122,6 +122,7 @@ class LetterControl extends Component {
       })
       .then(resp => {
         this.props.history.push(`/dashboard/create/${resp.data._id}`);
+        console.log(resp.data)
         this.setletter(resp.data._id);
       });
   }
@@ -211,53 +212,51 @@ class LetterControl extends Component {
     if (tone === "joy") {
       return (
         <div key={id} className={tone}>
-          <br />
+          
           <i class="fas fa-smile-beam" />
-          <br />
+         
           {toneStr}
-          <br />
+         
           <i class="fas fa-smile-beam" />
-          <br />
-          <br />
+          
+          
         </div>
       );
     } else if (tone === "anger") {
       return (
         <div key={id} className={tone}>
-          <br />
+         
           <i class="fas fa-angry" />
-          <br />
+         
           {toneStr}
-          <br />
+       
           <i class="fas fa-angry" />
-          <br />
-          <br />
+        
         </div>
       );
     } else if (tone === "sadness") {
       return (
         <div key={id} className={tone}>
-          <br />
+         
           <i class="fas fa-sad-tear" />
-          <br />
+          
           {toneStr}
-          <br />
+         
           <i class="fas fa-sad-tear" />
-          <br />
-          <br />
+        
         </div>
       );
     } else if (tone === "analytical") {
       return (
         <div key={id} className={tone}>
-          <br />
+         
           <i class="fas fa-surprise" />
-          <br />
+          
           {toneStr}
-          <br />
+        
           <i class="fas fa-surprise" />
-          <br />
-          <br />
+          
+       
         </div>
       );
     }
@@ -344,7 +343,7 @@ class LetterControl extends Component {
     if (this.state.id === "") {
       return (
         <Button
-          className="btn movement-btn"
+          className="btn movement-btn btn-styles"
           onClick={() => this.createLetter()}
         >
           Create
@@ -354,7 +353,7 @@ class LetterControl extends Component {
       if (this.state.versionsCounter + 1 === this.state.versions.length) {
         return (
           <Button
-            className="btn movement-btn"
+            className="btn movement-btn btn-styles"
             onClick={() => this.saveVersion()}
           >
             Save
@@ -363,7 +362,7 @@ class LetterControl extends Component {
       } else {
         return (
           <Button
-            className="btn movement-btn"
+            className="btn movement-btn btn-styles"
             onClick={() => this.saveVersion()}
           >
             Save As
@@ -379,7 +378,7 @@ class LetterControl extends Component {
     ) {
       return (
         <div>
-          <Button className="btn movement-btn" onClick={this.toggleModalTwo}>
+          <Button className="btn movement-btn btn-styles" onClick={this.toggleModalTwo}>
             Cancel
           </Button>
 
@@ -395,14 +394,14 @@ class LetterControl extends Component {
               Your message will be lost if you leave this page without saving.
             </ModalBody>
             <ModalFooter>
-              <Button
+              <Button className="btn-styles"
                 color="primary"
                 onClick={() => this.props.history.push("/dashboard")}
               >
                 Leave
               </Button>{" "}
               <Button
-                className="btn movement-btn"
+                className="btn movement-btn btn-styles"
                 color="secondary"
                 onClick={this.toggleModalTwo}
               >
@@ -415,7 +414,7 @@ class LetterControl extends Component {
     } else {
       return (
         <Link to="/dashboard">
-          <Button className="btn movement-btn" style={{ opacity: 0.5 }}>
+          <Button className="btn movement-btn btn-styles" style={{ opacity: 0.5 }}>
             Cancel
           </Button>
         </Link>
@@ -449,8 +448,8 @@ class LetterControl extends Component {
               {this.renderHighlights()}
             </ModalBody>
             <ModalFooter>
-              <Button color="success" onClick={this.toggle}>
-                close
+              <Button className="btn-styles" color="success" onClick={this.toggle}>
+                Close
               </Button>
             </ModalFooter>
           </Modal>
@@ -466,37 +465,19 @@ class LetterControl extends Component {
           Would you like to send this email?
         </ModalHeader>
         <ModalBody>
-          <Label>Send To</Label>
+          <Label className="email-Label">Send To</Label>
           <Input
             placeholder="email..."
             name="email"
             onChange={this.handleChange}
             value={this.state.email}
           />
-          <br />
-          <br />
-          {this.state.content}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={this.toggleFour}>
+          <Button className="btn-styles" color="primary" onClick={this.toggleThree}>
             Send
           </Button>{" "}
-          <Modal
-            className={this.props.className}
-            isOpen={this.state.modalFour}
-            toggle={this.toggleFour}
-          >
-            <ModalHeader toggle={this.toggleFour}>Email Sent</ModalHeader>
-            <ModalBody>
-              {`Your email was sent to ${this.state.email}`}
-            </ModalBody>
-            <ModalFooter>
-              <Button color="success" onClick={this.toggleFour}>
-                Close
-              </Button>{" "}
-            </ModalFooter>
-          </Modal>
-          <Button color="secondary" onClick={this.toggleThree}>
+          <Button className="btn-styles"  color="secondary" onClick={this.toggleThree}>
             Cancel
           </Button>
         </ModalFooter>
@@ -542,117 +523,129 @@ class LetterControl extends Component {
   render() {
     const { auth } = this.props.context.userData;
     return (
-      <Col md="7" className="controlCol-styles">
+      <Col sm="12" md="12" lg="10" className="controlCol-styles">
         {auth ? (
-          <Card>
-            <CardBody>
-              <br />
-              <Form>
-                {!this.state.id ? (
-                  <React.Fragment>
-                    <div className="versionsCounter-styles">
-                      Edit {this.state.versionsCounter + 1}/
-                      {this.state.versions.length}
-                    </div>
+          <Form className="form-styles">
+            <br />
 
-                    <br />
-                    <Row className="analyze-styles">
-                      <Col md="6">
-                        <Input
-                          placeholder={this.state.name}
-                          name="name"
-                          onChange={this.handleChange}
-                        />
-                      </Col>
-                      <Col md="3">
-                        <Button onClick={() => this.watson()}>Analyze</Button>
-                      </Col>
-                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
-                    </Row>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <div className="versionsCounter-styles">
-                      Edit {this.state.versionsCounter + 1}/
-                      {this.state.versions.length}
-                    </div>
-
-                    <br />
-                    <Row className="analyze-styles">
-                      <Col md="6">
-                        <Label>{this.state.name}</Label>
-                      </Col>
-                      <Col md="3">
-                        <Button onClick={() => this.watson()}>Analyze</Button>
-                      </Col>
-                      <Col md="2">{this.renderMoreInfoIcon()}</Col>
-                    </Row>
-                  </React.Fragment>
-                )}
-                <br />
-                <Row className="rowTextArea-styles">
-                  <Col md="6">
-                    <div>
-                      <Input
-                        style={{ height: 400 }}
-                        // static height please fix
-                        className="taInput-styles"
-                        type="textarea"
-                        name="content"
-                        value={this.state.content}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                  </Col>
-                  <Col md="4">
-                    {this.renderProgressBars(
-                      this.state.anger,
-                      this.state.joy,
-                      this.state.sadness,
-                      this.state.analytical
-                    )}
-                  </Col>
-                </Row>
-
-                <br />
-                <Row className="infoRow-styles">
-                  <Col md="6" className="controlBtn-styles">
-                    <Col md="6">
-                      <i
-                        className="fas fa-arrow-circle-left"
-                        onClick={() => this.changeVersion("down")}
-                      />
-                      <br />
-                      <br />
-                      {this.renderCancel()}
-                    </Col>
-                    <Col md="6">
-                      <i
-                        className="fas fa-arrow-circle-right"
-                        onClick={() => this.changeVersion("up")}
-                      />
-                      <br />
-                      <br />
-
-                      {this.renderSave()}
-                    </Col>
-                  </Col>
-                </Row>
-                <div className="emails-styles">
-                  <Button className="btn" onClick={this.toggleThree}>
-                    Send Email
-                  </Button>
-                  <Modal
-                    className={this.props.className}
-                    isOpen={this.state.modalThree}
-                    toggle={this.toggleThree}
-                  >
-                    {this.emailModal()}
-                  </Modal>
+            {!this.state.id ? (
+              <React.Fragment>
+                <div className="versionsCounter-styles">
+                  Edit {this.state.versionsCounter + 1}/
+                  {this.state.versions.length}
                 </div>
-              </Form>
-            </CardBody>
-          </Card>
+
+                <br />
+                <Row className="analyze-styles">
+                  <Col md="12" lg="12" xl="5">
+                    <Input
+                      placeholder={this.state.name}
+                      name="name"
+                      onChange={this.handleChange}
+                    />
+                    <br />
+                  </Col>
+                  <Col md="6" lg="6" xl="3">
+                    <Button
+                      className="analyzeBtn-styles btn-styles"
+                      onClick={() => this.watson()}
+                    >
+                      Analyze
+                    </Button>
+                  </Col>
+                  <Col md="6" lg="6" xl="3">
+                    {this.renderMoreInfoIcon()}
+                  </Col>
+                </Row>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <div className="versionsCounter-styles">
+                  Edit {this.state.versionsCounter + 1}/
+                  {this.state.versions.length}
+                </div>
+
+                <br />
+                <Row className="analyze-styles">
+                  <Col md="12" lg="6">
+                    <Label className="label-styles">{this.state.name}</Label>
+                  </Col>
+                  <Col md="6" lg="3">
+                    <Button
+                      className="analyzeBtn-styles btn-styles"
+                      onClick={() => this.watson()}
+                    >
+                      Analyze
+                    </Button>
+                  </Col>
+                  <Col md="6" lg="3">
+                    {this.renderMoreInfoIcon()}
+                  </Col>
+                </Row>
+              </React.Fragment>
+            )}
+            <br />
+            <Row className="rowTextArea-styles">
+              <Col md="6">
+                <div>
+                  <Input
+                    style={{ height: 400 }}
+                    // static height please fix
+                    className="taInput-styles"
+                    type="textarea"
+                    name="content"
+                    value={this.state.content}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </Col>
+              <Col md="4">
+                {this.renderProgressBars(
+                  this.state.anger,
+                  this.state.joy,
+                  this.state.sadness,
+                  this.state.analytical
+                )}
+              </Col>
+            </Row>
+
+            <br />
+            <Row className="infoRow-styles">
+              <Col md="6" className="controlBtn-styles">
+                <Col md="6">
+                  <i
+                    className="fas fa-arrow-circle-left"
+                    onClick={() => this.changeVersion("down")}
+                  />
+                  <br />
+                  <br />
+                  {this.renderCancel()}
+                </Col>
+                <Col md="6">
+                  <i
+                    className="fas fa-arrow-circle-right"
+                    onClick={() => this.changeVersion("up")}
+                  />
+                  <br />
+                  <br />
+
+                  {this.renderSave()}
+                </Col>
+              </Col>
+            </Row>
+            <div className="emails-styles">
+              <Button className="btn btn-styles" onClick={this.toggleThree}>
+                Send Email
+              </Button>
+              <Modal
+                className={this.props.className}
+                isOpen={this.state.modalThree}
+                toggle={this.toggleThree}
+              >
+                {this.emailModal()}
+              </Modal>
+            </div>
+          </Form>
         ) : (
           this.props.history.push("/")
         )}

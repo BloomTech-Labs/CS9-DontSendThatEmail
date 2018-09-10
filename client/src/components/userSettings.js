@@ -76,6 +76,7 @@ class UserSettings extends Component {
               {this.validPass()}
 
               <input
+                type="password"
                 name="password"
                 placeholder="Enter New Password"
                 value={this.state.password}
@@ -83,6 +84,7 @@ class UserSettings extends Component {
               />
               <br />
               <input
+                type="password"
                 name="validatePassword"
                 placeholder="Match Above Password"
                 value={this.state.validatePassword}

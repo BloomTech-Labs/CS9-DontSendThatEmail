@@ -1,6 +1,7 @@
 const Validator = require("validator");
 const isEmpty = require("../validation/is-empty");
 
+// Validates input fields for registration of new user
 const validateRegisterInput = ({ username, email, password, password2 }) => {
   let errors = {};
   username = !isEmpty(username) ? username : "";
@@ -17,7 +18,7 @@ const validateRegisterInput = ({ username, email, password, password2 }) => {
   }
 
   if (Validator.isEmpty(email)) {
-    errors.email = "email is required";
+    errors.email = "Email is required";
   }
 
   if (!Validator.isEmail(email)) {

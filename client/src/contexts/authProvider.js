@@ -9,10 +9,7 @@ class AuthProvider extends Component {
     email: ""
   };
 
-  toggleAuth = () => {
-    this.setState({ auth: !this.state.auth });
-  };
-
+  // Takes the response data from when we log in & sets it on context state
   setLogin = data => {
     this.setState({
       auth: true,
@@ -26,10 +23,11 @@ class AuthProvider extends Component {
     const userData = this.state;
 
     return (
+      // Setup context provider to setup the data on state & to setup the methods on class
       <AuthContext.Provider
         value={{
           userData,
-          actions: { toggleAuth: this.toggleAuth, setLogin: this.setLogin }
+          actions: { setLogin: this.setLogin }
         }}
       >
         {this.props.children}

@@ -21,6 +21,7 @@ class Signup extends Component {
     });
   };
 
+  // Take the data from input field & use it to register the user & push to login
   handleSubmit = e => {
     e.preventDefault();
     const user = {

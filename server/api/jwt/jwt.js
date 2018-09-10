@@ -1,5 +1,4 @@
 // JWT strategy here to work along passport
-
 const { ExtractJwt } = require("passport-jwt");
 const JwtStrategy = require("passport-jwt").Strategy;
 const passport = require("passport");
@@ -28,7 +27,6 @@ const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
 });
 
 // it will protect future routes from unauthorized access if included as middleware
-
 const protected = passport.authenticate("jwt", { session: false });
 
 module.exports = { jwtStrategy, protected };

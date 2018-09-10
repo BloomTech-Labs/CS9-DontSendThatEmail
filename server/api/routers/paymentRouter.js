@@ -24,6 +24,8 @@ router.post("/", protected, (req, res, next) => {
   const stripeToken = req.body.source;
   let email = req.user.email;
 
+  // Stripe is checking if user already exists when creating subscription
+  // Stripe needs to be enabled on both front/back end to work properly
   User.findById(req.user._id)
     .then(user => {
       if (user.membership)
@@ -53,7 +55,7 @@ router.post("/", protected, (req, res, next) => {
                     user.subscription = subscription.id;
                     user.membership = true;
                     user.save();
-                    res.status(200).json({ message: "Sub successful" });
+                    res.status(200).json({ message: "Subscription successful" });
                   }
                 }
               );

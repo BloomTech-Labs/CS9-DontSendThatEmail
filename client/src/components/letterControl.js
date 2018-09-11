@@ -24,6 +24,7 @@ class LetterControl extends Component {
     this.state = {
       versions: [{ content: "Content..." }],
       name: "Name",
+      email:"",
       content: "",
       versionsCounter: 0,
       anger: 0,
@@ -88,6 +89,7 @@ class LetterControl extends Component {
         this.setState({
           versions: resp.data.versions,
           name: resp.data.name,
+          email:resp.data.name,
           id: id,
           content: resp.data.versions[resp.data.versions.length - 1].content
         });
@@ -111,7 +113,6 @@ class LetterControl extends Component {
       })
       .then(resp => {
         this.props.history.push(`/dashboard/create/${resp.data._id}`);
-        console.log(resp.data)
         this.setletter(resp.data._id);
       });
   }
@@ -472,7 +473,7 @@ class LetterControl extends Component {
           <Input
             placeholder="email..."
             name="email"
-            value={this.state.name}
+            value={this.state.email}
             onChange={this.handleChange}
          
           />

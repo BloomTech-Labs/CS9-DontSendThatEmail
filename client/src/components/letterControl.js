@@ -390,7 +390,7 @@ class LetterControl extends Component {
             className={this.props.className}
           >
             <ModalHeader toggle={this.toggleModalTwo}>
-              modalTwo title
+              Are you sure?
             </ModalHeader>
             <ModalBody>
               Your message will be lost if you leave this page without saving.
